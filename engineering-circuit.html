@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Design | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 5% 4rem;
+        }
+
+        .sketch-placeholder {
+            background: #e2e8f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .toc-bar {
+            background: var(--primary);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toc-bar a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .toc-bar a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+
+        .toc-bar a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-bar {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html" class="active">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+    <!-- Table of Contents Sticky Bar -->
+    <div class="toc-bar">
+        <a href="engineering-specs.html">1. Requirements & Specs</a>
+        <a href="engineering-concepts.html">2. Conceptual Design</a>
+        <a href="engineering-comparison.html">3. Comparison of Design</a>
+        <a href="engineering-finalized.html">4. Finalized Design</a>
+        <a href="engineering-bom.html">5. Components & BOM</a>
+        <a href="engineering-solidworks.html">6. Solidworks Drawings</a>
+        <a href="engineering-analysis.html">7. System Analysis</a>
+        <a href="engineering-circuit.html" class="active">8. Circuit Design</a>
+        <a href="engineering-flowchart.html">9. Program Flowchart</a>
+        <a href="engineering-architecture.html">10. Architecture</a>
+        <a href="engineering-simulation.html">11. Simulation</a>
+    </div>
+    <!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Engineering Design & Integration</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 1.5rem;">Comprehensive analysis,
+                modeling, fabrication, and control loop verification of the custom end-effector</p>
+            <div style="display: inline-block;">
+                <span
+                    style="background: rgba(20, 189, 172, 0.2); border: 1px solid rgba(20, 189, 172, 0.4); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(5px);">🟢
+                    Physical Integration Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Requirements and Specifications -->
+    <section id="circuit" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">08. Electrical Wiring Schematic</span>
+                <h2 class="section-title">Circuit Design & Simulation</h2>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                    Electromagnetic Actuation Control Loop
+                </h3>
+                <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem;">
+                    The schematic below outlines the electrical integration for the finalized <strong>Magnetic Gripper</strong> system. To guarantee safety and logic integrity, a dual-stage isolation and step-down power distribution topology is utilized, operating from a primary 24V DC bus. Hover over components in the vector block or use the <strong>Operator Control Console</strong> below to energize the circuits and visualize live current flow, signal relays, and magnetic field generation.
+                </p>
+            </div>
+
+            <!-- Interative SVG Schematic -->
+            <div class="card" style="padding: 1.5rem; background: #070e1b; border: 1px solid #1e293b; box-shadow: var(--shadow-lg); overflow-x: auto; margin-bottom: 2rem;">
+                <svg viewBox="0 0 1000 750" width="100%" height="auto" style="background: #0B192C; border-radius: 8px; font-family: 'Poppins', sans-serif; overflow: visible; display: block; min-width: 800px;">
+                    <!-- Grid Background -->
+                    <defs>
+                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1" />
+                        </pattern>
+                        <!-- Gradients -->
+                        <linearGradient id="batteryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1E3E62" />
+                            <stop offset="100%" stop-color="#0F172A" />
+                        </linearGradient>
+                        <linearGradient id="connectorGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#475569" />
+                            <stop offset="100%" stop-color="#334155" />
+                        </linearGradient>
+                        <linearGradient id="pcbGreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#16a34a" />
+                            <stop offset="100%" stop-color="#14532d" />
+                        </linearGradient>
+                        <linearGradient id="pcbBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2563eb" />
+                            <stop offset="100%" stop-color="#1e3a8a" />
+                        </linearGradient>
+                        <linearGradient id="pcbBlackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#334155" />
+                            <stop offset="100%" stop-color="#0f172a" />
+                        </linearGradient>
+                        <linearGradient id="solenoidGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#cbd5e1" />
+                            <stop offset="50%" stop-color="#f8fafc" />
+                            <stop offset="100%" stop-color="#94a3b8" />
+                        </linearGradient>
+                        <linearGradient id="coilGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#b45309" />
+                            <stop offset="50%" stop-color="#ea580c" />
+                            <stop offset="100%" stop-color="#78350f" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <!-- Apply Background Grid -->
+                    <rect width="1000" height="750" fill="#070e1b" />
+                    <rect width="1000" height="750" fill="url(#grid)" />
+                    
+                    <!-- ========================================== -->
+                    <!-- PHYSICAL CONNECTIONS (WIRE BACKGROUNDS) -->
+                    <!-- ========================================== -->
+                    <g stroke-linecap="round" stroke-linejoin="round" fill="none">
+                        <!-- Battery to Connector -->
+                        <path d="M 140 140 L 25 140 L 25 410 L 90 410" stroke="#991b1b" stroke-width="5" />
+                        <path d="M 140 160 L 15 160 L 15 435 L 90 435" stroke="#1e3a8a" stroke-width="5" />
+                        
+                        <!-- Connector to 5V Buck -->
+                        <path d="M 180 400 L 260 400 L 260 350 L 540 350" stroke="#166534" stroke-width="4" />
+                        <path d="M 180 415 L 250 415 L 250 370 L 540 370" stroke="#1e3a8a" stroke-width="4" />
+                        
+                        <!-- Connector to 12V Buck -->
+                        <path d="M 180 435 L 280 435 L 280 500 L 410 500" stroke="#854d0e" stroke-width="4" />
+                        <path d="M 180 450 L 270 450 L 270 520 L 410 520" stroke="#1e3a8a" stroke-width="4" />
+                        
+                        <!-- Control Box to Optocoupler Input -->
+                        <path d="M 345 120 L 320 120 L 320 275 L 360 275" stroke="#7c2d12" stroke-width="3" />
+                        <path d="M 345 135 L 330 135 L 330 295 L 360 295" stroke="#7c2d12" stroke-width="3" />
+                        
+                        <!-- Optocoupler to Control Box DO.6 -->
+                        <path d="M 490 275 L 510 275 L 510 230 L 750 230 L 750 120" stroke="#166534" stroke-width="3" />
+                        
+                        <!-- Optocoupler to Relay IN1 -->
+                        <path d="M 490 295 L 520 295 L 520 420 L 720 420 L 720 520 L 740 520" stroke="#166534" stroke-width="3" />
+                        
+                        <!-- 5V Buck to Relay Logic Power -->
+                        <path d="M 690 350 L 710 350 L 710 470 L 740 470" stroke="#6b21a8" stroke-width="3" />
+                        <path d="M 690 370 L 700 370 L 700 495 L 740 495" stroke="#1e3a8a" stroke-width="3" />
+                        
+                        <!-- 12V Buck to Relay COM1 -->
+                        <path d="M 560 500 L 710 500 L 710 590 L 930 590 L 930 470 L 900 470" stroke="#991b1b" stroke-width="4" />
+                        
+                        <!-- 12V Buck Vout- to Solenoid Negative -->
+                        <path d="M 560 520 L 580 520 L 580 660 L 200 660" stroke="#334155" stroke-width="4" />
+                        
+                        <!-- Relay NO to Solenoid Positive -->
+                        <path d="M 900 495 L 950 495 L 950 685 L 180 685 L 180 640 L 200 640" stroke="#991b1b" stroke-width="4" />
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- ANIMATED FLOW LINES (OVERLAYS) -->
+                    <!-- ========================================== -->
+                    <g stroke-linecap="round" stroke-linejoin="round" fill="none" class="flow-paths">
+                        <!-- Battery to Connector -->
+                        <path id="wire-bat-pos-flow" d="M 140 140 L 25 140 L 25 410 L 90 410" stroke="#f87171" stroke-width="2.5" class="flow-line power-24v" />
+                        <path id="wire-bat-neg-flow" d="M 90 435 L 15 435 L 15 160 L 140 160" stroke="#60a5fa" stroke-width="2.5" class="flow-line power-24v" />
+                        
+                        <!-- Connector to 5V Buck -->
+                        <path id="wire-conn-5v-pos-flow" d="M 180 400 L 260 400 L 260 350 L 540 350" stroke="#4ade80" stroke-width="2" class="flow-line power-24v" />
+                        <path id="wire-conn-5v-neg-flow" d="M 540 370 L 250 370 L 250 415 L 180 415" stroke="#60a5fa" stroke-width="2" class="flow-line power-24v" />
+                        
+                        <!-- Connector to 12V Buck -->
+                        <path id="wire-conn-12v-pos-flow" d="M 180 435 L 280 435 L 280 500 L 410 500" stroke="#fde047" stroke-width="2" class="flow-line power-24v" />
+                        <path id="wire-conn-12v-neg-flow" d="M 410 520 L 270 520 L 270 450 L 180 450" stroke="#60a5fa" stroke-width="2" class="flow-line power-24v" />
+                        
+                        <!-- Control Box to Optocoupler Input -->
+                        <path id="wire-ctrl-opto-pos-flow" d="M 345 120 L 320 120 L 320 275 L 360 275" stroke="#fdba74" stroke-width="1.5" class="flow-line signal-opto" />
+                        <path id="wire-ctrl-opto-neg-flow" d="M 360 295 L 330 295 L 330 135 L 345 135" stroke="#fdba74" stroke-width="1.5" class="flow-line signal-opto" />
+                        
+                        <!-- Optocoupler to Control Box DO.6 -->
+                        <path id="wire-opto-ctrl-flow" d="M 490 275 L 510 275 L 510 230 L 750 230 L 750 120" stroke="#4ade80" stroke-width="1.5" class="flow-line signal-opto" />
+                        
+                        <!-- Optocoupler to Relay IN1 -->
+                        <path id="wire-opto-relay-flow" d="M 490 295 L 520 295 L 520 420 L 720 420 L 720 520 L 740 520" stroke="#4ade80" stroke-width="1.5" class="flow-line signal-relay" />
+                        
+                        <!-- 5V Buck to Relay Logic Power -->
+                        <path id="wire-5v-relay-pos-flow" d="M 690 350 L 710 350 L 710 470 L 740 470" stroke="#c084fc" stroke-width="1.5" class="flow-line power-5v" />
+                        <path id="wire-5v-relay-neg-flow" d="M 740 495 L 700 495 L 700 370 L 690 370" stroke="#60a5fa" stroke-width="1.5" class="flow-line power-5v" />
+                        
+                        <!-- 12V Buck to Relay COM1 -->
+                        <path id="wire-12v-relay-pos-flow" d="M 560 500 L 710 500 L 710 590 L 930 590 L 930 470 L 900 470" stroke="#f87171" stroke-width="2.5" class="flow-line power-12v" />
+                        
+                        <!-- 12V Buck Vout- to Solenoid Negative -->
+                        <path id="wire-12v-sol-neg-flow" d="M 200 660 L 580 660 L 580 520 L 560 520" stroke="#94a3b8" stroke-width="2.5" class="flow-line load-solenoid" />
+                        
+                        <!-- Relay NO to Solenoid Positive -->
+                        <path id="wire-relay-sol-pos-flow" d="M 900 495 L 950 495 L 950 685 L 180 685 L 180 640 L 200 640" stroke="#f87171" stroke-width="2.5" class="flow-line load-solenoid" />
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- COMPONENTS RENDERING -->
+                    <!-- ========================================== -->
+
+                    <!-- 1. 24V BATTERY -->
+                    <g transform="translate(0, 0)" style="cursor: pointer;" title="24V Master Supply Battery">
+                        <rect x="40" y="100" width="120" height="180" rx="8" fill="url(#batteryGrad)" stroke="#1e3a8a" stroke-width="2" />
+                        <rect x="60" y="90" width="25" height="10" rx="2" fill="#64748b" />
+                        <rect x="115" y="90" width="25" height="10" rx="2" fill="#64748b" />
+                        <!-- Battery label -->
+                        <text x="100" y="135" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">24V BATTERY</text>
+                        <text x="100" y="152" fill="#94a3b8" font-size="8.5" text-anchor="middle">UFX 10800-3S 11.1V</text>
+                        <text x="100" y="167" fill="#64748b" font-size="8" text-anchor="middle">(Equivalent Series Supply)</text>
+                        
+                        <!-- Battery charge status bar -->
+                        <rect x="60" y="195" width="80" height="16" rx="3" fill="#022c22" stroke="#059669" stroke-width="1" />
+                        <rect id="bat-charge-bar" x="62" y="197" width="76" height="12" rx="1.5" fill="#10b981" />
+                        <text x="100" y="232" fill="#10b981" font-size="10" font-weight="600" text-anchor="middle">100% HEALTHY</text>
+                        
+                        <!-- Terminals -->
+                        <circle cx="140" y="140" r="7" fill="#ef4444" />
+                        <text x="140" y="143.5" fill="#fff" font-size="10" font-weight="bold" text-anchor="middle">+</text>
+                        
+                        <circle cx="140" y="160" r="7" fill="#3b82f6" />
+                        <text x="140" y="163.5" fill="#fff" font-size="10" font-weight="bold" text-anchor="middle">-</text>
+                    </g>
+
+                    <!-- 2. 2-IN-4-OUT WIRE CONNECTOR -->
+                    <g transform="translate(0, 0)" title="WAGO 2-in-4-out Connector Block">
+                        <rect x="90" y="380" width="90" height="90" rx="6" fill="url(#connectorGrad)" stroke="#475569" stroke-width="2" />
+                        <!-- Clamps -->
+                        <rect x="95" y="403" width="22" height="14" rx="2" fill="#ea580c" />
+                        <rect x="95" y="428" width="22" height="14" rx="2" fill="#2563eb" />
+                        
+                        <rect x="153" y="393" width="22" height="14" rx="2" fill="#16a34a" />
+                        <rect x="153" y="410" width="22" height="14" rx="2" fill="#2563eb" />
+                        <rect x="153" y="428" width="22" height="14" rx="2" fill="#ea580c" />
+                        <rect x="153" y="445" width="22" height="14" rx="2" fill="#2563eb" />
+
+                        <text x="135" y="465" fill="#94a3b8" font-size="7.5" font-weight="600" text-anchor="middle">WAGO CONNECTOR</text>
+                        <text x="135" y="394" fill="#fff" font-size="8" font-weight="bold" text-anchor="middle">2-in-4-out</text>
+                    </g>
+
+                    <!-- 3. CONTROL BOX I/O CONFIGURATION -->
+                    <g transform="translate(0, 0)">
+                        <rect x="300" y="30" width="650" height="175" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+                        <rect x="310" y="40" width="630" height="25" rx="4" fill="#f1f5f9" />
+                        <text x="625" y="57" fill="#1e293b" font-size="12" font-weight="700" text-anchor="middle">Control Box I/O configuration</text>
+                        
+                        <!-- Terminal block (PWR) -->
+                        <g transform="translate(345, 80)">
+                            <rect width="160" height="40" fill="#22c55e" rx="3" />
+                            <line x1="0" y1="20" x2="160" y2="20" stroke="#16a34a" stroke-width="1" />
+                            <circle cx="20" cy="10" r="5" fill="#15803d" />
+                            <circle cx="45" cy="10" r="5" fill="#15803d" />
+                            <circle cx="70" cy="10" r="5" fill="#15803d" />
+                            <circle cx="95" cy="10" r="5" fill="#15803d" />
+                            <circle cx="120" cy="10" r="5" fill="#15803d" />
+                            <circle cx="140" cy="10" r="5" fill="#15803d" />
+                            <text x="20" y="32" fill="#fff" font-size="7.5" font-weight="bold" text-anchor="middle">PWR+</text>
+                            <text x="45" y="32" fill="#fff" font-size="7.5" font-weight="bold" text-anchor="middle">PWR-</text>
+                            <text x="70" y="32" fill="#fff" font-size="7" font-weight="bold" text-anchor="middle">SDA</text>
+                            <text x="95" y="32" fill="#fff" font-size="7" font-weight="bold" text-anchor="middle">SDB</text>
+                            <text x="120" y="32" fill="#fff" font-size="7" font-weight="bold" text-anchor="middle">SC1</text>
+                            <text x="140" y="32" fill="#fff" font-size="7" font-weight="bold" text-anchor="middle">SC2</text>
+                        </g>
+
+                        <!-- Terminal block (Yellow) -->
+                        <g transform="translate(525, 80)">
+                            <rect width="130" height="40" fill="#eab308" rx="3" />
+                            <line x1="0" y1="20" x2="130" y2="20" stroke="#a16207" stroke-width="1" />
+                            <circle cx="20" cy="10" r="5" fill="#a16207" />
+                            <circle cx="45" cy="10" r="5" fill="#a16207" />
+                            <circle cx="70" cy="10" r="5" fill="#a16207" />
+                            <text x="20" y="32" fill="#fff" font-size="7" font-weight="bold" text-anchor="middle">COM</text>
+                            <text x="45" y="32" fill="#fff" font-size="7" font-weight="bold" text-anchor="middle">24V</text>
+                            <text x="70" y="32" fill="#fff" font-size="7" font-weight="bold" text-anchor="middle">VO0</text>
+                        </g>
+
+                        <!-- Terminal block (Grey with DO.6) -->
+                        <g transform="translate(675, 80)">
+                            <rect width="150" height="40" fill="#94a3b8" rx="3" />
+                            <line x1="0" y1="20" x2="150" y2="20" stroke="#475569" stroke-width="1" />
+                            <circle cx="20" cy="10" r="5" fill="#475569" />
+                            <circle cx="45" cy="10" r="5" fill="#475569" />
+                            <circle cx="75" cy="10" r="5" fill="#475569" id="led-do6-pin" />
+                            <text x="20" y="32" fill="#fff" font-size="7" font-weight="bold" text-anchor="middle">CCOM</text>
+                            <text x="45" y="32" fill="#fff" font-size="7" font-weight="bold" text-anchor="middle">DO.1</text>
+                            <text x="75" y="32" fill="#fff" font-size="7.5" font-weight="bold" text-anchor="middle">DO.6</text>
+                            <!-- Glow LED indicator on board -->
+                            <circle id="led-do6" cx="75" cy="10" r="3.5" fill="#ef4444" opacity="0.2" />
+                        </g>
+
+                        <!-- Terminal block (Blue) -->
+                        <g transform="translate(840, 80)">
+                            <rect width="90" height="40" fill="#3b82f6" rx="3" />
+                            <line x1="0" y1="20" x2="90" y2="20" stroke="#1d4ed8" stroke-width="1" />
+                            <circle cx="20" cy="10" r="5" fill="#1d4ed8" />
+                            <circle cx="45" cy="10" r="5" fill="#1d4ed8" />
+                            <text x="20" y="32" fill="#fff" font-size="7.5" font-weight="bold" text-anchor="middle">GND</text>
+                            <text x="45" y="32" fill="#fff" font-size="7.5" font-weight="bold" text-anchor="middle">0V</text>
+                        </g>
+
+                        <text x="625" y="162" fill="#64748b" font-size="9" font-weight="600" text-anchor="middle">ASRS PALLET AUTOMATION INTERFACE TERMINAL (TM5-700)</text>
+                    </g>
+
+                    <!-- 4. OCTOCOUPLER (OPTICAL ISOLATOR) -->
+                    <g transform="translate(0, 0)" title="Opto-Isolator Module PC817">
+                        <rect x="360" y="250" width="130" height="70" rx="6" fill="url(#pcbGreenGrad)" stroke="#15803d" stroke-width="2" />
+                        <!-- PC817 chip -->
+                        <rect x="405" y="265" width="40" height="28" rx="2" fill="#000000" />
+                        <circle cx="411" cy="270" r="1.5" fill="#fff" />
+                        <text x="425" y="282" fill="#22c55e" font-size="8.5" font-family="monospace" font-weight="bold" text-anchor="middle">PC817</text>
+                        <!-- LED Indicator -->
+                        <circle id="led-opto" cx="425" cy="305" r="3" fill="#22c55e" opacity="0.2" />
+                        <!-- Board labels -->
+                        <text x="425" y="312" fill="#86efac" font-size="8" font-weight="bold" text-anchor="middle">OCTOCOUPLER</text>
+                        <!-- Left terminals -->
+                        <rect x="360" y="270" width="8" height="10" fill="#991b1b" />
+                        <rect x="360" y="290" width="8" height="10" fill="#334155" />
+                        <!-- Right terminals -->
+                        <rect x="482" y="270" width="8" height="10" fill="#166534" />
+                        <rect x="482" y="290" width="8" height="10" fill="#334155" />
+                    </g>
+
+                    <!-- 5. 5V BUCK CONVERTER -->
+                    <g transform="translate(0, 0)" title="5V Logic Bus Step-Down Converter">
+                        <rect x="540" y="320" width="150" height="85" rx="6" fill="url(#pcbBlueGrad)" stroke="#1d4ed8" stroke-width="2" />
+                        <!-- Coil Inductor -->
+                        <rect x="590" y="340" width="32" height="32" rx="16" fill="#78350f" stroke="#eab308" stroke-width="1.5" />
+                        <text x="606" y="360" fill="#fff" font-size="8" font-weight="bold" text-anchor="middle">330</text>
+                        <!-- Capacitor -->
+                        <circle cx="565" cy="370" r="10" fill="#94a3b8" />
+                        <line x1="565" y1="360" x2="565" y2="380" stroke="#475569" stroke-width="1.5" />
+                        <!-- Board labels -->
+                        <text x="615" y="394" fill="#93c5fd" font-size="8.5" font-weight="bold" text-anchor="middle">5V BUCK CONVERTER</text>
+                        <!-- Status LED -->
+                        <circle id="led-5v" cx="665" cy="335" r="3.5" fill="#22c55e" opacity="0.2" />
+                    </g>
+
+                    <!-- 6. 12V BUCK CONVERTER -->
+                    <g transform="translate(0, 0)" title="12V Actuation Coil Step-Down Converter">
+                        <rect x="410" y="470" width="150" height="85" rx="6" fill="url(#pcbBlackGrad)" stroke="#334155" stroke-width="2" />
+                        <!-- Coil Inductor -->
+                        <rect x="460" y="490" width="32" height="32" rx="16" fill="#78350f" stroke="#eab308" stroke-width="1.5" />
+                        <text x="476" y="510" fill="#fff" font-size="8" font-weight="bold" text-anchor="middle">470</text>
+                        <!-- Capacitor -->
+                        <circle cx="435" cy="520" r="10" fill="#94a3b8" />
+                        <line x1="435" y1="510" x2="435" y2="530" stroke="#475569" stroke-width="1.5" />
+                        <!-- Board labels -->
+                        <text x="485" y="544" fill="#cbd5e1" font-size="8.5" font-weight="bold" text-anchor="middle">12V BUCK CONVERTER</text>
+                        <!-- Status LED -->
+                        <circle id="led-12v" cx="535" cy="485" r="3.5" fill="#3b82f6" opacity="0.2" />
+                    </g>
+
+                    <!-- 7. 2 CHANNEL RELAY MODULE -->
+                    <g transform="translate(0, 0)" title="2-Channel Electromagnetic Relay Module">
+                        <rect x="740" y="440" width="160" height="130" rx="6" fill="url(#pcbBlackGrad)" stroke="#1e293b" stroke-width="2" />
+                        <!-- Blue Relay Cubes -->
+                        <rect x="800" y="450" width="65" height="40" rx="3" fill="#1d4ed8" stroke="#1e40af" stroke-width="1" />
+                        <rect x="800" y="500" width="65" height="40" rx="3" fill="#1d4ed8" stroke="#1e40af" stroke-width="1" />
+                        <text x="832" y="473" fill="#fff" font-size="7.5" font-weight="bold" text-anchor="middle">SONGLE</text>
+                        <text x="832" y="523" fill="#fff" font-size="7.5" font-weight="bold" text-anchor="middle">SONGLE</text>
+                        
+                        <!-- Screw Terminals -->
+                        <rect x="888" y="460" width="12" height="14" rx="1" fill="#475569" />
+                        <rect x="888" y="485" width="12" height="14" rx="1" fill="#475569" />
+                        
+                        <!-- Relay Signal Indicators -->
+                        <circle id="led-relay" cx="770" cy="470" r="3.5" fill="#ef4444" opacity="0.2" />
+                        <text x="770" y="460" fill="#f87171" font-size="6.5" font-weight="bold" text-anchor="middle">RY1</text>
+                        
+                        <circle cx="770" cy="520" r="3.5" fill="#ef4444" opacity="0.2" />
+                        <text x="770" y="510" fill="#f87171" font-size="6.5" font-weight="bold" text-anchor="middle">RY2</text>
+                        
+                        <!-- Labels -->
+                        <text x="820" y="558" fill="#94a3b8" font-size="8.5" font-weight="bold" text-anchor="middle">2 CHANNEL RELAY</text>
+                    </g>
+
+                    <!-- 8. ELECTROMAGNETIC SOLENOID -->
+                    <g id="solenoid-group" transform="translate(0, 0)">
+                        <!-- Steel Cylinder Body -->
+                        <rect x="200" y="600" width="110" height="90" rx="4" fill="url(#solenoidGrad)" stroke="#64748b" stroke-width="2" />
+                        <!-- Copper Coil windings inside -->
+                        <rect x="210" y="615" width="90" height="60" fill="url(#coilGrad)" rx="2" />
+                        <line x1="210" y1="623" x2="300" y2="623" stroke="#fed7aa" stroke-width="0.5" opacity="0.8" />
+                        <line x1="210" y1="631" x2="300" y2="631" stroke="#fed7aa" stroke-width="0.5" opacity="0.8" />
+                        <line x1="210" y1="639" x2="300" y2="639" stroke="#fed7aa" stroke-width="0.5" opacity="0.8" />
+                        <line x1="210" y1="647" x2="300" y2="647" stroke="#fed7aa" stroke-width="0.5" opacity="0.8" />
+                        <line x1="210" y1="655" x2="300" y2="655" stroke="#fed7aa" stroke-width="0.5" opacity="0.8" />
+                        <line x1="210" y1="663" x2="300" y2="663" stroke="#fed7aa" stroke-width="0.5" opacity="0.8" />
+                        
+                        <!-- Magnetic Field Waves (pulsing ripples) -->
+                        <path d="M 220 705 A 35 15 0 0 0 290 705" fill="none" stroke="#22d3ee" stroke-width="2" class="magnetic-wave ripple-1" />
+                        <path d="M 205 715 A 50 20 0 0 0 305 715" fill="none" stroke="#06b6d4" stroke-width="2" class="magnetic-wave ripple-2" />
+                        <path d="M 190 725 A 65 25 0 0 0 320 725" fill="none" stroke="#0891b2" stroke-width="1.5" class="magnetic-wave ripple-3" />
+                        
+                        <!-- Text Labels -->
+                        <text x="255" y="590" fill="#e2e8f0" font-size="10" font-weight="700" text-anchor="middle">KK-P25/20 ELECTROMAGNET</text>
+                        <rect x="212" y="635" width="86" height="20" rx="3" fill="rgba(11,25,44,0.75)" />
+                        <text id="solenoid-status-text" x="255" y="649" fill="#94a3b8" font-size="9" font-weight="bold" text-anchor="middle">DE-ENERGIZED</text>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Operator Control Console Card -->
+            <div class="control-panel-card" style="margin-top: 3rem; background: #0f172a; border-radius: 12px; border: 1px solid #334155; padding: 2.5rem; color: #fff; box-shadow: var(--shadow-lg);">
+                <h3 style="color: #22d3ee; margin-bottom: 1.5rem; font-size: 1.4rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem; font-family: 'Poppins', sans-serif;">
+                    <span>🎛️</span> ASRS Gripper Control Console
+                </h3>
+                
+                <div class="grid grid-3" style="gap: 2rem; margin-bottom: 2rem;">
+                    <!-- Power Switch Switch -->
+                    <div style="background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                        <h4 style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">1. MASTER SYSTEM POWER</h4>
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem;">
+                            <span id="power-lbl" style="font-weight: bold; color: #ef4444; font-size: 0.9rem;">OFF</span>
+                            <label class="switch-toggle">
+                                <input type="checkbox" id="power-switch">
+                                <span class="slider-btn"></span>
+                            </label>
+                            <span style="font-weight: bold; color: #10b981; font-size: 0.9rem;">ON</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.75rem; line-height: 1.4;">Energizes 24V supply to the splitting connectors and Buck step-down converters.</p>
+                    </div>
+                    
+                    <!-- Signal Switch -->
+                    <div style="background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                        <h4 style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">2. SOLENOID SIGNAL DO.6</h4>
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem;">
+                            <span id="signal-lbl" style="font-weight: bold; color: #ef4444; font-size: 0.9rem;">LOW</span>
+                            <label class="switch-toggle">
+                                <input type="checkbox" id="signal-switch" disabled>
+                                <span class="slider-btn"></span>
+                            </label>
+                            <span style="font-weight: bold; color: #10b981; font-size: 0.9rem;">HIGH</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.75rem; line-height: 1.4;">Toggles 24V logic signal via Optocoupler isolation to close the relay switches.</p>
+                    </div>
+                    
+                    <!-- Auto Trigger Cycles -->
+                    <div style="background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+                        <h4 style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">3. AUTOMATION SEQUENCE</h4>
+                        <button id="btn-auto-cycle" class="btn-console" style="background: #14bdac; color: #0f172a; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: bold; cursor: pointer; transition: all 0.2s; font-size: 0.9rem;" disabled>
+                            ⚡ Run Grip/Release Cycle
+                        </button>
+                        <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.75rem; line-height: 1.4;">Executes automated 1.5-second latch grip safety clearance sequences.</p>
+                    </div>
+                </div>
+                
+                <!-- Telemetry Monitors -->
+                <h4 style="color: #22d3ee; font-size: 1.1rem; margin-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">📈 Real-Time System Telemetry</h4>
+                <div class="grid grid-3" style="gap: 1.5rem; font-family: monospace; font-size: 0.9rem;">
+                    <div style="background: #020617; padding: 1.25rem; border-radius: 6px; border-left: 3px solid #ef4444;">
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600;">INPUT POWER SUPPLY</div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: #f87171; margin-top: 0.25rem;"><span id="val-vin">0.0</span> V</div>
+                        <div style="color: #475569; font-size: 0.75rem; margin-top: 0.25rem;">Source: 24.0V DC Limit</div>
+                    </div>
+                    
+                    <div style="background: #020617; padding: 1.25rem; border-radius: 6px; border-left: 3px solid #c084fc;">
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600;">5V BUS (LOGIC POWER)</div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: #c084fc; margin-top: 0.25rem;"><span id="val-v5">0.00</span> V</div>
+                        <div style="color: #475569; font-size: 0.75rem; margin-top: 0.25rem;">Active Ripple: ±12mV</div>
+                    </div>
+                    
+                    <div style="background: #020617; padding: 1.25rem; border-radius: 6px; border-left: 3px solid #fde047;">
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600;">12V BUS (COIL VOLTAGE)</div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: #fde047; margin-top: 0.25rem;"><span id="val-v12">0.00</span> V</div>
+                        <div style="color: #475569; font-size: 0.75rem; margin-top: 0.25rem;">Efficiency: 93.6%</div>
+                    </div>
+                    
+                    <div style="background: #020617; padding: 1.25rem; border-radius: 6px; border-left: 3px solid #fb7185;">
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600;">SOLENOID CURRENT DRAW</div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: #fb7185; margin-top: 0.25rem;"><span id="val-amp">0.00</span> A</div>
+                        <div style="color: #475569; font-size: 0.75rem; margin-top: 0.25rem;">Power Draw: <span id="val-watt">0.0</span> W</div>
+                    </div>
+                    
+                    <div style="background: #020617; padding: 1.25rem; border-radius: 6px; border-left: 3px solid #67e8f9;">
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600;">MAGNETIC FLUX DENSITY</div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: #67e8f9; margin-top: 0.25rem;"><span id="val-gauss">0</span> Gs</div>
+                        <div style="color: #475569; font-size: 0.75rem; margin-top: 0.25rem;">Grip: <span id="val-grip-status" style="color: #f87171; font-weight: bold;">INACTIVE</span></div>
+                    </div>
+                    
+                    <div style="background: #020617; padding: 1.25rem; border-radius: 6px; border-left: 3px solid #fdba74;">
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600;">COIL TEMPERATURE</div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: #fdba74; margin-top: 0.25rem;"><span id="val-temp">26.5</span> °C</div>
+                        <div style="color: #475569; font-size: 0.75rem; margin-top: 0.25rem;">Coil Limit: 85.0°C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Styling & Keyframes for SVG / Dashboard -->
+    <style>
+        @keyframes flow {
+            to {
+                stroke-dashoffset: -40;
+            }
+        }
+        .flow-line {
+            stroke-dasharray: 8, 8;
+            stroke-dashoffset: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease, stroke-dashoffset 0.1s linear;
+        }
+        
+        /* Active Wire Animations */
+        .flow-line.power-24v.active {
+            animation: flow 1.2s linear infinite;
+            opacity: 1;
+            filter: drop-shadow(0 0 3px rgba(248, 113, 113, 0.8));
+        }
+        .flow-line.power-5v.active {
+            animation: flow 1.8s linear infinite;
+            opacity: 1;
+            filter: drop-shadow(0 0 3px rgba(192, 132, 252, 0.8));
+        }
+        .flow-line.power-12v.active {
+            animation: flow 1.0s linear infinite;
+            opacity: 1;
+            filter: drop-shadow(0 0 3px rgba(248, 113, 113, 0.8));
+        }
+        .flow-line.signal-opto.active {
+            animation: flow 1.5s linear infinite;
+            opacity: 1;
+            filter: drop-shadow(0 0 3px rgba(74, 222, 128, 0.8));
+        }
+        .flow-line.signal-relay.active {
+            animation: flow 1.5s linear infinite;
+            opacity: 1;
+            filter: drop-shadow(0 0 3px rgba(74, 222, 128, 0.8));
+        }
+        .flow-line.load-solenoid.active {
+            animation: flow 0.8s linear infinite;
+            opacity: 1;
+            filter: drop-shadow(0 0 4px rgba(244, 63, 94, 0.9));
+        }
+        
+        /* LED Status Indicator Glows */
+        .led-glow-green {
+            fill: #22c55e !important;
+            opacity: 1 !important;
+            filter: drop-shadow(0 0 5px #22c55e);
+        }
+        .led-glow-blue {
+            fill: #3b82f6 !important;
+            opacity: 1 !important;
+            filter: drop-shadow(0 0 5px #3b82f6);
+        }
+        .led-glow-red {
+            fill: #ef4444 !important;
+            opacity: 1 !important;
+            filter: drop-shadow(0 0 5px #ef4444);
+        }
+        
+        /* Electromagnetic Waves */
+        @keyframes magnet-ripple {
+            0% {
+                opacity: 0.1;
+                stroke-dashoffset: 0;
+            }
+            50% {
+                opacity: 1;
+                stroke-dashoffset: -10;
+            }
+            100% {
+                opacity: 0.1;
+                stroke-dashoffset: -20;
+            }
+        }
+        .magnetic-wave {
+            display: none;
+            stroke-dasharray: 4, 4;
+            transform-origin: 255px 690px;
+        }
+        .solenoid-active .magnetic-wave {
+            display: block;
+        }
+        .solenoid-active .ripple-1 {
+            animation: magnet-ripple 0.8s infinite linear;
+        }
+        .solenoid-active .ripple-2 {
+            animation: magnet-ripple 1.2s infinite linear;
+        }
+        .solenoid-active .ripple-3 {
+            animation: magnet-ripple 1.6s infinite linear;
+        }
+
+        /* Toggle Button Design */
+        .switch-toggle {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+        .switch-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider-btn {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #475569;
+            transition: 0.3s;
+            border-radius: 34px;
+        }
+        .slider-btn:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        input:checked + .slider-btn {
+            background-color: #14bdac;
+        }
+        input:checked + .slider-btn:before {
+            transform: translateX(24px);
+        }
+        input:disabled + .slider-btn {
+            background-color: #1e293b;
+            cursor: not-allowed;
+            opacity: 0.4;
+        }
+        
+        .btn-console:hover:not(:disabled) {
+            background: #0ea5e9 !important;
+            transform: translateY(-1px);
+        }
+        .btn-console:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+        .btn-console:disabled {
+            background: #334155 !important;
+            color: #64748b !important;
+            cursor: not-allowed;
+            opacity: 0.4;
+        }
+    </style>
+
+    <!-- Simulation Engine Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const powerSwitch = document.getElementById('power-switch');
+            const signalSwitch = document.getElementById('signal-switch');
+            const autoCycleBtn = document.getElementById('btn-auto-cycle');
+            
+            // Labels
+            const powerLbl = document.getElementById('power-lbl');
+            const signalLbl = document.getElementById('signal-lbl');
+            
+            // Telemetry Outputs
+            const vinVal = document.getElementById('val-vin');
+            const v5Val = document.getElementById('val-v5');
+            const v12Val = document.getElementById('val-v12');
+            const ampVal = document.getElementById('val-amp');
+            const wattVal = document.getElementById('val-watt');
+            const gaussVal = document.getElementById('val-gauss');
+            const gripVal = document.getElementById('val-grip-status');
+            const tempVal = document.getElementById('val-temp');
+            
+            // SVG References
+            const led5v = document.getElementById('led-5v');
+            const led12v = document.getElementById('led-12v');
+            const ledDo6 = document.getElementById('led-do6');
+            const ledOpto = document.getElementById('led-opto');
+            const ledRelay = document.getElementById('led-relay');
+            const solenoidGroup = document.getElementById('solenoid-group');
+            const solenoidText = document.getElementById('solenoid-status-text');
+            
+            // State
+            let systemPowered = false;
+            let signalHigh = false;
+            let temp = 26.5;
+            let thermalInterval = null;
+            let noiseInterval = null;
+            
+            // Functions
+            function updateState() {
+                if (systemPowered) {
+                    powerLbl.textContent = 'ON';
+                    powerLbl.style.color = '#10b981';
+                    
+                    // LEDs Glow
+                    led5v.classList.add('led-glow-green');
+                    led12v.classList.add('led-glow-blue');
+                    
+                    // Enable signal switches
+                    signalSwitch.disabled = false;
+                    autoCycleBtn.disabled = false;
+                    
+                    // Flow lines activate
+                    document.querySelectorAll('.power-24v, .power-5v').forEach(el => el.classList.add('active'));
+                    
+                    // Gauge animations
+                    animateValue(vinVal, 0, 24.0, 300, 1);
+                    animateValue(v5Val, 0, 5.02, 300, 2);
+                    animateValue(v12Val, 0, 12.12, 300, 2);
+                } else {
+                    powerLbl.textContent = 'OFF';
+                    powerLbl.style.color = '#ef4444';
+                    
+                    // Force Signal OFF if power goes off
+                    if (signalHigh) {
+                        signalSwitch.checked = false;
+                        toggleSignal(false);
+                    }
+                    
+                    // LEDs off
+                    led5v.classList.remove('led-glow-green');
+                    led12v.classList.remove('led-glow-blue');
+                    
+                    // Disable switches
+                    signalSwitch.disabled = true;
+                    autoCycleBtn.disabled = true;
+                    
+                    // Flow lines off
+                    document.querySelectorAll('.flow-line').forEach(el => el.classList.remove('active'));
+                    
+                    // Gauges drop
+                    animateValue(vinVal, parseFloat(vinVal.textContent), 0, 200, 1);
+                    animateValue(v5Val, parseFloat(v5Val.textContent), 0, 200, 2);
+                    animateValue(v12Val, parseFloat(v12Val.textContent), 0, 200, 2);
+                }
+            }
+            
+            function toggleSignal(state) {
+                signalHigh = state;
+                if (signalHigh && systemPowered) {
+                    signalLbl.textContent = 'HIGH';
+                    signalLbl.style.color = '#10b981';
+                    
+                    // LEDs Glow
+                    ledDo6.classList.add('led-glow-red');
+                    ledOpto.classList.add('led-glow-green');
+                    ledRelay.classList.add('led-glow-red');
+                    
+                    // Magnet active
+                    solenoidGroup.classList.add('solenoid-active');
+                    solenoidText.textContent = '⚡ ENERGIZED';
+                    solenoidText.style.fill = '#22d3ee';
+                    
+                    // Flow active
+                    document.querySelectorAll('.signal-opto, .signal-relay, .power-12v, .load-solenoid').forEach(el => el.classList.add('active'));
+                    
+                    // Telemetry active
+                    animateValue(ampVal, 0, 0.85, 200, 2);
+                    animateValue(wattVal, 0, 10.3, 200, 1);
+                    animateValue(gaussVal, 0, 1200, 250, 0);
+                    gripVal.textContent = 'ACTIVE (HOLDING)';
+                    gripVal.style.color = '#10b981';
+                    
+                    // Temperature crawling up
+                    clearInterval(thermalInterval);
+                    thermalInterval = setInterval(() => {
+                        if (temp < 34.2) {
+                            temp += 0.08;
+                            tempVal.textContent = temp.toFixed(1);
+                        }
+                    }, 150);
+                    
+                    // Add micro noise to telemetry
+                    clearInterval(noiseInterval);
+                    noiseInterval = setInterval(() => {
+                        if (signalHigh) {
+                            const noisyAmp = 0.85 + (Math.random() * 0.03 - 0.015);
+                            ampVal.textContent = noisyAmp.toFixed(2);
+                            wattVal.textContent = (noisyAmp * 12.12).toFixed(1);
+                            const noisyGauss = Math.floor(1200 + (Math.random() * 20 - 10));
+                            gaussVal.textContent = noisyGauss;
+                        }
+                    }, 100);
+                } else {
+                    signalLbl.textContent = 'LOW';
+                    signalLbl.style.color = '#ef4444';
+                    
+                    // LEDs off
+                    ledDo6.classList.remove('led-glow-red');
+                    ledOpto.classList.remove('led-glow-green');
+                    ledRelay.classList.remove('led-glow-red');
+                    
+                    // Magnet inactive
+                    solenoidGroup.classList.remove('solenoid-active');
+                    solenoidText.textContent = 'DE-ENERGIZED';
+                    solenoidText.style.fill = '#94a3b8';
+                    
+                    // Flow off
+                    document.querySelectorAll('.signal-opto, .signal-relay, .power-12v, .load-solenoid').forEach(el => el.classList.remove('active'));
+                    
+                    // Telemetry off
+                    animateValue(ampVal, parseFloat(ampVal.textContent), 0, 150, 2);
+                    animateValue(wattVal, parseFloat(wattVal.textContent), 0, 150, 1);
+                    animateValue(gaussVal, parseInt(gaussVal.textContent), 0, 150, 0);
+                    gripVal.textContent = 'INACTIVE';
+                    gripVal.style.color = '#ef4444';
+                    
+                    // Temperature cooling down
+                    clearInterval(thermalInterval);
+                    thermalInterval = setInterval(() => {
+                        if (temp > 26.5) {
+                            temp -= 0.05;
+                            tempVal.textContent = temp.toFixed(1);
+                        } else {
+                            temp = 26.5;
+                            tempVal.textContent = temp.toFixed(1);
+                            clearInterval(thermalInterval);
+                        }
+                    }, 150);
+                    
+                    clearInterval(noiseInterval);
+                }
+            }
+            
+            // Value Interpolation Helper
+            function animateValue(obj, start, end, duration, decimals = 0) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const val = progress * (end - start) + start;
+                    obj.textContent = val.toFixed(decimals);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        obj.textContent = end.toFixed(decimals);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+            
+            // Listeners
+            powerSwitch.addEventListener('change', (e) => {
+                systemPowered = e.target.checked;
+                updateState();
+            });
+            
+            signalSwitch.addEventListener('change', (e) => {
+                toggleSignal(e.target.checked);
+            });
+            
+            autoCycleBtn.addEventListener('click', () => {
+                // Prevent duplicate trigger
+                autoCycleBtn.disabled = true;
+                powerSwitch.disabled = true;
+                signalSwitch.disabled = true;
+                
+                // Switch signal high
+                signalSwitch.checked = true;
+                toggleSignal(true);
+                
+                // Latch hold period (1.5 seconds)
+                setTimeout(() => {
+                    signalSwitch.checked = false;
+                    toggleSignal(false);
+                    
+                    autoCycleBtn.disabled = false;
+                    powerSwitch.disabled = false;
+                    signalSwitch.disabled = false;
+                }, 1500);
+            });
+        });
+    </script>
+
+    <!-- 9. Program Flowchart -->
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet
+                Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

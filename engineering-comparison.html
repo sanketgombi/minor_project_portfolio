@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Design | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 5% 4rem;
+        }
+
+        .sketch-placeholder {
+            background: #e2e8f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .toc-bar {
+            background: var(--primary);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toc-bar a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .toc-bar a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+
+        .toc-bar a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-bar {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html" class="active">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+    <!-- Table of Contents Sticky Bar -->
+    <div class="toc-bar">
+        <a href="engineering-specs.html">1. Requirements & Specs</a>
+        <a href="engineering-concepts.html">2. Conceptual Design</a>
+        <a href="engineering-comparison.html" class="active">3. Comparison of Design</a>
+        <a href="engineering-finalized.html">4. Finalized Design</a>
+        <a href="engineering-bom.html">5. Components & BOM</a>
+        <a href="engineering-solidworks.html">6. Solidworks Drawings</a>
+        <a href="engineering-analysis.html">7. System Analysis</a>
+        <a href="engineering-circuit.html">8. Circuit Design</a>
+        <a href="engineering-flowchart.html">9. Program Flowchart</a>
+        <a href="engineering-architecture.html">10. Architecture</a>
+        <a href="engineering-simulation.html">11. Simulation</a>
+    </div>
+<!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Engineering Design & Integration</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 1.5rem;">Comprehensive analysis,
+                modeling, fabrication, and control loop verification of the custom end-effector</p>
+            <div style="display: inline-block;">
+                <span
+                    style="background: rgba(20, 189, 172, 0.2); border: 1px solid rgba(20, 189, 172, 0.4); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(5px);">🟢
+                    Physical Integration Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Comparison of Design -->
+    <section id="comparison" class="section-padding" style="background-color: var(--card-white);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">03. Design Optimization</span>
+                <h2 class="section-title">Comparison of Design</h2>
+            </div>
+
+            <p style="color: var(--text-light); text-align: center; max-width: 800px; margin: 0 auto 2.5rem; font-size: 1.05rem;">
+                We evaluated each concept design against 10 critical operational criteria to determine the most suitable option for the TM5-700 pallet emptying ASRS redocking task.
+            </p>
+
+            <div class="table-container" style="overflow-x: auto; box-shadow: var(--shadow-md); border-radius: var(--radius); border: 1px solid #e2e8f0; background: white;">
+                <table class="pugh-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                    <thead style="background: var(--primary); color: white;">
+                        <tr>
+                            <th style="padding: 1.2rem; font-weight: 600;">Criteria</th>
+                            <th style="padding: 1.2rem; font-weight: 600; background: #0e8579; color: white; text-align: center; width: 22%;">Magnetic Gripper <br><span style="font-size: 0.75rem; background: white; color: #0e8579; padding: 0.1rem 0.5rem; border-radius: 20px; font-weight: bold; text-transform: uppercase;">Selected</span></th>
+                            <th style="padding: 1.2rem; font-weight: 600; text-align: center; width: 22%;">Mechanical Gripper</th>
+                            <th style="padding: 1.2rem; font-weight: 600; text-align: center; width: 22%;">Fork Type Gripper</th>
+                            <th style="padding: 1.2rem; font-weight: 600; text-align: center; width: 22%;">Self-Locking Gripper</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 1rem; font-weight: 600; color: var(--primary);">Working Principle</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.03); font-weight: 500;">Uses electromagnet to attract objects</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Uses fingers/jaws to grip</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Fork lifts object from below</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Locks object using mechanical locking</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 1rem; font-weight: 600; color: var(--primary);">Complexity</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.03); font-weight: 500; color: #0e8579;">Very simple (fewer moving parts)</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Moderate (multiple joints)</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Simple structure</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Complex mechanism</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 1rem; font-weight: 600; color: var(--primary);">Speed</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.03); font-weight: 500; color: #0e8579;">Very fast (instant ON/OFF)</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Moderate</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Fast</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Slow (locking/unlocking required)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 1rem; font-weight: 600; color: var(--primary);">Maintenance</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.03); font-weight: 500; color: #0e8579;">Low (minimal wear components)</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">High (mechanical wear and tear)</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Low</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Moderate to high</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 1rem; font-weight: 600; color: var(--primary);">Gripping Reliability</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.03); font-weight: 500; color: #0e8579;">Consistent and stable for application</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Depends on alignment and force</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Moderate stability</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Very strong but rigid</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 1rem; font-weight: 600; color: var(--primary);">Flexibility</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.03); font-weight: 500;">Limited but sufficient for application</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">High</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Limited</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Limited</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 1rem; font-weight: 600; color: var(--primary);">Cost</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.03); font-weight: 500; color: #0e8579;">Low to moderate</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Moderate to high</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Low</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Moderate</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 1rem; font-weight: 600; color: var(--primary);">Weight</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.03); font-weight: 500; color: #0e8579;">Lightweight</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Moderate</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Low</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Moderate</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 1rem; font-weight: 600; color: var(--primary);">Control</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.03); font-weight: 500; color: #0e8579;">Simple electrical control</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Requires mechanical + control system</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Simple</td>
+                            <td style="padding: 1rem; text-align: center; color: var(--text-light);">Complex control system</td>
+                        </tr>
+                        <tr style="background: rgba(20, 189, 172, 0.05);">
+                            <td style="padding: 1rem; font-weight: 700; color: var(--primary);">Suitability for Project</td>
+                            <td style="padding: 1rem; text-align: center; background: rgba(20, 189, 172, 0.08); font-weight: 700; color: #0e8579;">Best suited for application</td>
+                            <td style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-dark);">Suitable</td>
+                            <td style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-dark);">Moderately suitable</td>
+                            <td style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-dark);">Suitable</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Finalized Design -->
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet
+                Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

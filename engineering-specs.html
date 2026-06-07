@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Design | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 5% 4rem;
+        }
+
+        .sketch-placeholder {
+            background: #e2e8f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .toc-bar {
+            background: var(--primary);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toc-bar a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .toc-bar a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+
+        .toc-bar a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-bar {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html" class="active">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+    <!-- Table of Contents Sticky Bar -->
+    <div class="toc-bar">
+        <a href="engineering-specs.html" class="active">1. Requirements & Specs</a>
+        <a href="engineering-concepts.html">2. Conceptual Design</a>
+        <a href="engineering-comparison.html">3. Comparison of Design</a>
+        <a href="engineering-finalized.html">4. Finalized Design</a>
+        <a href="engineering-bom.html">5. Components & BOM</a>
+        <a href="engineering-solidworks.html">6. Solidworks Drawings</a>
+        <a href="engineering-analysis.html">7. System Analysis</a>
+        <a href="engineering-circuit.html">8. Circuit Design</a>
+        <a href="engineering-flowchart.html">9. Program Flowchart</a>
+        <a href="engineering-architecture.html">10. Architecture</a>
+        <a href="engineering-simulation.html">11. Simulation</a>
+    </div>
+<!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Engineering Design & Integration</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 1.5rem;">Comprehensive analysis,
+                modeling, fabrication, and control loop verification of the custom end-effector</p>
+            <div style="display: inline-block;">
+                <span
+                    style="background: rgba(20, 189, 172, 0.2); border: 1px solid rgba(20, 189, 172, 0.4); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(5px);">🟢
+                    Physical Integration Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Requirements and Specifications -->
+    <section id="specs" class="section-padding" style="background-color: var(--card-white);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">01. Constraints & Boundaries</span>
+                <h2 class="section-title">Requirements and Specifications</h2>
+            </div>
+
+            <!-- Functional & Non-Functional Side-by-Side -->
+            <div class="grid grid-2" style="gap: 3rem; margin-bottom: 4rem; align-items: start;">
+                <!-- Functional Requirements -->
+                <div class="card" style="border-top: 4px solid var(--accent); background: var(--bg-light); padding: 2.5rem; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+                    <h3 style="font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 1.35rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">
+                        Functional Requirements
+                    </h3>
+                    <ul style="font-size: 0.95rem; padding-left: 1.2rem; list-style-type: disc; color: var(--text-dark); margin: 0; line-height: 1.8;">
+                        <li style="margin-bottom: 0.8rem;">The system shall be <strong>manually triggered</strong> by the operator to initiate each cycle.</li>
+                        <li style="margin-bottom: 0.8rem;">The cobot shall move to the <strong>ASRS2 rack/track position</strong> and align with the pallet for pickup.</li>
+                        <li style="margin-bottom: 0.8rem;">The end-effector shall securely <strong>grip and lift pallets up to 500 g</strong> without slippage.</li>
+                        <li style="margin-bottom: 0.8rem;">The cobot shall transfer the pallet from <strong>ASRS2 to the unloading position near ASRS1</strong>.</li>
+                        <li style="margin-bottom: 0.8rem;">The system shall <strong>empty the cubes from the pallet into a collection box</strong>.</li>
+                        <li style="margin-bottom: 0.8rem;">The cobot shall ensure <strong>complete emptying of the pallet</strong> before proceeding.</li>
+                        <li style="margin-bottom: 0.8rem;">After unloading, the cobot shall transport the <strong>empty pallet to the ASRS1 track</strong>.</li>
+                        <li style="margin-bottom: 0.8rem;">The end-effector shall <strong>place the empty pallet onto ASRS1</strong> with repeatable positioning accuracy of <strong>±2 mm</strong>.</li>
+                        <li style="margin-bottom: 0.8rem;">The end-effector shall <strong>release the pallet on command within &le; 1 second</strong>.</li>
+                        <li style="margin-bottom: 0;">The system shall <strong>reset to initial position</strong> and wait for the next manual trigger.</li>
+                    </ul>
+                </div>
+
+                <!-- Non-Functional Requirements -->
+                <div class="card" style="border-top: 4px solid var(--primary); background: var(--bg-light); padding: 2.5rem; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+                    <h3 style="font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 1.35rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">
+                        Non-Functional Requirements
+                    </h3>
+                    <ul style="font-size: 0.95rem; padding-left: 1.2rem; list-style-type: disc; color: var(--text-dark); margin: 0; line-height: 1.8;">
+                        <li style="margin-bottom: 1.2rem;">The system shall operate in a <strong>repeatable manual cycle</strong>, ensuring consistent performance.</li>
+                        <li style="margin-bottom: 1.2rem;">The total weight of the end-effector shall not exceed <strong>2 kg</strong>.</li>
+                        <li style="margin-bottom: 1.2rem;">The system shall ensure <strong>safe operation</strong>, preventing accidental dropping of pallets or cubes.</li>
+                        <li style="margin-bottom: 1.2rem;">The design shall be compact with approximate dimensions of <strong>500 mm &times; 150 mm &times; 100 mm</strong> <em>(subject to refinement)</em>.</li>
+                        <li style="margin-bottom: 1.2rem;">The system shall maintain <strong>stable gripping during robot motion</strong>.</li>
+                        <li style="margin-bottom: 0;">The system shall operate within ambient conditions of <strong>20°C to 40°C</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Project Specifications -->
+            <div class="card reveal" style="border-top: 4px solid var(--accent); background: var(--card-white); padding: 3rem; border-radius: var(--radius); box-shadow: var(--shadow-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 2rem;">
+                    <h3 style="font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 1.6rem; margin: 0;">
+                        Project Specifications
+                    </h3>
+                    <span style="font-size: 0.9rem; color: var(--text-light); font-weight: 500;">Technical parameters and system configuration details</span>
+                </div>
+                
+                <div class="grid grid-2" style="gap: 2rem; align-items: start;">
+                    <ul style="font-size: 0.95rem; list-style-type: none; padding-left: 0; color: var(--text-dark); margin: 0; line-height: 1.9;">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">1</span>
+                            <span>The end-effector shall handle pallets with a maximum load of <strong>500 g</strong>, measured during lifting from ASRS2.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">2</span>
+                            <span>The gripping system shall prevent slippage of the pallet under motion up to <strong>1 m/s</strong>, verified during transfer operation.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">3</span>
+                            <span>The end-effector shall have a total mass not exceeding <strong>2 kg</strong>, measured after complete assembly.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">4</span>
+                            <span>The system shall achieve pallet release within <strong>&le; 1 second</strong>, measured from command input to release.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">5</span>
+                            <span>The system shall achieve positioning accuracy of <strong>&plusmn;2 mm</strong>, measured over multiple pick-and-place cycles.</span>
+                        </li>
+                        <li style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">6</span>
+                            <span>The cobot shall transfer the pallet between ASRS2 and ASRS1 along a predefined path without loss of grip.</span>
+                        </li>
+                    </ul>
+                    
+                    <ul style="font-size: 0.95rem; list-style-type: none; padding-left: 0; color: var(--text-dark); margin: 0; line-height: 1.9;">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">7</span>
+                            <span>The system shall empty the pallet completely into the collection box, verified by visual inspection after each cycle.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">8</span>
+                            <span>The mounting interface shall be compatible with the <strong>TM5-700 Cobot flange</strong>, allowing installation without modification.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">9</span>
+                            <span>The overall dimensions of the end-effector shall be approximately <strong>500 mm &times; 150 mm &times; 100 mm</strong>, subject to design refinement.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">10</span>
+                            <span>The system shall operate under ambient temperature conditions of <strong>20°C to 40°C</strong> without performance degradation.</span>
+                        </li>
+                        <li style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="background: rgba(20, 189, 172, 0.1); color: var(--accent); border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">11</span>
+                            <span>The system shall support repeated manual cycles with consistent performance during operation.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Conceptual Design -->
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet
+                Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

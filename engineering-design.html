@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Design | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 5% 4rem;
+        }
+
+        .sketch-placeholder {
+            background: #e2e8f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .toc-bar {
+            background: var(--primary);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toc-bar a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .toc-bar a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-bar {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-design.html" class="active">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- Table of Contents Sticky Bar -->
+    <div class="toc-bar">
+        <a href="#specs">Specifications</a>
+        <a href="#concepts">Concepts</a>
+        <a href="#pugh">Pugh Matrix</a>
+        <a href="#specs-bom">Specs & BOM</a>
+        <a href="#blueprints">CAD & FEA</a>
+        <a href="#control">Control Logic</a>
+        <a href="#simulations">Simulations</a>
+        <a href="#implementation">Implementation</a>
+        <a href="#milestones">Milestones</a>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Engineering Design & Integration</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 1.5rem;">From CAD modeling and
+                finite element analyses to hardware fabrication and control loop validation</p>
+            <div style="display: inline-block;">
+                <span
+                    style="background: rgba(20, 189, 172, 0.2); border: 1px solid rgba(20, 189, 172, 0.4); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(5px);">🟢
+                    Physical Integration Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section: Requirements & Specifications -->
+    <section id="specs" class="section-padding" style="background-color: var(--card-white);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">Design Constraints</span>
+                <h2 class="section-title">Requirements & Specifications</h2>
+            </div>
+            <div class="grid grid-4">
+                <div class="card" style="border-top: 4px solid var(--accent); background: var(--bg-light);">
+                    <h4
+                        style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary); font-family: 'Poppins', sans-serif;">
+                        Functional Requirements</h4>
+                    <ul
+                        style="font-size: 0.9rem; padding-left: 1rem; list-style-type: disc; color: var(--text-light); margin: 0;">
+                        <li>Securely empty plastic & cardboard bins up to 1.5 kg.</li>
+                        <li>Passive compliance to prevent deformation of delicate payloads.</li>
+                        <li>Repeatable docking alignment within ±2.0 mm tolerance.</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--accent); background: var(--bg-light);">
+                    <h4
+                        style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary); font-family: 'Poppins', sans-serif;">
+                        Physical Constraints</h4>
+                    <ul
+                        style="font-size: 0.9rem; padding-left: 1rem; list-style-type: disc; color: var(--text-light); margin: 0;">
+                        <li>Total end-effector weight &lt; 1.5 kg (preserving robot payload).</li>
+                        <li>Maximum grasping span: 110 mm.</li>
+                        <li>Corrosion-resistant materials (PLA, TPU).</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--accent); background: var(--bg-light);">
+                    <h4
+                        style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary); font-family: 'Poppins', sans-serif;">
+                        Electrical Specifications</h4>
+                    <ul
+                        style="font-size: 0.9rem; padding-left: 1rem; list-style-type: disc; color: var(--text-light); margin: 0;">
+                        <li>Input actuation voltage: 24V DC.</li>
+                        <li>Integration with dual FSR force feedback sensors.</li>
+                        <li>Direct power draw from TM5 robot wrist port (&lt; 1.5A).</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--accent); background: var(--bg-light);">
+                    <h4
+                        style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary); font-family: 'Poppins', sans-serif;">
+                        Control Interface</h4>
+                    <ul
+                        style="font-size: 0.9rem; padding-left: 1rem; list-style-type: disc; color: var(--text-light); margin: 0;">
+                        <li>Modbus TCP communication protocol.</li>
+                        <li>Handshake interface with ASRS PLC controller.</li>
+                        <li>Integration with OMRON TM Flow camera vision landmarks.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Concept Designs -->
+    <section id="concepts" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 3rem;">
+                <span class="subtitle">Ideation Phase</span>
+                <h2 class="section-title">Concept Designs</h2>
+            </div>
+
+            <div class="grid grid-4 reveal">
+                <!-- Concept 1 -->
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div class="sketch-placeholder">Concept 1 Sketch</div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Pneumatic Suction</h3>
+                        <p
+                            style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase;">
+                            By Sanket | Vacuum Type</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Relies on air pressure to grip
+                            flat-surfaced boxes payload seamlessly. Struggled with porous materials and odd shapes.</p>
+                    </div>
+                </div>
+                <!-- Concept 2 -->
+                <div class="card" style="padding: 0; overflow: hidden; transition-delay: 0.1s;">
+                    <div class="sketch-placeholder">Concept 2 Sketch</div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Scissor Grip</h3>
+                        <p
+                            style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase;">
+                            By Kridey | Mechanical</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Two-point mechanical claw utilizing a
+                            linear actuator. Highly secure, but added excessive weight to the TM5's payload limit.</p>
+                    </div>
+                </div>
+                <!-- Concept 3 -->
+                <div class="card" style="padding: 0; overflow: hidden; transition-delay: 0.2s;">
+                    <div class="sketch-placeholder">Concept 3 Sketch</div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Magnetic Array</h3>
+                        <p
+                            style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase;">
+                            By Maitri | Magnetic</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Electromagnet grid designed for rapid
+                            engagement setup. Deemed absolutely unsuitable for non-ferrous pallets.</p>
+                    </div>
+                </div>
+                <!-- Concept 4 -->
+                <div class="card" style="padding: 0; overflow: hidden; transition-delay: 0.3s;">
+                    <div class="sketch-placeholder">Concept 4 Sketch</div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Hybrid Soft-Claw</h3>
+                        <p
+                            style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase;">
+                            By Ayush | Adaptive</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Combines rigid structural support with
+                            compliant soft-robotic fingers to handle variable ASRS payloads safely.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Concept Screening (Pugh Matrix) -->
+    <section id="pugh" class="section-padding" style="background-color: var(--card-white);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <span class="subtitle">Decision Analysis</span>
+                <h2 class="section-title">Concept Screening (Pugh Decision Matrix)</h2>
+            </div>
+
+            <p style="color: var(--text-light); text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                We evaluated each concept against a standard baseline (Concept 1: Suction type) using a Pugh Decision
+                Matrix to identify the optimal design.
+            </p>
+
+            <div class="table-container">
+                <table class="pugh-table">
+                    <thead style="background: var(--primary); color: white;">
+                        <tr>
+                            <th class="criteria-col" style="padding: 1.2rem;">Design Criteria</th>
+                            <th style="padding: 1.2rem;">Weight</th>
+                            <th style="padding: 1.2rem;">C1: Vacuum Suction (Baseline)</th>
+                            <th style="padding: 1.2rem;">C2: Scissor Grip</th>
+                            <th style="padding: 1.2rem;">C3: Magnetic Array</th>
+                            <th style="padding: 1.2rem;">C4: Hybrid Soft-Claw (Selected)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="baseline">
+                            <td class="criteria-col">Weight & Payload Efficiency</td>
+                            <td>3</td>
+                            <td>0 (Ref)</td>
+                            <td class="negative">-1</td>
+                            <td class="negative">-1</td>
+                            <td class="neutral">0</td>
+                        </tr>
+                        <tr>
+                            <td class="criteria-col">Grasping Versatility</td>
+                            <td>4</td>
+                            <td>0 (Ref)</td>
+                            <td class="positive">+1</td>
+                            <td class="negative">-2</td>
+                            <td class="positive">+2</td>
+                        </tr>
+                        <tr class="baseline">
+                            <td class="criteria-col">Manufacturing Cost (3D Printed)</td>
+                            <td>2</td>
+                            <td>0 (Ref)</td>
+                            <td class="neutral">0</td>
+                            <td class="negative">-1</td>
+                            <td class="neutral">0</td>
+                        </tr>
+                        <tr>
+                            <td class="criteria-col">Compliance & Safety</td>
+                            <td>4</td>
+                            <td>0 (Ref)</td>
+                            <td class="negative">-1</td>
+                            <td class="neutral">0</td>
+                            <td class="positive">+2</td>
+                        </tr>
+                        <tr class="baseline">
+                            <td class="criteria-col">ASRS Docking Alignment Accuracy</td>
+                            <td>3</td>
+                            <td>0 (Ref)</td>
+                            <td class="positive">+1</td>
+                            <td class="neutral">0</td>
+                            <td class="positive">+1</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td class="criteria-col">Weighted Score Total</td>
+                            <td>-</td>
+                            <td class="neutral">0</td>
+                            <td class="negative">-1</td>
+                            <td class="negative">-11</td>
+                            <td class="positive"><strong>+19</strong></td>
+                        </tr>
+                        <tr class="total-row">
+                            <td class="criteria-col">Rank</td>
+                            <td>-</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td style="color: var(--accent);"><strong>1 (Go)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Selected Solution -->
+    <section class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">Selected Solution</span>
+                <h2 class="section-title">Finalized Concept Details</h2>
+            </div>
+            <div class="grid grid-2" style="align-items: center; gap: 4rem;">
+                <div>
+                    <h3 style="font-size: 2.2rem; margin-bottom: 1rem; line-height: 1.3;">Optimized Hybrid Soft-Claw
+                    </h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-light); line-height: 1.8; font-size: 1.05rem;">
+                        After rigorous feasibility testing and decision matrix analysis, we integrated the Hybrid
+                        Soft-Claw design. This end-effector provides the perfect balance between the payload capacity
+                        required for ASRS redocking and the gentle touch needed for mixed-item pallet emptying workflows
+                        without causing surface damage.</p>
+                    <ul style="color: var(--text-dark); margin-bottom: 1.5rem; list-style-type: none;">
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span>
+                            <span>Lightweight 3D printed PLA core ensures TM5 payload remains under 6kg cap.</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span>
+                            <span>Integrated force sensors for safe compliance feedback.</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span>
+                            <span>Seamless Modbus TCP I/O interface directly with the TM5-700 controller.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div
+                    style="box-shadow: var(--shadow-lg); border-radius: var(--radius); overflow: hidden; border: 1px solid #cbd5e1;">
+                    <img src="images/finalized_gripper_cad.png" alt="Finalized Hybrid Soft-Claw CAD Model"
+                        style="width: 100%; height: auto; display: block; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Technical Specs & BOM -->
+    <section id="specs-bom" class="section-padding" style="background-color: var(--card-white);">
+        <div class="container reveal">
+            <div class="grid grid-2" style="gap: 3rem;">
+
+                <!-- Tech Specs -->
+                <div>
+                    <h3
+                        style="margin-bottom: 1.5rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span
+                            style="display: inline-block; width: 4px; height: 1.5rem; background: var(--accent); border-radius: 2px;"></span>
+                        Technical Specifications
+                    </h3>
+                    <div class="card" style="padding: 0; overflow: hidden; height: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; width: 45%; background: #f8fafc; color: var(--primary);">
+                                        Max Payload</td>
+                                    <td style="padding: 1.2rem;">1.5 kg</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; background: #f8fafc; color: var(--primary);">
+                                        Gripping Range</td>
+                                    <td style="padding: 1.2rem;">20mm - 110mm</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; background: #f8fafc; color: var(--primary);">
+                                        Actuation Method</td>
+                                    <td style="padding: 1.2rem;">24V DC Linear Actuator</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; background: #f8fafc; color: var(--primary);">
+                                        Material</td>
+                                    <td style="padding: 1.2rem;">PLA (Polylactic Acid) + TPU</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; background: #f8fafc; color: var(--primary);">
+                                        Communication</td>
+                                    <td style="padding: 1.2rem;">Modbus TCP via TM Controller</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- BOM -->
+                <div>
+                    <h3
+                        style="margin-bottom: 1.5rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span
+                            style="display: inline-block; width: 4px; height: 1.5rem; background: var(--accent); border-radius: 2px;"></span>
+                        Bill of Materials
+                    </h3>
+                    <div class="card" style="padding: 0; overflow: hidden; height: auto;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead style="background: var(--primary); color: white;">
+                                <tr>
+                                    <th style="padding: 1.2rem; font-weight: 500;">Component</th>
+                                    <th style="padding: 1.2rem; font-weight: 500;">Qty</th>
+                                    <th style="padding: 1.2rem; font-weight: 500;">Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">Micro Linear Actuator (24V)</td>
+                                    <td style="padding: 1.2rem; font-weight: 600;">1</td>
+                                    <td style="padding: 1.2rem;">$45.00</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">Force Sensitive Resistor</td>
+                                    <td style="padding: 1.2rem; font-weight: 600;">2</td>
+                                    <td style="padding: 1.2rem;">$12.00</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">PLA Filament Spool (1kg)</td>
+                                    <td style="padding: 1.2rem; font-weight: 600;">1</td>
+                                    <td style="padding: 1.2rem;">$25.00</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">Mounting Flange ISO 9409-1</td>
+                                    <td style="padding: 1.2rem; font-weight: 600;">1</td>
+                                    <td style="padding: 1.2rem;">$15.00</td>
+                                </tr>
+                                <tr style="background: rgba(20, 189, 172, 0.1);">
+                                    <td style="padding: 1.2rem; font-weight: 700; color: var(--primary);">Total
+                                        Estimated</td>
+                                    <td style="padding: 1.2rem; font-weight: 700;">5</td>
+                                    <td style="padding: 1.2rem; font-weight: 700; color: #0e8579;">$97.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: SolidWorks Drawings & System Analysis -->
+    <section id="blueprints" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container reveal">
+            <div class="grid grid-2" style="gap: 4rem; align-items: center;">
+                <div>
+                    <span class="subtitle">Engineering Blueprints</span>
+                    <h3
+                        style="font-size: 2rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                        SolidWorks Drawings</h3>
+                    <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem;">
+                        Detailed engineering blueprint layouts were drafted in SolidWorks to establish geometrical
+                        dimensions, mounting flange adapter configurations conforming to ISO 9409-1-50-4-M6, and pin
+                        clearance margins.
+                    </p>
+                    <div
+                        style="box-shadow: var(--shadow-md); border-radius: var(--radius); overflow: hidden; border: 1px solid #cbd5e1; background: white;">
+                        <img src="images/solidworks_drawing.png" alt="SolidWorks Blueprints"
+                            style="width: 100%; height: auto; display: block;">
+                    </div>
+                </div>
+                <div>
+                    <span class="subtitle">Finite Element Method</span>
+                    <h3
+                        style="font-size: 2rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                        System Analysis (FEA)</h3>
+                    <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem;">
+                        Structural stress and displacement simulations were conducted on the TPU gripper finger elements
+                        using finite element analysis. A maximum design load of 15N was applied, confirming a safety
+                        factor of 2.4 with maximum stress well below the PLA/TPU yield strength limits.
+                    </p>
+                    <div
+                        style="box-shadow: var(--shadow-md); border-radius: var(--radius); overflow: hidden; border: 1px solid #cbd5e1; background: white;">
+                        <img src="images/fea_analysis.png" alt="Structural Stress Analysis"
+                            style="width: 100%; height: auto; display: block;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Control Systems Engineering -->
+    <section id="control" class="section-padding" style="background-color: var(--card-white);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">System Electronics & Control Logic</span>
+                <h2 class="section-title">Control Systems Engineering</h2>
+            </div>
+
+            <div class="grid grid-3">
+                <!-- Circuit Design -->
+                <div class="card" style="border-top: 4px solid var(--primary);">
+                    <h3
+                        style="font-size: 1.35rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                        Circuit Design</h3>
+                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        The electrical circuit interfaces the robot's wrist GPIO port (24V, 1.5A supply) with a relay
+                        driving the 24V linear actuator. Two Force Sensitive Resistors (FSRs) are connected in
+                        voltage-divider circuits back to the controller's analog inputs to provide real-time grasping
+                        pressure metrics.
+                    </p>
+                    <div
+                        style="margin-top: auto; background: var(--bg-light); padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.8rem; border: 1px dashed #cbd5e1; line-height: 1.4;">
+                        [Cobot Wrist 24V] ---&gt; [Relay Controller] ---&gt; [Linear Actuator]<br>
+                        [FSR Sensors] ---&gt; [Analog Dividers] ---&gt; [Wrist AI 1 &amp; 2]
+                    </div>
+                </div>
+
+                <!-- Program Flowchart -->
+                <div class="card" style="border-top: 4px solid var(--accent); transition-delay: 0.1s;">
+                    <h3
+                        style="font-size: 1.35rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                        Program Flowchart</h3>
+                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        The operation cycle consists of: home state check, ASRS redock cue wait, vision-guided approach,
+                        gripper finger actuation, force compliance threshold poll, transport, alignment, release, and
+                        return.
+                    </p>
+                    <div
+                        style="margin-top: auto; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; font-weight: 500;">
+                        <div
+                            style="background: var(--bg-light); padding: 0.4rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1;">
+                            1. Vision Detection</div>
+                        <div style="text-align: center; color: var(--accent); line-height: 1;">↓</div>
+                        <div
+                            style="background: var(--bg-light); padding: 0.4rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1;">
+                            2. Grasp &amp; Poll FSR</div>
+                        <div style="text-align: center; color: var(--accent); line-height: 1;">↓</div>
+                        <div
+                            style="background: var(--bg-light); padding: 0.4rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1;">
+                            3. Dock &amp; Release</div>
+                    </div>
+                </div>
+
+                <!-- MATLAB Architecture -->
+                <div class="card" style="border-top: 4px solid var(--primary); transition-delay: 0.2s;">
+                    <h3
+                        style="font-size: 1.35rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                        MATLAB Architecture</h3>
+                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        Feedback control loop developed in MATLAB Simulink. Consists of a PID position controller
+                        driving the actuator spool dynamics, feedback comparison block, sensor noise filters, and
+                        saturation limits to prevent actuator overtravel.
+                    </p>
+                    <div
+                        style="margin-top: auto; background: var(--bg-light); padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.8rem; border: 1px dashed #cbd5e1; line-height: 1.4;">
+                        [Ref Angle] -&gt; [PID Control] -&gt; [Saturator] -&gt; [Actuator Dynamics] -&gt; [Feedback
+                        Loop]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Simulations -->
+    <section id="simulations" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container reveal">
+            <div class="grid grid-2" style="gap: 4rem; align-items: center;">
+                <div
+                    style="box-shadow: var(--shadow-lg); border-radius: var(--radius); overflow: hidden; border: 1px solid #cbd5e1; background: white;">
+                    <img src="images/simulation_plot.png" alt="MATLAB Simulink Trajectory Tracking"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <div>
+                    <span class="subtitle">System Dynamics</span>
+                    <h3
+                        style="font-size: 2rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                        Simulation Results</h3>
+                    <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem;">
+                        We simulated the transient response of the linear actuator's closed-loop position system in
+                        MATLAB Simulink. The simulation confirms smooth trajectory tracking under variable cargo weight
+                        loads (up to 1.5 kg). Overshoot was restricted to less than 4% with a settling time under 0.85
+                        seconds, matching our strict cycle time design criteria.
+                    </p>
+                    <ul
+                        style="color: var(--text-dark); list-style-type: none; font-size: 0.95rem; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span> Settling Time: 0.82 seconds
+                        </li>
+                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span> Steady State Error: &lt;
+                            0.5%
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span> Maximum Overshoot: 3.8%
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Physical Implementation -->
+    <section id="implementation" class="section-padding" style="background-color: var(--card-white);">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 4rem;">
+                <span class="subtitle">Physical Build & Integration</span>
+                <h2 class="section-title">Hardware & Software Execution</h2>
+            </div>
+
+            <!-- Hardware Grid -->
+            <div class="grid grid-3 reveal" style="margin-bottom: 4rem;">
+                <div class="card" style="border-top: 4px solid var(--accent);">
+                    <h3
+                        style="font-size: 1.35rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                        1. Additive Manufacturing</h3>
+                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        The structural flange adapter and core mechanical links were printed in PLA with a <strong>60%
+                            triangular infill</strong>, 4 shells, and 0.2mm layer height to ensure structural rigidity.
+                        The adaptive compliant finger tips were printed using flexible <strong>TPU (95A Shore
+                            hardness)</strong> with a 20% gyroid infill to enable passive surface conformity.
+                    </p>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--accent); transition-delay: 0.1s;">
+                    <h3
+                        style="font-size: 1.35rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                        2. Actuator Integration</h3>
+                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        A 24V micro linear actuator (100mm stroke length, 150N max push force) was bolted to the core
+                        links. A linear sliding guide rail was integrated to convert the actuator's linear travel into
+                        pure translational jaw movement, preventing binding under off-axis torque.
+                    </p>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--accent); transition-delay: 0.2s;">
+                    <h3
+                        style="font-size: 1.35rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
+                        3. Sensor Assembly</h3>
+                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        Dual Force Sensitive Resistors (FSR 402) were adhered to the inner compliant TPU pads. The
+                        sensors were wired to a local junction terminal box, providing Analog inputs directly into the
+                        TM5 cobot wrist GPIO port, shielded against electromagnetic interference.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Software Code Block -->
+            <div class="grid grid-2 reveal" style="align-items: center; gap: 4rem; margin-bottom: 4rem;">
+                <div>
+                    <h3
+                        style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--primary); font-family: 'Poppins', sans-serif;">
+                        TM Flow Scripting & Control Loop</h3>
+                    <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem;">
+                        We programmed the robot motion and control sequence using the OMRON TM Flow visual software. The
+                        cobot continuously polls the digital inputs representing target cargo presence from ASRS
+                        sensors.
+                    </p>
+                    <div
+                        style="background: var(--bg-light); border-left: 4px solid var(--accent); padding: 1.25rem; border-radius: 6px;">
+                        <span
+                            style="font-weight: 600; display: block; margin-bottom: 0.5rem; color: var(--primary);">Key
+                            Script Milestones:</span>
+                        <ul
+                            style="font-size: 0.9rem; padding-left: 1.2rem; color: var(--text-dark); list-style-type: disc; margin: 0;">
+                            <li style="margin-bottom: 0.4rem;"><strong>Landmark Detection:</strong> Dynamic calibration
+                                of docking targets using the built-in wrist camera.</li>
+                            <li style="margin-bottom: 0.4rem;"><strong>Compliance Poll:</strong> Gripper actuator halts
+                                once FSR reading reaches a threshold of 2.2V (representing 10N force).</li>
+                            <li><strong>Modbus Handshake:</strong> Modbus TCP coil commands coordinate shelf slot status
+                                with the central PLC database.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    style="box-shadow: var(--shadow-lg); border-radius: var(--radius); padding: 2rem; background: var(--bg-light); font-family: monospace; font-size: 0.85rem; border: 1px solid #cbd5e1; overflow-x: auto; line-height: 1.5;">
+                    <span style="color: #64748b;">// Pseudo-code of Gripper Force Control Thread</span><br>
+                    <span style="color: #0e8579;">#define FSR_THRESHOLD 450 // ~10N grip force</span><br>
+                    <span style="color: #0e8579;">#define WRIST_GPIO_RELAY 0x04</span><br><br>
+
+                    <span style="color: #1a3c5e; font-weight: bold;">void</span> <span
+                        style="color: #b91c1c;">grasp_sequence</span>() {<br>
+                    &nbsp;&nbsp;<span style="color: #64748b;">// Engage linear actuator relay</span><br>
+                    &nbsp;&nbsp;set_digital_output(WRIST_GPIO_RELAY, HIGH);<br><br>
+
+                    &nbsp;&nbsp;<span style="color: #1a3c5e; font-weight: bold;">while</span>(get_analog_input(0) &lt;
+                    FSR_THRESHOLD) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #64748b;">// Loop & wait for target gripping
+                        pressure</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;sleep_ms(10);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #1a3c5e; font-weight: bold;">if</span>
+                    (read_limit_switch()) <span style="color: #1a3c5e; font-weight: bold;">break</span>;<br>
+                    &nbsp;&nbsp;}<br><br>
+
+                    &nbsp;&nbsp;<span style="color: #64748b;">// Hold position by shutting off motor power</span><br>
+                    &nbsp;&nbsp;set_digital_output(WRIST_GPIO_RELAY, LOW);<br>
+                    }
+                </div>
+            </div>
+
+            <!-- Workspace Integration Calibration -->
+            <div class="grid grid-2 reveal" style="gap: 3rem;">
+                <div class="card" style="padding: 2.5rem;">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary); font-family: 'Poppins', sans-serif;">ASRS
+                        Workspace Calibration</h3>
+                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                        We mounted OMRON visual landmark tags on the ASRS docking rack. By utilizing the TM5-700's
+                        camera sensor, the system dynamically calculates coordinate transformations to compensate for
+                        small shifts in the rack alignment, ensuring precise redocking.
+                    </p>
+                    <div
+                        style="background: var(--bg-light); border: 1px solid #cbd5e1; border-radius: 8px; padding: 1.2rem; font-size: 0.9rem;">
+                        <span
+                            style="font-weight: 600; color: var(--primary); display: block; margin-bottom: 0.5rem;">Operational
+                            Statistics:</span>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 0.5rem 0; color: var(--text-light);">Redocking Cycle Time</td>
+                                <td style="font-weight: 600; text-align: right; color: var(--accent);">14.2 seconds</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem 0; color: var(--text-light);">Grasping Success Rate</td>
+                                <td style="font-weight: 600; text-align: right; color: var(--accent);">98.5%</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card"
+                    style="padding: 2.5rem; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary); font-family: 'Poppins', sans-serif;">
+                        Integration Trial Checklist</h3>
+                    <ul
+                        style="color: var(--text-dark); list-style-type: none; font-size: 0.95rem; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✔</span>
+                            <span>Mechanical adapter interface aligns perfectly with TM5 wrist screws.</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✔</span>
+                            <span>Actuation relay shuts off instantly when FSR trigger signal is received.</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✔</span>
+                            <span>TM Flow script automatically handles visual search recovery if target is
+                                occluded.</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✔</span>
+                            <span>E-stop hardware interrupt loop halts linear actuator power within 50ms.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Milestones Timeline -->
+    <section id="milestones" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 4rem;">
+                <span class="subtitle">Milestones</span>
+                <h2 class="section-title">Project Milestones Timeline</h2>
+            </div>
+
+            <div class="timeline reveal">
+                <!-- Month 1 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Month 1</span>
+                        <h3>Research & Framing</h3>
+                        <p style="color: var(--text-light); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                            Establishing the problem statement and analyzing existing literature alongside patented
+                            technologies.
+                        </p>
+                        <div
+                            style="background: var(--bg-light); padding: 1.2rem; border-radius: 8px; border-left: 3px solid #64748b;">
+                            <span
+                                style="font-weight: 600; font-size: 0.9rem; color: var(--primary); display: block; margin-bottom: 0.5rem;">Key
+                                Deliverables:</span>
+                            <ul
+                                style="font-size: 0.9rem; padding-left: 1.2rem; color: var(--text-dark); margin: 0; list-style-type: disc;">
+                                <li style="margin-bottom: 0.2rem;">Project Synopsis Document</li>
+                                <li>Initial Patent Survey Report</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Month 2 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Month 2</span>
+                        <h3>Design & Simulation</h3>
+                        <p style="color: var(--text-light); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                            Ideating multiple concepts, selecting the optimal solution, and developing detailed 3D CAD
+                            models in SolidWorks.
+                        </p>
+                        <div
+                            style="background: var(--bg-light); padding: 1.2rem; border-radius: 8px; border-left: 3px solid #3b82f6;">
+                            <span
+                                style="font-weight: 600; font-size: 0.9rem; color: var(--primary); display: block; margin-bottom: 0.5rem;">Key
+                                Deliverables:</span>
+                            <ul
+                                style="font-size: 0.9rem; padding-left: 1.2rem; color: var(--text-dark); margin: 0; list-style-type: disc;">
+                                <li style="margin-bottom: 0.2rem;">Decision Matrix Outline</li>
+                                <li>Finalized CAD Files (.STEP/.STL)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Month 3 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Month 3</span>
+                        <h3>Prototyping & Assembly</h3>
+                        <p style="color: var(--text-light); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                            Manufacturing parts via 3D printing and assembling the physical end-effector apparatus with
+                            linear actuators.
+                        </p>
+                        <div
+                            style="background: var(--bg-light); padding: 1.2rem; border-radius: 8px; border-left: 3px solid #f59e0b;">
+                            <span
+                                style="font-weight: 600; font-size: 0.9rem; color: var(--primary); display: block; margin-bottom: 0.5rem;">Key
+                                Deliverables:</span>
+                            <ul
+                                style="font-size: 0.9rem; padding-left: 1.2rem; color: var(--text-dark); margin: 0; list-style-type: disc;">
+                                <li style="margin-bottom: 0.2rem;">V1 Physical Prototype</li>
+                                <li>Component BOM Review</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Month 4 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Month 4</span>
+                        <h3>Integration & Validation</h3>
+                        <p style="color: var(--text-light); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                            Programming the TM5-700 utilizing TM Flow interface and conducting payload/ergonomic
+                            assessments.
+                        </p>
+                        <div
+                            style="background: var(--bg-light); padding: 1.2rem; border-radius: 8px; border-left: 3px solid #10b981;">
+                            <span
+                                style="font-weight: 600; font-size: 0.9rem; color: var(--primary); display: block; margin-bottom: 0.5rem;">Key
+                                Deliverables:</span>
+                            <ul
+                                style="font-size: 0.9rem; padding-left: 1.2rem; color: var(--text-dark); margin: 0; list-style-type: disc;">
+                                <li style="margin-bottom: 0.2rem;">Operational TM Flow Script</li>
+                                <li>Final Project Report & Demo Video</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

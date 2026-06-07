@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Design | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 5% 4rem;
+        }
+
+        .sketch-placeholder {
+            background: #e2e8f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .toc-bar {
+            background: var(--primary);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toc-bar a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .toc-bar a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+
+        .toc-bar a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-bar {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html" class="active">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+    <!-- Table of Contents Sticky Bar -->
+    <div class="toc-bar">
+        <a href="engineering-specs.html">1. Requirements & Specs</a>
+        <a href="engineering-concepts.html">2. Conceptual Design</a>
+        <a href="engineering-comparison.html">3. Comparison of Design</a>
+        <a href="engineering-finalized.html">4. Finalized Design</a>
+        <a href="engineering-bom.html">5. Components & BOM</a>
+        <a href="engineering-solidworks.html">6. Solidworks Drawings</a>
+        <a href="engineering-analysis.html">7. System Analysis</a>
+        <a href="engineering-circuit.html">8. Circuit Design</a>
+        <a href="engineering-flowchart.html" class="active">9. Program Flowchart</a>
+        <a href="engineering-architecture.html">10. Architecture</a>
+        <a href="engineering-simulation.html">11. Simulation</a>
+    </div>
+<!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Engineering Design & Integration</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 1.5rem;">Comprehensive analysis,
+                modeling, fabrication, and control loop verification of the custom end-effector</p>
+            <div style="display: inline-block;">
+                <span
+                    style="background: rgba(20, 189, 172, 0.2); border: 1px solid rgba(20, 189, 172, 0.4); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(5px);">🟢
+                    Physical Integration Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Requirements and Specifications -->
+    <section id="flowchart" class="section-padding" style="background-color: var(--card-white);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">09. Grasp and Feedback Loop Control</span>
+                <h2 class="section-title">Program Flowchart</h2>
+            </div>
+
+            <div style="max-width: 600px; margin: 0 auto;">
+                <!-- Flowchart Visual -->
+                <div class="card" style="border-top: 4px solid var(--accent); display: flex; flex-direction: column; justify-content: center; padding: 3rem; background: #fff; box-shadow: var(--shadow-md); border-radius: 8px;">
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 1.3rem; margin-bottom: 2rem; text-align: center; color: var(--primary);">
+                        Operational Cycle Flowchart
+                    </h4>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.875rem; font-weight: 500; width: 100%;">
+                        <!-- START -->
+                        <div style="background: var(--primary); padding: 0.5rem 1.25rem; text-align: center; border-radius: 20px; font-weight: bold; color: #fff; max-width: 160px; margin: 0 auto; width: 100%; font-size: 0.9rem;">
+                            START
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Initialize System -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            Initialize System
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Define Sequential Task -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            Define Sequential Task
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Command AMR to Patrol Once -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            Command AMR to Patrol Once
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- AMR Navigates to Finished Goods ASRS -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            AMR Navigates to Finished Goods ASRS
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Decision: Goal Reached? -->
+                        <div style="background: #fffbeb; border: 1.5px solid #fef3c7; padding: 1rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow-sm);">
+                            <div style="font-weight: 700; color: #b45309; font-size: 0.95rem; margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">Goal Reached?</div>
+                            <div style="display: flex; justify-content: center; gap: 1rem; font-size: 0.85rem; font-weight: bold; flex-wrap: wrap;">
+                                <span style="color: #ef4444; background: #fee2e2; padding: 0.25rem 0.75rem; border-radius: 4px; border: 1px solid #fca5a5;">
+                                    ❌ NO: Stay Stationary / Retry → Back to Navigation
+                                </span>
+                                <span style="color: #10b981; background: #d1fae5; padding: 0.25rem 0.75rem; border-radius: 4px; border: 1px solid #6ee7b7;">
+                                    ✅ YES: Proceed
+                                </span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Trigger Cobot Task Sequence -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            Trigger Cobot Task Sequence
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Align Cobot with Landmark -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            Align Cobot with Landmark
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Pick Up Pallet (Activate Gripper) -->
+                        <div style="background: #f0fdf4; padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #bbf7d0; font-weight: 600; color: #166534;">
+                            Pick Up Pallet <span style="font-weight: normal; font-size: 0.8rem; display: block; margin-top: 0.2rem; color: #15803d;">(Activate Gripper)</span>
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- AMR Moves to Pallet Emptying Station (with pallet) -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            AMR Moves to Pallet Emptying Station <span style="font-weight: normal; font-size: 0.8rem; display: block; margin-top: 0.2rem; color: var(--text-light);">(with pallet)</span>
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Decision: Arrived at Emptying Station? -->
+                        <div style="background: #fffbeb; border: 1.5px solid #fef3c7; padding: 1rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow-sm);">
+                            <div style="font-weight: 700; color: #b45309; font-size: 0.95rem; margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">Arrived at Emptying Station?</div>
+                            <div style="display: flex; justify-content: center; gap: 1rem; font-size: 0.85rem; font-weight: bold; flex-wrap: wrap;">
+                                <span style="color: #3b82f6; background: #dbeafe; padding: 0.25rem 0.75rem; border-radius: 4px; border: 1px solid #bfdbfe;">
+                                    🔄 NO: Continue Navigation
+                                </span>
+                                <span style="color: #10b981; background: #d1fae5; padding: 0.25rem 0.75rem; border-radius: 4px; border: 1px solid #6ee7b7;">
+                                    ✅ YES: Proceed to Emptying
+                                </span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Emptying Sub-Sequence -->
+                        <div style="border: 2.5px solid var(--accent); padding: 1.25rem; border-radius: 8px; background: rgba(20, 189, 172, 0.03); margin: 0.2rem 0; display: flex; flex-direction: column; gap: 0.5rem;">
+                            <div style="color: var(--accent); font-weight: bold; text-align: center; font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                                ⚡ Pallet Emptying Action Block
+                            </div>
+                            
+                            <div style="background: #ecfeff; padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #a5f3fc; font-weight: 600; color: #0891b2;">
+                                Activate Electromagnet <span style="font-weight: normal; font-size: 0.8rem; display: block; margin-top: 0.1rem; color: #0d9488;">(Hold Pallet)</span>
+                            </div>
+                            <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.1rem;">↓</div>
+                            
+                            <div style="background: #ecfeff; padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #a5f3fc; font-weight: 600; color: #0891b2;">
+                                Rotate End-Effector <span style="font-weight: normal; font-size: 0.8rem; display: block; margin-top: 0.1rem; color: #0d9488;">(Drop Pallet)</span>
+                            </div>
+                            <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.1rem;">↓</div>
+                            
+                            <div style="background: #ecfeff; padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #a5f3fc; font-weight: 600; color: #0891b2;">
+                                Realign End-Effector
+                            </div>
+                            <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.1rem;">↓</div>
+                            
+                            <div style="background: #ecfeff; padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #a5f3fc; font-weight: 600; color: #0891b2;">
+                                Deactivate Electromagnet <span style="font-weight: normal; font-size: 0.8rem; display: block; margin-top: 0.1rem; color: #0d9488;">(Release Pallet)</span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- AMR Navigates to Raw Material ASRS -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            AMR Navigates to Raw Material ASRS
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Align with Landmark -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            Align with Landmark
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Place Empty Pallet (Deactivate Cobot) -->
+                        <div style="background: #fee2e2; padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #fca5a5; font-weight: 600; color: #991b1b;">
+                            Place Empty Pallet <span style="font-weight: normal; font-size: 0.8rem; display: block; margin-top: 0.2rem; color: #b91c1c;">(Deactivate Cobot)</span>
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- AMR Returns to Initial Position -->
+                        <div style="background: var(--bg-light); padding: 0.65rem 1rem; text-align: center; border-radius: 4px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--primary);">
+                            AMR Returns to Initial Position
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- Decision: More Tasks? -->
+                        <div style="background: #fffbeb; border: 1.5px solid #fef3c7; padding: 1rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow-sm);">
+                            <div style="font-weight: 700; color: #b45309; font-size: 0.95rem; margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">More Tasks?</div>
+                            <div style="display: flex; justify-content: center; gap: 1rem; font-size: 0.85rem; font-weight: bold; flex-wrap: wrap;">
+                                <span style="color: #3b82f6; background: #dbeafe; padding: 0.25rem 0.75rem; border-radius: 4px; border: 1px solid #bfdbfe;">
+                                    🔄 YES: Repeat Task Cycle
+                                </span>
+                                <span style="color: #ef4444; background: #fee2e2; padding: 0.25rem 0.75rem; border-radius: 4px; border: 1px solid #fca5a5;">
+                                    🛑 NO: End Execution
+                                </span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; color: var(--accent); font-weight: bold; line-height: 1; font-size: 1.2rem; margin: 0.2rem 0;">↓</div>
+                        
+                        <!-- END -->
+                        <div style="background: #1e293b; padding: 0.5rem 1.25rem; text-align: center; border-radius: 20px; font-weight: bold; color: #fff; max-width: 160px; margin: 0 auto; width: 100%; font-size: 0.9rem;">
+                            END
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Architecture -->
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet
+                Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

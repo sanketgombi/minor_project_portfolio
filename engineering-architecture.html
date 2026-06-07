@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Design | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 5% 4rem;
+        }
+
+        .sketch-placeholder {
+            background: #e2e8f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .toc-bar {
+            background: var(--primary);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toc-bar a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .toc-bar a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+
+        .toc-bar a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-bar {
+                top: 70px;
+            }
+        }
+
+        /* Architecture Grid Layout */
+        .obs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            max-width: 964px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .obs-card {
+            background: var(--card-white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--primary);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .obs-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .obs-list {
+            padding-left: 0;
+            list-style: none;
+            margin: 0 0 1.5rem 0;
+        }
+        
+        .obs-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .obs-list li::before {
+            content: "⚙️";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.95rem;
+        }
+
+        .logical-card .obs-list li::before {
+            content: "📊";
+        }
+
+        .physical-card .obs-list li::before {
+            content: "🏗️";
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html" class="active">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+    <!-- Table of Contents Sticky Bar -->
+    <div class="toc-bar">
+        <a href="engineering-specs.html">1. Requirements & Specs</a>
+        <a href="engineering-concepts.html">2. Conceptual Design</a>
+        <a href="engineering-comparison.html">3. Comparison of Design</a>
+        <a href="engineering-finalized.html">4. Finalized Design</a>
+        <a href="engineering-bom.html">5. Components & BOM</a>
+        <a href="engineering-solidworks.html">6. Solidworks Drawings</a>
+        <a href="engineering-analysis.html">7. System Analysis</a>
+        <a href="engineering-circuit.html">8. Circuit Design</a>
+        <a href="engineering-flowchart.html">9. Program Flowchart</a>
+        <a href="engineering-architecture.html" class="active">10. Architecture</a>
+        <a href="engineering-simulation.html">11. Simulation</a>
+    </div>
+<!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Engineering Design & Integration</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 1.5rem;">Comprehensive analysis,
+                modeling, fabrication, and control loop verification of the custom end-effector</p>
+            <div style="display: inline-block;">
+                <span
+                    style="background: rgba(20, 189, 172, 0.2); border: 1px solid rgba(20, 189, 172, 0.4); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(5px);">🟢
+                    Physical Integration Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Requirements and Specifications -->
+    <section id="architecture" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">10. Logical and Physical Frameworks</span>
+                <h2 class="section-title">Architecture</h2>
+            </div>
+
+            <div class="obs-grid">
+                <!-- Logical Architecture -->
+                <div class="obs-card logical-card" style="padding: 2rem;">
+                    <h3
+                        style="font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem; font-family: 'Poppins', sans-serif; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; text-align: center;">
+                        Logical Architecture
+                    </h3>
+                    
+                    <!-- Logical Architecture Image Space -->
+                    <div style="border: 1.5px dashed var(--accent); border-radius: 8px; background: #fff; width: 100%; aspect-ratio: 900 / 347; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; position: relative;">
+                        <img src="images/logical_architecture.png" alt="Logical Architecture Blueprint" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                        <div class="placeholder-fallback" style="display: none; flex-direction: column; align-items: center; justify-content: center; color: var(--text-light); padding: 1rem; width: 100%; text-align: center;">
+                            <span style="font-size: 2rem; margin-bottom: 0.25rem;">📊</span>
+                            <span style="font-weight: 600; font-size: 0.9rem; color: var(--primary);">Logical Architecture Screenshot</span>
+                            <span style="font-size: 0.7rem; color: #64748b; margin-top: 0.1rem;">[900 &times; 347 Frame]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Physical Architecture -->
+                <div class="obs-card physical-card" style="padding: 2rem;">
+                    <h3
+                        style="font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem; font-family: 'Poppins', sans-serif; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; text-align: center;">
+                        Physical Architecture
+                    </h3>
+                    
+                    <!-- Physical Architecture Image Space -->
+                    <div style="border: 1.5px dashed var(--accent); border-radius: 8px; background: #fff; width: 100%; aspect-ratio: 900 / 347; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; position: relative;">
+                        <img src="images/physical_architecture.png" alt="Physical Architecture Layout" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                        <div class="placeholder-fallback" style="display: none; flex-direction: column; align-items: center; justify-content: center; color: var(--text-light); padding: 1rem; width: 100%; text-align: center;">
+                            <span style="font-size: 2rem; margin-bottom: 0.25rem;">🏗️</span>
+                            <span style="font-weight: 600; font-size: 0.9rem; color: var(--primary);">Physical Architecture Screenshot</span>
+                            <span style="font-size: 0.7rem; color: #64748b; margin-top: 0.1rem;">[900 &times; 347 Frame]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Simulation -->
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet
+                Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

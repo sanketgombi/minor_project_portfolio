@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gantt Chart | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header { 
+            background: var(--primary); 
+            color: white; 
+            padding: 6rem 5% 4rem; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html" class="active">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Project Timeline</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem;">Task Breakdown & Gantt Chart Schedule</p>
+        </div>
+    </header>
+
+    <!-- Gantt Chart Section -->
+    <section class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 3rem;">
+                <span class="subtitle">Project Timeline</span>
+                <h2 class="section-title">Gantt Chart Schedule</h2>
+            </div>
+
+            <div class="table-container reveal" style="background: var(--card-white); padding: 1.5rem; border: 1px solid #e2e8f0;">
+                <table class="gantt-table" style="min-width: 800px; border-collapse: separate; border-spacing: 0;">
+                    <thead style="background: var(--primary); color: white;">
+                        <tr>
+                            <th style="width: 30%; text-align: left; padding: 1.2rem 1.5rem; border-radius: 6px 0 0 0;">Task Description</th>
+                            <th style="width: 17.5%; padding: 1.2rem; text-align: center;">Month 1</th>
+                            <th style="width: 17.5%; padding: 1.2rem; text-align: center;">Month 2</th>
+                            <th style="width: 17.5%; padding: 1.2rem; text-align: center;">Month 3</th>
+                            <th style="width: 17.5%; padding: 1.2rem; border-radius: 0 6px 0 0; text-align: center;">Month 4</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="task-name" style="padding: 1.2rem 1.5rem;">Literature & Patent Survey</td>
+                            <td class="month-cell"><span class="gantt-bar planning"></span></td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"></td>
+                        </tr>
+                        <tr style="background: #f8fafc;">
+                            <td class="task-name" style="padding: 1.2rem 1.5rem;">Ideation & Concept Evaluation</td>
+                            <td class="month-cell"><span class="gantt-bar design" style="width: 50%; float: right;"></span></td>
+                            <td class="month-cell"><span class="gantt-bar design" style="width: 50%; float: left; border-radius: 0 4px 4px 0;"></span></td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"></td>
+                        </tr>
+                        <tr>
+                            <td class="task-name" style="padding: 1.2rem 1.5rem;">Detailed 3D CAD Modeling</td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"><span class="gantt-bar design"></span></td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"></td>
+                        </tr>
+                        <tr style="background: #f8fafc;">
+                            <td class="task-name" style="padding: 1.2rem 1.5rem;">Prototyping & Assembly</td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"><span class="gantt-bar build"></span></td>
+                            <td class="month-cell"></td>
+                        </tr>
+                        <tr>
+                            <td class="task-name" style="padding: 1.2rem 1.5rem;">Software Integration (TM Flow)</td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"><span class="gantt-bar build" style="width: 50%; float: right; border-radius: 4px 0 0 4px;"></span></td>
+                            <td class="month-cell"><span class="gantt-bar build" style="width: 50%; float: left; border-radius: 0 4px 4px 0;"></span></td>
+                        </tr>
+                        <tr style="background: #f8fafc;">
+                            <td class="task-name" style="padding: 1.2rem 1.5rem;">Testing & Validation</td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"></td>
+                            <td class="month-cell"><span class="gantt-bar test"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Gantt Legend -->
+            <div class="reveal" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-top: 2.5rem; font-size: 0.95rem; font-weight: 600;">
+                <span style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);"><span style="width: 16px; height: 16px; background: #64748b; border-radius: 4px; display: inline-block;"></span> Planning Stage</span>
+                <span style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);"><span style="width: 16px; height: 16px; background: #3b82f6; border-radius: 4px; display: inline-block;"></span> Design Stage</span>
+                <span style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);"><span style="width: 16px; height: 16px; background: #f59e0b; border-radius: 4px; display: inline-block;"></span> Build Stage</span>
+                <span style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);"><span style="width: 16px; height: 16px; background: #10b981; border-radius: 4px; display: inline-block;"></span> Testing Stage</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Tasks Description -->
+    <section class="section-padding" style="background-color: var(--card-white);">
+        <div class="container reveal">
+            <h2 class="text-center" style="margin-bottom: 3.5rem;">Timeline Details & Deliverables</h2>
+            
+            <div class="grid grid-4">
+                <div class="card" style="border-top: 4px solid #64748b; background: var(--bg-light);">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--primary);">Month 1</h3>
+                    <h4 style="font-size: 0.95rem; color: var(--accent); margin-bottom: 1rem; text-transform: uppercase;">Research & Setup</h4>
+                    <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.6;">
+                        Literature search and patent reviews to benchmark performance criteria. Selection of target storage bins and initial workspace dimension mappings.
+                    </p>
+                </div>
+                <div class="card" style="border-top: 4px solid #3b82f6; background: var(--bg-light);">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--primary);">Month 2</h3>
+                    <h4 style="font-size: 0.95rem; color: var(--accent); margin-bottom: 1rem; text-transform: uppercase;">Concept & CAD</h4>
+                    <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.6;">
+                        Evaluating four design concepts via Pugh Matrix. Detailed 3D CAD modeling of the chosen Hybrid Soft-Claw in SolidWorks. Finite Element Analysis on jaw displacement.
+                    </p>
+                </div>
+                <div class="card" style="border-top: 4px solid #f59e0b; background: var(--bg-light);">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--primary);">Month 3</h3>
+                    <h4 style="font-size: 0.95rem; color: var(--accent); margin-bottom: 1rem; text-transform: uppercase;">Build & Circuit</h4>
+                    <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.6;">
+                        3D printing structural links in PLA and finger pads in TPU. Actuator and FSR sensor wiring. Initial visual control scripts in TM Flow for shelf landmark tracking.
+                    </p>
+                </div>
+                <div class="card" style="border-top: 4px solid #10b981; background: var(--bg-light);">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--primary);">Month 4</h3>
+                    <h4 style="font-size: 0.95rem; color: var(--accent); margin-bottom: 1rem; text-transform: uppercase;">Tests & Verify</h4>
+                    <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.6;">
+                        Integrated redocking trials at the receiving rack. Force validation tests. Optimization of closed-loop control dynamics. Final documentation and demo setup.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

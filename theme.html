@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header { 
+            background: var(--primary); 
+            color: white; 
+            padding: 6rem 5% 4rem; 
+        }
+        .theme-feature-card {
+            border-top: 4px solid var(--accent);
+            background: var(--card-white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+        .small-card {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        .small-card h4 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .small-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+        }
+        .cobot-img-container {
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            min-height: 300px;
+            position: relative;
+        }
+        .cobot-img-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 350px;
+            object-fit: contain;
+        }
+        .cobot-img-placeholder {
+            position: absolute;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html" class="active">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Project Theme</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem;">Broad domain and focus area of this project</p>
+        </div>
+    </header>
+
+    <!-- Theme & Sub-Theme Cards -->
+    <section class="section-padding" style="background-color: var(--bg-light); padding-bottom: 2rem;">
+        <div class="container">
+            <div class="grid grid-2 reveal">
+                <!-- Theme Card -->
+                <div class="theme-feature-card">
+                    <span class="subtitle">Theme</span>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary); font-family: 'Poppins', sans-serif;">Industrial Automation</h3>
+                    <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                        Automating manufacturing processes using intelligent robotic systems to minimize human error and streamline output rates.
+                    </p>
+                </div>
+                
+                <!-- Sub-Theme Card -->
+                <div class="theme-feature-card" style="border-top-color: var(--primary);">
+                    <span class="subtitle">Sub-Theme</span>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary); font-family: 'Poppins', sans-serif;">Smart Manufacturing</h3>
+                    <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                        Integrating intelligence, connectivity & automation in production systems to support real-time operational flexibility in Industry 4.0.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Context Section -->
+    <section class="section-padding" style="background-color: var(--card-white); padding-top: 2rem; padding-bottom: 2rem;">
+        <div class="container reveal">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary); font-family: 'Poppins', sans-serif;">Context</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 3rem;">
+                Modern manufacturing environments demand seamless integration of collaborative robots (cobot), autonomous mobile robots (AMRs), and automated storage and retrieval systems (ASRS). This project addresses a critical gap: there is no custom end-effector available for the TM5-700 cobot to automate pallet emptying and redocking — a core material handling challenge in Industry 4.0 facilities.
+            </p>
+
+            <!-- Three Small Cards -->
+            <div class="grid grid-3">
+                <div class="small-card">
+                    <h4>Cobot Integration</h4>
+                    <p>TM5-700 programming & control</p>
+                </div>
+                <div class="small-card" style="background-color: var(--accent);">
+                    <h4 style="color: var(--primary);">EE Design</h4>
+                    <p style="color: var(--primary);">Custom gripper via CAD & 3D printing</p>
+                </div>
+                <div class="small-card">
+                    <h4>AMR Sync</h4>
+                    <p>LD-250 motion coordination</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TM5-700 Cobot Section -->
+    <section class="section-padding" style="background-color: var(--bg-light); padding-top: 2rem;">
+        <div class="container reveal">
+            <div class="grid grid-2" style="align-items: center; gap: 4rem;">
+                <div>
+                    <span class="subtitle">Platform Showcase</span>
+                    <h3 style="font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.3;">OMRON TM5-700 Collaborative Robot</h3>
+                    <p style="color: var(--text-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: 1.5rem;">
+                        The **OMRON TM5-700** cobot is the primary manipulator platform for our smart ASRS warehouse docking setup. Designed to work alongside humans without physical barriers, it features an integrated smart vision system and 6-axis flexibility.
+                    </p>
+                    <ul style="color: var(--text-dark); list-style-type: none; font-size: 0.95rem; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span> <strong>Payload Limit:</strong> 6.0 kg maximum capability
+                        </li>
+                        <li style="margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span> <strong>Working Reach:</strong> 700 mm sweep radius
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.6rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span> <strong>Vision Guidance:</strong> Integrated wrist-mounted camera
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="cobot-img-container">
+                    <span class="cobot-img-placeholder">Place <strong>cobot.png</strong> in images/</span>
+                    <img src="images/cobot.png" alt="OMRON TM5-700 Cobot" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

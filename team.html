@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header { 
+            background: var(--primary); 
+            color: white; 
+            padding: 6rem 5% 4rem; 
+        }
+        .member-img { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            margin: 0 auto 1.5rem; 
+            border: 4px solid var(--bg-light); 
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            position: relative;
+        }
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-instruction {
+            position: absolute;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            text-align: center;
+            padding: 0.5rem;
+            line-height: 1.2;
+            z-index: 1;
+        }
+        .lead-card { 
+            border: 2px solid var(--accent); 
+            position: relative; 
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        .lead-badge { 
+            position: absolute; 
+            top: -15px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            background: var(--accent); 
+            color: white; 
+            padding: 0.4rem 1.2rem; 
+            border-radius: 20px; 
+            font-size: 0.85rem; 
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+        .skills-container { 
+            margin-top: 1.2rem; 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 0.5rem; 
+        }
+        .about-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 1rem 0;
+            text-align: center;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html" class="active">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Meet the Team</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem;">The minds behind the TM5-700 End-Effector design</p>
+        </div>
+    </header>
+
+    <!-- Team Section -->
+    <section class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container">
+            
+            <!-- Lead Member -->
+            <div class="reveal" style="margin-bottom: 4rem;">
+                <div class="card text-center lead-card" style="padding-top: 3.5rem;">
+                    <div class="lead-badge">Team Lead</div>
+                    <div class="member-img">
+                        <!-- Instructions inside placeholder -->
+                        <span class="img-instruction"><strong></strong></span>
+                        <!-- To load your image, make sure sanket.jpg exists in your images directory -->
+                        <img src="images/sanket.jpg" alt="Sanket" onerror="this.style.display='none'">
+                    </div>
+                    <h3 style="margin-bottom: 0.2rem; font-size: 1.8rem;">Sanket Gombi</h3>
+                    <p style="color: var(--accent); text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px;">Project Coordinator</p>
+                    
+                    <!-- Space for About Me -->
+                    <p class="about-text">
+                        <br>
+                        <em>Im passionate about robotics, automation, and intelligent systems. I enjoy hands-on learning, electronics, and machine learning.</em>
+                    </p>
+
+                    <div class="skills-container">
+                        <span class="badge badge-primary">IoT-based</span>
+                        <span class="badge badge-primary">Systems Engineering</span>
+                        <span class="badge badge-primary">Project Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Members -->
+            <div class="grid grid-3 reveal">
+                <!-- Kridey -->
+                <div class="card text-center" style="padding-top: 2.5rem;">
+                    <div class="member-img">
+                        <span class="img-instruction">Place <strong>kridey.jpg</strong> in images/</span>
+                        <img src="images/kridey.jpg" alt="Kridey" onerror="this.style.display='none'">
+                    </div>
+                    <h3 style="margin-bottom: 0.2rem; font-size: 1.5rem;">Kridey</h3>
+                    <p style="color: var(--primary); text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px;">Core Member</p>
+                    
+                    <!-- Space for About Me -->
+                    <p class="about-text">
+                        [KRIDEY - ABOUT ME PLACEHOLDER]
+                        <br>
+                        <em>I focus on detailed 3D CAD modeling and technical drafting. Edit this file to write your bio here.</em>
+                    </p>
+
+                    <div class="skills-container">
+                        <span class="badge">Catia</span>
+                        <span class="badge">Prototyping</span>
+                    </div>
+                </div>
+                
+                <!-- Maitri -->
+                <div class="card text-center" style="padding-top: 2.5rem;">
+                    <div class="member-img">
+                        <span class="img-instruction">Place <strong>maitri.jpg</strong> in images/</span>
+                        <img src="images/maitri.jpg" alt="Maitri" onerror="this.style.display='none'">
+                    </div>
+                    <h3 style="margin-bottom: 0.2rem; font-size: 1.5rem;">Maitri</h3>
+                    <p style="color: var(--primary); text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px;">Core Member</p>
+                    
+                    <!-- Space for About Me -->
+                    <p class="about-text">
+                        [MAITRI - ABOUT ME PLACEHOLDER]
+                        <br>
+                        <em>I handle robot control configurations and software testing. Edit this file to write your bio here.</em>
+                    </p>
+
+                    <div class="skills-container">
+                        <span class="badge">TM Flow</span>
+                        <span class="badge">Kinematics</span>
+                        <span class="badge">Testing</span>
+                    </div>
+                </div>
+                
+                <!-- Ayush -->
+                <div class="card text-center" style="padding-top: 2.5rem;">
+                    <div class="member-img">
+                        <span class="img-instruction">Place <strong>ayush.jpg</strong> in images/</span>
+                        <img src="images/ayush.jpg" alt="Ayush" onerror="this.style.display='none'">
+                    </div>
+                    <h3 style="margin-bottom: 0.2rem; font-size: 1.5rem;">Ayush</h3>
+                    <p style="color: var(--primary); text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px;">Core Member</p>
+                    
+                    <!-- Space for About Me -->
+                    <p class="about-text">
+                        [AYUSH - ABOUT ME PLACEHOLDER]
+                        <br>
+                        <em>I focus on structural additive fabrication and physical system assembly. Edit this file to write your bio here.</em>
+                    </p>
+
+                    <div class="skills-container">
+                        <span class="badge">3D Printing</span>
+                        <span class="badge">Assembly</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

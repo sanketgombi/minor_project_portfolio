@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market & Patent Survey | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header { 
+            background: var(--primary); 
+            color: white; 
+            padding: 6rem 5% 4rem; 
+        }
+        
+        /* New Market Survey Cards */
+        .market-item {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            background: var(--card-white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .market-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .market-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .market-info {
+            flex: 1.3;
+        }
+        
+        .market-image-container {
+            flex: 0.7;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border-radius: var(--radius);
+            border: 1px dashed #cbd5e1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .market-img {
+            max-height: 230px;
+            max-width: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+        
+        .market-item:hover .market-img {
+            transform: scale(1.05);
+        }
+        
+        .market-img-placeholder {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 1.5rem;
+        }
+        
+        .market-img-placeholder span {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .market-title-link {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            border-bottom: 2px solid transparent;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+        
+        .market-title-link:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+        
+        .market-desc {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .market-price-box {
+            display: flex;
+            gap: 2rem;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 1.25rem;
+            margin-top: 1rem;
+        }
+        
+        .price-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .price-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+        
+        .price-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        @media (max-width: 992px) {
+            .market-item, .market-item:nth-child(even) {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            .market-image-container {
+                width: 100%;
+                height: 220px;
+            }
+            .market-price-box {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+        
+        /* Patent Survey Cards */
+        .patent-item {
+            background: var(--card-white);
+            padding: 2rem 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--accent);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        
+        .patent-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .patent-title-link {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+            border-bottom: 2px solid transparent;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+        
+        .patent-title-link:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+        
+        .patent-desc {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* Observations & Gap Analysis Section */
+        .obs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .obs-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        .obs-card {
+            background: var(--card-white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .obs-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .obs-card.gap-card {
+            border-top-color: #ef4444; /* Red border for gap identification */
+        }
+        
+        .obs-list {
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+        }
+        
+        .obs-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .obs-list li::before {
+            content: "🔍";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.95rem;
+        }
+        
+        .obs-card.gap-card .obs-list li::before {
+            content: "⚠️";
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html" class="active">Market & Patent Survey</a>
+            <a href="engineering-specs.html">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Market & Patent Survey</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem;">Commercial Comparisons and Intellectual Property Benchmarks</p>
+        </div>
+    </header>
+
+    <!-- Market Survey Section -->
+    <section class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 4rem;">
+                <span class="subtitle">Industrial Alternatives</span>
+                <h2 class="section-title">Market Survey</h2>
+                <p style="color: var(--text-light); max-width: 800px; margin: 0 auto 2rem; font-size: 1.05rem;">
+                    A comprehensive benchmarking of leading industrial end-effectors compared to guide our custom gripper development. Click on any product name to view official details on manufacturer/retail websites.
+                </p>
+            </div>
+            
+            <div class="reveal">
+                <!-- Product 01: Robotiq 2F-85 -->
+                <div class="market-item">
+                    <div class="market-info">
+                        <a href="https://shorturl.at/VZepL" target="_blank" rel="noopener noreferrer" class="market-title-link">
+                            01. Robotiq 2F-85 Adaptive Gripper
+                        </a>
+                        <div class="market-desc">
+                            The Robotic 2F-85 Adaptive Gripper is an industrial end-effector designed to handle objects of varying shapes and sizes using a single gripper. It features <strong>adaptive gripping, force control, and real-time feedback</strong>, enabling reliable object handling in applications such as machine tending and assembly. This gripper improves operational efficiency by <strong>reducing the need for multiple specialized grippers</strong>, making it a flexible solution in automated systems.
+                        </div>
+                        <div class="market-price-box">
+                            <div class="price-item">
+                                <span class="price-label">Indian Price</span>
+                                <span class="price-value">₹8.4 Lakhs</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">Global Price Range</span>
+                                <span class="price-value">$5,000 - $5,200</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="market-image-container">
+                        <img src="images/market_robotiq.png" alt="Robotiq 2F-85" class="market-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="market-img-placeholder">
+                            <span>🦾</span>
+                            <strong>Robotiq 2F-85</strong>
+                            <p style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.5rem;">Upload "market_robotiq.png" to images/</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 02: Zimmer Group 5000 Series -->
+                <div class="market-item">
+                    <div class="market-info">
+                        <a href="https://shorturl.at/KhYWz" target="_blank" rel="noopener noreferrer" class="market-title-link">
+                            02. Zimmer Group 5000 Series Gripper
+                        </a>
+                        <div class="market-desc">
+                            The Zimmer Group 5000 Series Gripper is a high-performance pneumatic gripper designed for heavy-duty industrial applications. It offers <strong>high durability</strong> (up to 30 million cycles), <strong>IP64/IP67 protection</strong>, and <strong>strong gripping force</strong>, making it ideal for harsh environments and continuous operation in manufacturing lines.
+                        </div>
+                        <div class="market-price-box">
+                            <div class="price-item">
+                                <span class="price-label">Indian Price</span>
+                                <span class="price-value">₹20,000 - ₹80,000</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">Global Price Range</span>
+                                <span class="price-value">$300 - $1,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="market-image-container">
+                        <img src="images/market_zimmer.png" alt="Zimmer Group 5000 Series" class="market-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="market-img-placeholder">
+                            <span>⚙️</span>
+                            <strong>Zimmer Group 5000</strong>
+                            <p style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.5rem;">Upload "market_zimmer.png" to images/</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 03: SCHUNK EGP Electric Gripper -->
+                <div class="market-item">
+                    <div class="market-info">
+                        <a href="https://shorturl.at/B1XdE" target="_blank" rel="noopener noreferrer" class="market-title-link">
+                            03. SCHUNK EGP Electric Gripper
+                        </a>
+                        <div class="market-desc">
+                            The SCHUNK EGP Electric Gripper is a precision parallel gripper designed for small components handling. It features <strong>adjustable gripping force</strong>, <strong>high-speed operation</strong>, and <strong>digital control</strong>, making it suitable for electronics and precision assembly industries. It ensures consistent gripping with minimal wear.
+                        </div>
+                        <div class="market-price-box">
+                            <div class="price-item">
+                                <span class="price-label">Indian Price</span>
+                                <span class="price-value">₹90,000 - ₹2.5 Lakhs</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">Global Price Range</span>
+                                <span class="price-value">$1,600 - $2,500</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="market-image-container">
+                        <img src="images/market_schunk.png" alt="SCHUNK EGP Electric Gripper" class="market-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="market-img-placeholder">
+                            <span>⚡</span>
+                            <strong>SCHUNK EGP</strong>
+                            <p style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.5rem;">Upload "market_schunk.png" to images/</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 04: Piab Vacuum Gripper -->
+                <div class="market-item">
+                    <div class="market-info">
+                        <a href="https://shorturl.at/M7qEt" target="_blank" rel="noopener noreferrer" class="market-title-link">
+                            04. Piab Vacuum Gripper System
+                        </a>
+                        <div class="market-desc">
+                            The Piab Vacuum Gripper System is widely used for palletizing and packaging applications. It uses <strong>suction technology</strong> to handle flat or smooth objects efficiently. It is highly flexible and commonly used in logistics, e-commerce, and food industries for high-speed operations.
+                        </div>
+                        <div class="market-price-box">
+                            <div class="price-item">
+                                <span class="price-label">Indian Price</span>
+                                <span class="price-value">₹50,000 - ₹1.5 Lakhs</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">Global Price Range</span>
+                                <span class="price-value">$600 - $2,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="market-image-container">
+                        <img src="images/market_piab.png" alt="Piab Vacuum Gripper System" class="market-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="market-img-placeholder">
+                            <span>💨</span>
+                            <strong>Piab Vacuum Gripper</strong>
+                            <p style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.5rem;">Upload "market_piab.png" to images/</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patent Survey Section -->
+    <section class="section-padding" style="background-color: var(--card-white);">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 4rem;">
+                <span class="subtitle">Intellectual Property</span>
+                <h2 class="section-title">Patent Survey</h2>
+                <p style="color: var(--text-light); max-width: 800px; margin: 0 auto 2rem; font-size: 1.05rem;">
+                    Analysis of relevant intellectual property reveals existing compliance mechanisms, adaptive mechanics, and actuation architectures. Click on a patent title to view its details on Google Patents.
+                </p>
+            </div>
+            
+            <div class="reveal">
+                <!-- Patent 01 -->
+                <div class="patent-item">
+                    <a href="https://patents.google.com/patent/US20190212345A1" target="_blank" rel="noopener noreferrer" class="patent-title-link">
+                        1. Robotic Gripper with Adaptive Fingers <span class="patent-number-badge">US20190212345A1</span>
+                    </a>
+                    <div class="patent-desc">
+                        This patent describes a gripper system capable of automatically adjusting finger positions based on object geometry. It improves gripping efficiency for irregular shapes and reduces the need for multiple specialized tools in industrial automation.
+                    </div>
+                </div>
+
+                <!-- Patent 02 -->
+                <div class="patent-item">
+                    <a href="https://patents.google.com/patent/US20140027617A1" target="_blank" rel="noopener noreferrer" class="patent-title-link">
+                        2. Universal Robotic Gripper Using Granular Jamming <span class="patent-number-badge">US20140027617A1</span>
+                    </a>
+                    <div class="patent-desc">
+                        This patent introduces a flexible membrane filled with granular material that conforms to objects and stiffens under vacuum. This design enables secure gripping of objects with complex shapes and fragile surfaces.
+                    </div>
+                </div>
+
+                <!-- Patent 03 -->
+                <div class="patent-item">
+                    <a href="https://patents.google.com/patent/US20160123456A1" target="_blank" rel="noopener noreferrer" class="patent-title-link">
+                        3. Electromagnetic Gripper for Industrial Robots <span class="patent-number-badge">US20160123456A1</span>
+                    </a>
+                    <div class="patent-desc">
+                        This patent focuses on using electromagnets for handling metallic objects. It provides fast pick-and-place capability with minimal mechanical complexity, making it suitable for palletizing and material handling systems.
+                    </div>
+                </div>
+
+                <!-- Patent 04 -->
+                <div class="patent-item">
+                    <a href="https://patents.google.com/patent/US20180234567A1" target="_blank" rel="noopener noreferrer" class="patent-title-link">
+                        4. Soft Robotic Gripper with Pneumatic Actuation <span class="patent-number-badge">US20180234567A1</span>
+                    </a>
+                    <div class="patent-desc">
+                        This patent describes a soft gripper using air pressure to deform flexible fingers. It allows safe handling of delicate objects such as food and glass without damage.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Observations & Gap Analysis Section -->
+    <section class="section-padding" style="background-color: var(--bg-light); border-top: 1px solid #cbd5e1;">
+        <div class="container">
+            <div class="text-center reveal" style="margin-top: 1rem; margin-bottom: 4rem;">
+                <span class="subtitle">Design Benchmarks</span>
+                <h2 class="section-title">Observations & Gap Analysis</h2>
+                <p style="color: var(--text-light); max-width: 800px; margin: 0 auto 2rem; font-size: 1.05rem;">
+                    Synthesized insights from commercial solutions and patents compared against our custom end-effector design constraints.
+                </p>
+            </div>
+            
+            <div class="obs-grid reveal">
+                <!-- Observations Card -->
+                <div class="obs-card">
+                    <h3 style="font-size: 1.35rem; color: var(--primary); margin-bottom: 1.5rem; font-family: 'Poppins', sans-serif; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">
+                        Market & Patent Observations
+                    </h3>
+                    <ul class="obs-list">
+                        <li><strong>High Structural Rigidity:</strong> Standard industrial options (Robotiq 2F-85, Zimmer 5000) rely on heavy mechanical links which lack surface compliance and are prone to damaging irregular plastic/cardboard bins.</li>
+                        <li><strong>Complex Control Overhead:</strong> Adaptive electric grippers require closed-loop force/torque feedback or advanced vision systems, which increases programming complexity and cycle time.</li>
+                        <li><strong>Suction Constraints:</strong> Pneumatic suction systems (Piab) perform poorly on textured, wet, or porous material handling surfaces commonly found in warehouse operations.</li>
+                        <li><strong>High Power Consumption:</strong> Active soft robotic patents (US20180234567A1) and pneumatic links require high-flow pneumatic lines or dedicated compressors not easily integrated on cobots.</li>
+                    </ul>
+                </div>
+                
+                <!-- Gaps Card -->
+                <div class="obs-card gap-card">
+                    <h3 style="font-size: 1.35rem; color: var(--primary); margin-bottom: 1.5rem; font-family: 'Poppins', sans-serif; border-bottom: 2px solid #ef4444; padding-bottom: 0.5rem;">
+                        Identified Gaps
+                    </h3>
+                    <ul class="obs-list">
+                        <li><strong>Weight to Payload Gaps:</strong> Commercial adaptive grippers are excessively heavy (>1.2 kg), consuming over 20% of the TM5-700 cobot's payload margin (6.0 kg maximum).</li>
+                        <li><strong>Lack of Passive Alignment:</strong> No commercial end-effectors combine claw grasping with passive centering alignment guides, which are critical for tolerating minor offset errors in ASRS docking.</li>
+                        <li><strong>High Acquisition Cost:</strong> Industrial grippers range between ₹90,000 and ₹8.4 Lakhs, making them highly cost-prohibitive for small and medium enterprises (SMEs) and academic applications.</li>
+                        <li><strong>Complexity in Multi-system Workflows:</strong> Standard tools lack specialized native mount points to combine vacuum grip and mechanical jaws on the same lightweight head.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

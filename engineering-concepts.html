@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Design | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 5% 4rem;
+        }
+
+        .sketch-placeholder {
+            background: #e2e8f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .toc-bar {
+            background: var(--primary);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toc-bar a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .toc-bar a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+
+        .toc-bar a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-bar {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html" class="active">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+    <!-- Table of Contents Sticky Bar -->
+    <div class="toc-bar">
+        <a href="engineering-specs.html">1. Requirements & Specs</a>
+        <a href="engineering-concepts.html" class="active">2. Conceptual Design</a>
+        <a href="engineering-comparison.html">3. Comparison of Design</a>
+        <a href="engineering-finalized.html">4. Finalized Design</a>
+        <a href="engineering-bom.html">5. Components & BOM</a>
+        <a href="engineering-solidworks.html">6. Solidworks Drawings</a>
+        <a href="engineering-analysis.html">7. System Analysis</a>
+        <a href="engineering-circuit.html">8. Circuit Design</a>
+        <a href="engineering-flowchart.html">9. Program Flowchart</a>
+        <a href="engineering-architecture.html">10. Architecture</a>
+        <a href="engineering-simulation.html">11. Simulation</a>
+    </div>
+<!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Engineering Design & Integration</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 1.5rem;">Comprehensive analysis,
+                modeling, fabrication, and control loop verification of the custom end-effector</p>
+            <div style="display: inline-block;">
+                <span
+                    style="background: rgba(20, 189, 172, 0.2); border: 1px solid rgba(20, 189, 172, 0.4); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(5px);">🟢
+                    Physical Integration Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Requirements and Specifications -->
+    <section id="concepts" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 4rem;">
+                <span class="subtitle">02. Ideation & Synthesis</span>
+                <h2 class="section-title">Conceptual Design</h2>
+            </div>
+
+            <div class="grid grid-4 reveal">
+                <!-- Concept 1 -->
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div style="height: 200px; background: #e2e8f0; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-weight: 500; border-bottom: 3px solid var(--accent);">
+                        <img src="images/concept_magnetic.png" alt="Concept 1: Magnetic Gripper" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;" onerror="this.style.display='none';">
+                        <span>Concept 1: Magnetic Gripper</span>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Magnetic Gripper</h3>
+                        <p
+                            style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase;">
+                            By Sanket | Magnetic</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.6;">Uses powerful permanent or electro-magnets to lock onto metallic plates on the pallets. Very strong grip, but limited to magnetic components.</p>
+                    </div>
+                </div>
+                <!-- Concept 2 -->
+                <div class="card" style="padding: 0; overflow: hidden; transition-delay: 0.1s;">
+                    <div style="height: 200px; background: #e2e8f0; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-weight: 500; border-bottom: 3px solid var(--accent);">
+                        <img src="images/concept_mechanical.png" alt="Concept 2: Mechanical Gripper" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;" onerror="this.style.display='none';">
+                        <span>Concept 2: Mechanical Gripper</span>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Mechanical Gripper</h3>
+                        <p
+                            style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase;">
+                            By Kridey | Mechanical</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.6;">A motor-driven link clamping assembly to grip the pallet sides. Offers high clamping force, but is heavy and requires active power.</p>
+                    </div>
+                </div>
+                <!-- Concept 3 -->
+                <div class="card" style="padding: 0; overflow: hidden; transition-delay: 0.2s;">
+                    <div style="height: 200px; background: #e2e8f0; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-weight: 500; border-bottom: 3px solid var(--accent);">
+                        <img src="images/concept_self_locking.png" alt="Concept 3: Self-Locking Gripper" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;" onerror="this.style.display='none';">
+                        <span>Concept 3: Self-Locking Gripper</span>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Self-Locking Gripper</h3>
+                        <p
+                            style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase;">
+                            By Maitri | Self-Locking</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.6;">Features a geometric toggle linkage that locks mechanically under payload weight, preventing accidental drops if power fails.</p>
+                    </div>
+                </div>
+                <!-- Concept 4 -->
+                <div class="card" style="padding: 0; overflow: hidden; transition-delay: 0.3s;">
+                    <div style="height: 200px; background: #e2e8f0; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-weight: 500; border-bottom: 3px solid var(--accent);">
+                        <img src="images/concept_fork.png" alt="Concept 4: Fork Type Gripper" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;" onerror="this.style.display='none';">
+                        <span>Concept 4: Fork Type Gripper</span>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Fork Type Gripper</h3>
+                        <p
+                            style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase;">
+                            By Ayush | Passive</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.6;">A passive pronged fork design that slides underneath the pallet channels. Simple and reliable, but requires highly precise alignment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Comparison of Design -->
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet
+                Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

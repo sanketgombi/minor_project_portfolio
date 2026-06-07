@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Design | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 5% 4rem;
+        }
+
+        .sketch-placeholder {
+            background: #e2e8f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .toc-bar {
+            background: var(--primary);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toc-bar a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .toc-bar a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+
+        .toc-bar a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-bar {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html" class="active">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+    <!-- Table of Contents Sticky Bar -->
+    <div class="toc-bar">
+        <a href="engineering-specs.html">1. Requirements & Specs</a>
+        <a href="engineering-concepts.html">2. Conceptual Design</a>
+        <a href="engineering-comparison.html">3. Comparison of Design</a>
+        <a href="engineering-finalized.html" class="active">4. Finalized Design</a>
+        <a href="engineering-bom.html">5. Components & BOM</a>
+        <a href="engineering-solidworks.html">6. Solidworks Drawings</a>
+        <a href="engineering-analysis.html">7. System Analysis</a>
+        <a href="engineering-circuit.html">8. Circuit Design</a>
+        <a href="engineering-flowchart.html">9. Program Flowchart</a>
+        <a href="engineering-architecture.html">10. Architecture</a>
+        <a href="engineering-simulation.html">11. Simulation</a>
+    </div>
+<!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Engineering Design & Integration</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 1.5rem;">Comprehensive analysis,
+                modeling, fabrication, and control loop verification of the custom end-effector</p>
+            <div style="display: inline-block;">
+                <span
+                    style="background: rgba(20, 189, 172, 0.2); border: 1px solid rgba(20, 189, 172, 0.4); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(5px);">🟢
+                    Physical Integration Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Requirements and Specifications -->
+    <section id="finalized" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">04. Solution Details</span>
+                <h2 class="section-title">Finalized Design</h2>
+            </div>
+            <div class="grid grid-2" style="align-items: center; gap: 4rem;">
+                <div>
+                    <h3 style="font-size: 2.2rem; margin-bottom: 1.25rem; line-height: 1.3;">Optimized Magnetic Gripper
+                    </h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-light); line-height: 1.8; font-size: 1.05rem;">
+                        The finalized Magnetic Gripper configuration integrates powerful switchable permanent and electro-magnet arrays with an ISO-standardized wrist flange. This design guarantees solid hold alignment and high speed cycles for pallet components up to 500 g, ensuring fail-safe operations.
+                    </p>
+                    <ul style="color: var(--text-dark); margin-bottom: 1.5rem; list-style-type: none; padding-left: 0;">
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span>
+                            <span>Standard ISO 9409-1-50-4-M6 wrist interface adapter ensures direct bolt coupling.</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span>
+                            <span>Electro-permanent magnet cells consume power only during toggle engagement pulses.</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <span style="color: var(--accent); font-weight: bold;">✓</span>
+                            <span>Passive alignment pins ensure precise docking tolerances within ASRS boundaries.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div
+                    style="box-shadow: var(--shadow-lg); border-radius: var(--radius); overflow: hidden; border: 1px solid #cbd5e1; background: #e2e8f0; display: flex; align-items: center; justify-content: center; min-height: 300px; position: relative;">
+                    <img src="images/finalized_magnetic.png" alt="Finalized Magnetic Gripper Model"
+                        style="width: 100%; height: auto; display: block; object-fit: cover;"
+                        onerror="this.src='images/finalized_gripper_cad.png'; this.onerror=function(){ this.style.display='none'; this.parentNode.querySelector('span').style.display='block'; };">
+                    <span style="display: none; color: var(--text-light); font-weight: 500;">[Finalized Magnetic Gripper Image]</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Components Lists and BOM -->
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet
+                Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

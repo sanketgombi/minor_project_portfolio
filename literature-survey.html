@@ -1,0 +1,2545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literature Survey | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header { 
+            background: var(--primary); 
+            color: white; 
+            padding: 6rem 5% 4rem; 
+        }
+        
+        .insight-card {
+            background: var(--card-white);
+            padding: 2.2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .trend-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .list-unstyled {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .list-unstyled li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .list-unstyled li::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        .gap-list li::before {
+            content: "▲";
+            color: #ef4444; /* red indicator for research gaps */
+            font-size: 0.8rem;
+            top: 2px;
+        }
+        
+        .synthesis-block {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            position: relative;
+            margin-top: 4rem;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .synthesis-quote {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.95);
+            position: relative;
+            z-index: 2;
+        }
+
+        .synthesis-block::before {
+            content: "“";
+            font-size: 12rem;
+            color: rgba(20, 189, 172, 0.12);
+            position: absolute;
+            top: -40px;
+            left: 30px;
+            font-family: Georgia, serif;
+            line-height: 1;
+            z-index: 1;
+        }
+
+        #references-table a {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        #references-table a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .details-row {
+            display: none;
+            background-color: #f8fafc;
+        }
+
+        .details-content-box {
+            padding: 1.5rem 2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius);
+            margin: 0.75rem 1rem;
+            background: white;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            text-align: left;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            font-size: 0.825rem;
+        }
+
+        @media (max-width: 992px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .details-section-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 2px;
+        }
+
+        .details-text {
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .details-text ul {
+            list-style: disc;
+            padding-left: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        .details-text li {
+            margin-bottom: 0.3rem;
+        }
+
+        .details-highlight {
+            background-color: rgba(20, 189, 172, 0.06);
+            border-left: 3px solid var(--accent);
+            padding: 0.6rem 0.8rem;
+            border-radius: 0 4px 4px 0;
+            margin-top: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html" class="active">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Literature Survey</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem;">Academic Research & Key Insights</p>
+        </div>
+    </header>
+
+    <!-- Literature Survey Combined Summary -->
+    <section class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 4rem;">
+                <span class="subtitle">Academic Review Summary</span>
+                <h2 class="section-title">Combined Literature Summary</h2>
+            </div>
+            
+            <!-- Section 1: Key Technical Trends (Grid 4) -->
+            <div class="reveal" style="margin-bottom: 4rem;">
+                <h3 style="font-size: 1.6rem; color: var(--primary); margin-bottom: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; font-family: 'Poppins', sans-serif;">Key Technical Trends</h3>
+                <div class="grid grid-4">
+                    <!-- Collaborative Robotics -->
+                    <div class="insight-card" style="border-top-color: var(--accent);">
+                        <span class="trend-icon">🤖</span>
+                        <h4 style="font-size: 1.15rem; color: var(--primary); margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">Collaborative Robotics</h4>
+                        <ul class="list-unstyled">
+                            <li>Growing adoption of TM-series cobots for safe Human–Robot Collaboration (HRC).</li>
+                            <li>Increased focus on flexible, reconfigurable automation systems.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Adaptive Grippers -->
+                    <div class="insight-card" style="border-top-color: var(--primary);">
+                        <span class="trend-icon">🦾</span>
+                        <h4 style="font-size: 1.15rem; color: var(--primary); margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">Adaptive Grippers</h4>
+                        <ul class="list-unstyled">
+                            <li>Shift from fixed grippers to adaptive, soft, and self-configurable end-effectors.</li>
+                            <li>Improved handling of objects with varying shapes and sizes.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Intelligent Automation -->
+                    <div class="insight-card" style="border-top-color: var(--accent);">
+                        <span class="trend-icon">🧠</span>
+                        <h4 style="font-size: 1.15rem; color: var(--primary); margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">Intelligent Automation</h4>
+                        <ul class="list-unstyled">
+                            <li>Integration of AI, Computer Vision, Deep Learning, and IoT in robotic manipulation.</li>
+                            <li>Real-time sensing and decision-making for autonomous operations.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Warehouse Automation -->
+                    <div class="insight-card" style="border-top-color: var(--primary);">
+                        <span class="trend-icon">📦</span>
+                        <h4 style="font-size: 1.15rem; color: var(--primary); margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">Warehouse Automation</h4>
+                        <ul class="list-unstyled">
+                            <li>Increasing deployment of ASRS, AMRs, and robotic palletizing/depalletizing systems.</li>
+                            <li>Demand for seamless material flow and reduced manual intervention.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Performance Insights & Research Gaps (Grid 2) -->
+            <div class="grid grid-2 reveal" style="gap: 3rem; margin-bottom: 4rem; align-items: stretch;">
+                <!-- Performance Insights -->
+                <div class="insight-card" style="border-top-color: var(--accent); display: flex; flex-direction: column;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <span style="font-size: 2rem;">📊</span>
+                        <h3 style="font-size: 1.4rem; color: var(--primary); margin: 0; font-family: 'Poppins', sans-serif;">Performance Insights</h3>
+                    </div>
+                    <ul class="list-unstyled" style="flex-grow: 1;">
+                        <li>Adaptive and compliant grippers provide higher gripping reliability and flexibility.</li>
+                        <li>Vision-guided robotic systems improve object detection and positioning accuracy.</li>
+                        <li>AI-assisted grasp planning enhances manipulation success in dynamic environments.</li>
+                        <li>Automated pallet handling systems significantly improve operational efficiency and throughput.</li>
+                        <li>Integrated robotic warehouse solutions reduce cycle time and labor dependency.</li>
+                    </ul>
+                </div>
+
+                <!-- Primary Research Gaps -->
+                <div class="insight-card" style="border-top-color: #ef4444; display: flex; flex-direction: column;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <span style="font-size: 2rem;">⚠️</span>
+                        <h3 style="font-size: 1.4rem; color: var(--primary); margin: 0; font-family: 'Poppins', sans-serif;">Primary Research Gaps</h3>
+                    </div>
+                    <ul class="list-unstyled gap-list" style="flex-grow: 1;">
+                        <li>Limited end-effector solutions specifically designed for pallet emptying applications.</li>
+                        <li>Lack of dedicated grippers compatible with TM5-700 cobots for pallet handling.</li>
+                        <li>Existing industrial grippers are expensive and often application-specific.</li>
+                        <li>Limited integration between Cobots, AMRs, and ASRS in a single automated workflow.</li>
+                        <li>Need for lightweight, low-cost, and easily manufacturable gripper designs.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 3: Strategic Project Value (Full Width Card) -->
+            <div class="insight-card reveal" style="border-top-color: var(--primary); padding: 2.5rem; margin-bottom: 4rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+                    <span style="font-size: 2rem;">🎯</span>
+                    <h3 style="font-size: 1.4rem; color: var(--primary); margin: 0; font-family: 'Poppins', sans-serif;">Strategic Project Value</h3>
+                </div>
+                <p style="color: var(--text-dark); line-height: 1.8; font-size: 1.05rem; margin: 0;">
+                    This project addresses the identified research gaps by developing a custom end-effector for the TM5-700 cobot capable of pallet pickup, pallet emptying, and ASRS redocking. The solution supports smart manufacturing by integrating collaborative robotics, automated material handling, and warehouse automation technologies while improving efficiency, repeatability, and operational safety.
+                </p>
+            </div>
+
+            <!-- Section 4: Synthesis Remark -->
+            <div class="synthesis-block reveal">
+                <div class="synthesis-quote">
+                    "The convergence of collaborative robotics, adaptive gripping technologies, and intelligent warehouse automation provides a strong foundation for developing a reliable end-effector solution capable of enabling autonomous pallet handling and ASRS integration in Industry 4.0 manufacturing environments."
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Reviewed Research Papers (References) -->
+    <section class="section-padding" style="background-color: var(--card-white); border-top: 1px solid #cbd5e1; padding-top: 4rem;">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 3rem;">
+                <span class="subtitle">Bibliography</span>
+                <h2 class="section-title" style="margin-bottom: 1rem;">Detailed Literature References</h2>
+                <p style="color: var(--text-light); font-size: 0.95rem; max-width: 600px; margin: 0 auto;">
+                    A comprehensive compilation of the research papers analyzed to guide our end-effector design. Click on any paper title to view its source, or click "View Analysis" to see a detailed technical breakdown.
+                </p>
+            </div>
+
+            <div class="table-container reveal" style="margin-top: 1rem; border: 1px solid #cbd5e1; border-radius: var(--radius); overflow: hidden;">
+                <table id="references-table" style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%; text-align: center; font-size: 0.85rem; padding: 0.8rem 1rem;">#</th>
+                            <th style="width: 15%; font-size: 0.85rem; padding: 0.8rem 1rem;">Author/Source</th>
+                            <th style="width: 8%; text-align: center; font-size: 0.85rem; padding: 0.8rem 1rem;">Year</th>
+                            <th style="width: 52%; font-size: 0.85rem; padding: 0.8rem 1rem;">Paper Title (Click to Open)</th>
+                            <th style="width: 20%; text-align: center; font-size: 0.85rem; padding: 0.8rem 1rem;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="references-body">
+                        <!-- Paper 1 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">1</td>
+                            <td style="font-weight: 500; padding: 1rem;">M. Dhanda, B. A. Rogers, S. Hall, E. Dekoninck, V. Dhokia</td>
+                            <td style="text-align: center; padding: 1rem;">2023</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Reviewing+Human-Robot+Collaboration+in+Manufacturing:+Opportunities+and+Challenges+in+the+Context+of+Industry+5.0" target="_blank" rel="noopener noreferrer">
+                                    Reviewing Human–Robot Collaboration in Manufacturing: Opportunities and Challenges in the Context of Industry 5.0
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-1" class="btn" onclick="toggleDetails(1)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 1 Details -->
+                        <tr id="details-1" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Developing manufacturing systems that balance automation efficiency with human-centric collaboration, safety, and sustainability.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">Comprehensive review of Industry 5.0 frameworks, Human–Robot Collaboration (HRC) models, and smart manufacturing practices.</div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Smart Manufacturing, Industry 5.0 Factories, Human–Robot Workstations.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Collaborative Robots (Cobots)</li>
+                                                    <li>Safety Sensors</li>
+                                                    <li>Human Monitoring Systems</li>
+                                                    <li>Digital Twin Platforms</li>
+                                                    <li>Smart Manufacturing Infrastructure</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Human–Robot Collaboration Models</li>
+                                                    <li>AI-based Decision Support Systems</li>
+                                                    <li>Digital Twin Frameworks</li>
+                                                    <li>Safety Assessment Models</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved worker safety and productivity.</li>
+                                                    <li>Enhanced collaboration between humans and robots.</li>
+                                                    <li>Increased manufacturing flexibility.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Lack of standardized Industry 5.0 implementation frameworks, high integration complexity.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Develop application-specific HRC frameworks for warehouse and ASRS environments.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides guidelines for safely integrating the TM5-700 cobot into pallet handling operations while maintaining operator safety.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Human-centric robot collaboration is becoming a critical requirement in future manufacturing systems.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 2 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">2</td>
+                            <td style="font-weight: 500; padding: 1rem;">R. Sultanov, S. Sulaiman, H. Li, R. Meshcheryakov, E. Magid</td>
+                            <td style="text-align: center; padding: 1rem;">2022</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=A+Review+on+Collaborative+Robots+in+Industrial+and+Service+Sectors" target="_blank" rel="noopener noreferrer">
+                                    A Review on Collaborative Robots in Industrial and Service Sectors
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-2" class="btn" onclick="toggleDetails(2)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 2 Details -->
+                        <tr id="details-2" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Understanding how collaborative robots can be effectively deployed across industrial and service applications.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">Review and comparison of cobot technologies, deployment strategies, safety systems, and industrial applications.</div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Manufacturing, Assembly Lines, Healthcare, Logistics, Service Robotics.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Collaborative Robot Arms</li>
+                                                    <li>Force/Torque Sensors</li>
+                                                    <li>Vision Systems</li>
+                                                    <li>End-of-Arm Tooling (EOAT)</li>
+                                                    <li>Safety Monitoring Devices</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Motion Planning Algorithms</li>
+                                                    <li>Force Control Strategies</li>
+                                                    <li>Human-Robot Safety Models</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Cobots improve productivity and operational flexibility.</li>
+                                                    <li>Easier programming compared to traditional industrial robots.</li>
+                                                    <li>Enhanced safety for shared workspaces.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Payload limitations, reduced speed compared to industrial robots, safety certification challenges.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Improve payload capacity while maintaining collaborative safety features.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Supports the selection of the TM5-700 cobot as a safe and flexible platform for pallet handling automation.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Collaborative robots offer a practical balance between automation efficiency and workplace safety.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 3 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">3</td>
+                            <td style="font-weight: 500; padding: 1rem;">C. Palanisamy, L. Perumal, C. W. Chin</td>
+                            <td style="text-align: center; padding: 1rem;">2023</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=A+Comprehensive+Review+of+Collaborative+Robotics+in+Manufacturing" target="_blank" rel="noopener noreferrer">
+                                    A Comprehensive Review of Collaborative Robotics in Manufacturing
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-3" class="btn" onclick="toggleDetails(3)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 3 Details -->
+                        <tr id="details-3" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Need for intelligent manufacturing systems capable of coordinating multiple collaborative robots in dynamic environments.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">Analysis of hardware-software integration techniques used in collaborative robotic manufacturing systems.</div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Smart Manufacturing, Connected Factories, Industrial Automation.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Collaborative Robots</li>
+                                                    <li>IoT Devices</li>
+                                                    <li>Industrial Sensors</li>
+                                                    <li>Communication Networks</li>
+                                                    <li>Cloud-Based Monitoring Systems</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Machine Learning Algorithms</li>
+                                                    <li>IoT-based Monitoring</li>
+                                                    <li>Path Planning Algorithms</li>
+                                                    <li>Cloud Computing Frameworks</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved coordination among robotic systems.</li>
+                                                    <li>Better adaptability to production changes.</li>
+                                                    <li>Enhanced real-time monitoring and control.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Cybersecurity concerns, complex system integration, dependence on network infrastructure.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Develop simpler and more secure industrial integration architectures.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides insights into integrating TM5-700, LD-250 AMR, and ASRS systems into a unified automation workflow.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 AI, IoT, and collaborative robotics are essential technologies for next-generation smart factories.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 4 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">4</td>
+                            <td style="font-weight: 500; padding: 1rem;">A. Weiss, A. K. Wortmeier, B. Kubicek</td>
+                            <td style="text-align: center; padding: 1rem;">2021</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Cobots+in+Industry+4.0:+A+Roadmap+for+Future+Practice+Studies+on+Human-Robot+Collaboration" target="_blank" rel="noopener noreferrer">
+                                    Cobots in Industry 4.0: A Roadmap for Future Practice Studies on Human–Robot Collaboration
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-4" class="btn" onclick="toggleDetails(4)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 4 Details -->
+                        <tr id="details-4" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Developing effective Human–Robot Collaboration (HRC) environments by addressing psychological, social, and workplace interaction challenges between humans and robots.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Literature review of Industry 4.0 collaborative environments.</li>
+                                                    <li>Analysis of human factors affecting robot acceptance.</li>
+                                                    <li>Evaluation of training and workplace integration strategies.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Smart Manufacturing, Human–Robot Workstations, Industry 4.0 Production Systems.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Collaborative Robots (Cobots)</li>
+                                                    <li>Human-Machine Interfaces (HMI)</li>
+                                                    <li>Augmented Reality (AR) Systems</li>
+                                                    <li>Industrial Workstations</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Human-Robot Collaboration Models</li>
+                                                    <li>User Acceptance Frameworks</li>
+                                                    <li>Human-Centered Design Principles</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved worker acceptance of robotic systems.</li>
+                                                    <li>Better collaboration efficiency through proper training.</li>
+                                                    <li>Enhanced workplace safety and comfort.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Focuses mainly on human factors rather than technical implementation, limited practical deployment validation.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Combine human-centered design with real-time safety monitoring systems.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides guidance for designing a safe and operator-friendly TM5-700 cobot workspace during pallet handling operations.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Successful human–robot collaboration depends on both technical performance and human acceptance.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 5 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">5</td>
+                            <td style="font-weight: 500; padding: 1rem;">W. Li, Y. Hu, Y. Zhou, D. T. Pham</td>
+                            <td style="text-align: center; padding: 1rem;">2022</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Safe+Human-Robot+Collaboration+for+Industrial+Settings:+A+Survey" target="_blank" rel="noopener noreferrer">
+                                    Safe Human–Robot Collaboration for Industrial Settings: A Survey
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-5" class="btn" onclick="toggleDetails(5)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 5 Details -->
+                        <tr id="details-5" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Ensuring safe interaction between humans and robots in shared industrial workspaces.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Survey of collision avoidance and safety technologies.</li>
+                                                    <li>Comparative analysis of sensing approaches for HRC.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Collaborative Manufacturing, Smart Factories, Human-Robot Workspaces.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Computer Vision Cameras</li>
+                                                    <li>LiDAR Sensors</li>
+                                                    <li>Tactile Sensors (Robotic Skin)</li>
+                                                    <li>Collaborative Robots</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Speed and Separation Monitoring (SSM)</li>
+                                                    <li>Collision Detection Algorithms</li>
+                                                    <li>Safety Zone Monitoring</li>
+                                                    <li>Multi-Modal Sensor Fusion</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Multi-modal sensing improves safety reliability.</li>
+                                                    <li>Vision and tactile sensing combination provides better hazard detection.</li>
+                                                    <li>Enables safe fenceless robotic workstations.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Increased system complexity and cost, sensor calibration challenges.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Implement intelligent safety monitoring using AI-based risk prediction.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides safety principles for integrating the TM5-700 cobot with operators, ASRS systems, and AMRs.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Combining multiple sensing technologies is the most reliable approach for safe human–robot collaboration.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 6 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">6</td>
+                            <td style="font-weight: 500; padding: 1rem;">Hogan, F.R., Rodriguez, A. and Kaelbling, L.P</td>
+                            <td style="text-align: center; padding: 1rem;">2022</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Reactive+Planar+Manipulation+with+Convex+Hybrid+MPC" target="_blank" rel="noopener noreferrer">
+                                    Reactive Planar Manipulation with Convex Hybrid MPC
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-6" class="btn" onclick="toggleDetails(6)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 6 Details -->
+                        <tr id="details-6" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Improving robotic manipulation performance in dynamic and uncertain environments.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Hybrid Model Predictive Control (MPC).</li>
+                                                    <li>Real-time motion adjustment during object manipulation.</li>
+                                                    <li>Optimization-based control framework.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Robotic Manipulation, Industrial Automation, Material Handling Systems.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Robotic Manipulator</li>
+                                                    <li>Position Sensors</li>
+                                                    <li>Force Feedback Systems</li>
+                                                    <li>Motion Control Hardware</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Convex Hybrid MPC</li>
+                                                    <li>Motion Planning Algorithms</li>
+                                                    <li>Optimization-Based Control</li>
+                                                    <li>Reactive Manipulation Framework</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved manipulation stability.</li>
+                                                    <li>Better adaptability to changing environments.</li>
+                                                    <li>Enhanced real-time response during object handling.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">High computational requirements, complex controller implementation.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Develop lightweight real-time control strategies suitable for industrial pallet handling applications.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides concepts for achieving smooth and stable pallet transfer operations using the TM5-700 cobot.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Advanced predictive control methods significantly improve robotic manipulation accuracy and adaptability.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 7 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">7</td>
+                            <td style="font-weight: 500; padding: 1rem;">G. Gao</td>
+                            <td style="text-align: center; padding: 1rem;">2021</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Design,+Modelling,+and+Development+of+Adaptive+Robot+Grippers+and+Hands" target="_blank" rel="noopener noreferrer">
+                                    Design, Modelling, and Development of Adaptive Robot Grippers and Hands
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-7" class="btn" onclick="toggleDetails(7)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 7 Details -->
+                        <tr id="details-7" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Developing a robotic gripper capable of handling both heavy objects and delicate components without requiring multiple specialized end-effectors.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Adaptive mechanical gripper design.</li>
+                                                    <li>Kinematic and mathematical modeling.</li>
+                                                    <li>Compliant mechanism development.</li>
+                                                    <li>3D printed prototype fabrication and testing.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Industrial Automation, Material Handling, Assembly Operations, Universal Gripping Applications.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Adaptive Robotic Gripper</li>
+                                                    <li>Compliant Fingers</li>
+                                                    <li>Servo/Actuator Mechanisms</li>
+                                                    <li>3D Printed Components</li>
+                                                    <li>Robotic Manipulator</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Kinematic Modeling</li>
+                                                    <li>Adaptive Linkage Design</li>
+                                                    <li>Force Distribution Analysis</li>
+                                                    <li>Grasp Optimization Methods</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Successfully handles objects of varying sizes and shapes.</li>
+                                                    <li>Reduces the need for tool changes.</li>
+                                                    <li>Improves operational flexibility and gripping efficiency.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Increased mechanical complexity, higher design and manufacturing effort.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Integrate lightweight materials and faster actuation mechanisms for improved performance.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides design concepts for developing a versatile pallet gripping mechanism for the TM5-700 cobot.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Adaptive grippers improve flexibility and enable handling of diverse objects using a single end-effector.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 8 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">8</td>
+                            <td style="font-weight: 500; padding: 1rem;">Shintake, J., Cacucciolo, V., Floreano, D. and Shea, H</td>
+                            <td style="text-align: center; padding: 1rem;">2020</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Soft+Robotic+Grippers" target="_blank" rel="noopener noreferrer">
+                                    Soft Robotic Grippers
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-8" class="btn" onclick="toggleDetails(8)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 8 Details -->
+                        <tr id="details-8" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Achieving safe and adaptable robotic manipulation in dynamic environments without damaging objects.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Development of soft robotic gripping structures.</li>
+                                                    <li>Use of flexible materials for object conformity.</li>
+                                                    <li>Experimental validation of adaptive manipulation.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Food Processing, Healthcare, Logistics, Fragile Object Handling.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Soft Robotic Gripper</li>
+                                                    <li>Elastomer Materials</li>
+                                                    <li>Flexible Fingers</li>
+                                                    <li>Pneumatic Actuation System</li>
+                                                    <li>Robotic Manipulator</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Soft Body Modeling</li>
+                                                    <li>Deformation Analysis</li>
+                                                    <li>Adaptive Grasping Strategies</li>
+                                                    <li>Compliance Control Methods</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>High adaptability to irregular shapes.</li>
+                                                    <li>Reduced object damage.</li>
+                                                    <li>Improved gripping safety.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Lower gripping force than rigid grippers, limited payload handling capability.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Combine soft gripping elements with rigid support structures to improve load capacity.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides insights into safe pallet engagement and compliant gripping mechanisms.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Soft robotic grippers provide excellent adaptability and safe object handling in uncertain environments.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 9 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">9</td>
+                            <td style="font-weight: 500; padding: 1rem;">Y. Zhang, Z. Wang</td>
+                            <td style="text-align: center; padding: 1rem;">2021</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Review+of+Robotic+Grippers+for+High-Speed+Handling+of+Fragile+Foods" target="_blank" rel="noopener noreferrer">
+                                    Review of Robotic Grippers for High-Speed Handling of Fragile Foods
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-9" class="btn" onclick="toggleDetails(9)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 9 Details -->
+                        <tr id="details-9" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Automating the handling of delicate food products without causing damage while maintaining high processing speeds.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Comparative review of food handling gripper technologies.</li>
+                                                    <li>Analysis of gripping mechanisms for fragile products.</li>
+                                                    <li>Evaluation of industrial food automation systems.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Food Processing Industry, Packaging Systems, Automated Sorting Lines.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Soft Robotic Grippers</li>
+                                                    <li>Pneumatic Actuators</li>
+                                                    <li>Vacuum/Suction Grippers</li>
+                                                    <li>Food Handling Robots</li>
+                                                    <li>Vision Systems</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Grasp Stability Analysis</li>
+                                                    <li>Object Handling Optimization</li>
+                                                    <li>Motion Planning Strategies</li>
+                                                    <li>Damage Prevention Models</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Soft-material grippers significantly reduce product damage.</li>
+                                                    <li>Pneumatic and suction systems improve handling efficiency.</li>
+                                                    <li>Better adaptability to varying product shapes.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Stability issues at very high operating speeds, performance varies depending on product characteristics.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Develop hybrid grippers combining strong holding force with adaptive gripping capability.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Highlights the importance of secure gripping and object protection during pallet transfer operations.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Soft and adaptive grippers are highly effective for handling fragile objects while maintaining operational efficiency.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 10 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">10</td>
+                            <td style="font-weight: 500; padding: 1rem;">C. Zito</td>
+                            <td style="text-align: center; padding: 1rem;">2020</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Robot+Grasping+and+Manipulation:+A+Prospective" target="_blank" rel="noopener noreferrer">
+                                    Robot Grasping and Manipulation: A Prospective
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-10" class="btn" onclick="toggleDetails(10)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 10 Details -->
+                        <tr id="details-10" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Developing robotic systems capable of intelligently grasping and manipulating previously unseen objects in dynamic environments.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Review of modern robotic grasping approaches.</li>
+                                                    <li>Reinforcement Learning (RL)-based training.</li>
+                                                    <li>Sim-to-Real transfer techniques.</li>
+                                                    <li>AI-driven adaptive manipulation strategies.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Industrial Automation, Warehouse Robotics, Service Robotics, Autonomous Manipulation.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>RGB/RGB-D Cameras</li>
+                                                    <li>Tactile Sensors</li>
+                                                    <li>Robotic Manipulators</li>
+                                                    <li>Adaptive Grippers</li>
+                                                    <li>Vision-Based Systems</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Reinforcement Learning (RL)</li>
+                                                    <li>Sim-to-Real Transfer Learning</li>
+                                                    <li>Computer Vision Models</li>
+                                                    <li>Intelligent Grasp Planning</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved adaptability to unknown objects.</li>
+                                                    <li>Enhanced robotic decision-making.</li>
+                                                    <li>Better grasp success rates in real-world scenarios.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Requires large training datasets, high computational requirements, sim-to-real performance gaps.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Combine AI-based grasp planning with real-time sensor feedback for industrial material handling.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides insights into intelligent gripping strategies that can improve pallet handling reliability.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Future robotic manipulation relies on intelligent systems capable of adapting to unknown environments and objects.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 11 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">11</td>
+                            <td style="font-weight: 500; padding: 1rem;">L. Zhou, L. Ren, Y. Chen, S. Niu, Z. Han, L. Ren</td>
+                            <td style="text-align: center; padding: 1rem;">2022</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Bio-Inspired+Soft+Grippers+Based+on+Impactive+Gripping" target="_blank" rel="noopener noreferrer">
+                                    Bio-Inspired Soft Grippers Based on Impactive Gripping
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-11" class="btn" onclick="toggleDetails(11)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 11 Details -->
+                        <tr id="details-11" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Handling flat, smooth, and irregular objects that are difficult to grasp using traditional mechanical grippers.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Biomimetic gripper design inspired by geckos and insects.</li>
+                                                    <li>Development of soft gripping structures.</li>
+                                                    <li>Vacuum-based impactive gripping techniques.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Electronics Handling, Biomedical Applications, Fragile Component Manipulation, Precision Manufacturing.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Soft Elastomer Grippers</li>
+                                                    <li>Vacuum Systems</li>
+                                                    <li>Biomimetic Materials</li>
+                                                    <li>Flexible Gripping Structures</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Bio-Inspired Design Principles</li>
+                                                    <li>Adhesion Modeling</li>
+                                                    <li>Flexible Contact Analysis</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Superior adaptability to irregular surfaces.</li>
+                                                    <li>Improved gripping reliability.</li>
+                                                    <li>Reduced object damage.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Limited payload capacity, vacuum dependency for performance.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Combine bio-inspired gripping concepts with rigid industrial structures for higher load handling.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides inspiration for creating adaptive gripping surfaces capable of securely handling pallets with varying contact conditions.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Nature-inspired gripping mechanisms significantly improve adaptability and object handling performance.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 12 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">12</td>
+                            <td style="font-weight: 500; padding: 1rem;">X. Li, W. Chen, W. Lin, K. H. Low</td>
+                            <td style="text-align: center; padding: 1rem;">2022</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=A+Variable+Stiffness+Robotic+Gripper+Based+on+Structure-Controlled+Principle" target="_blank" rel="noopener noreferrer">
+                                    A Variable Stiffness Robotic Gripper Based on Structure-Controlled Principle
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-12" class="btn" onclick="toggleDetails(12)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 12 Details -->
+                        <tr id="details-12" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Balancing the flexibility of soft grippers with the strength and precision of rigid grippers.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Variable stiffness finger design.</li>
+                                                    <li>Stiffness control through mechanical structures.</li>
+                                                    <li>Experimental evaluation of grasping performance.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Industrial Automation, Precision Assembly, Material Handling, Collaborative Robotics.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Variable Stiffness Gripper</li>
+                                                    <li>Adjustable Mechanical Structures</li>
+                                                    <li>Actuators</li>
+                                                    <li>Robotic Manipulator</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Stiffness Control Models</li>
+                                                    <li>Structural Optimization Techniques</li>
+                                                    <li>Adaptive Grasping Strategies</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved adaptability and gripping strength.</li>
+                                                    <li>Better balance between safety and performance.</li>
+                                                    <li>Enhanced grasp stability.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Increased mechanical complexity, more difficult manufacturing and maintenance.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Develop a lightweight variable-stiffness mechanism suitable for TM5-700 pallet handling operations.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides useful concepts for designing a gripper that can securely hold pallets while maintaining adaptability during pickup and placement.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Variable stiffness technology effectively combines the advantages of both soft and rigid robotic grippers.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 13 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">13</td>
+                            <td style="font-weight: 500; padding: 1rem;">K. C. Bingham, M. Hessler, S. Lama, T. Deemyad</td>
+                            <td style="text-align: center; padding: 1rem;">2021</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Design+and+Implementation+of+a+Compliant+Gripper+for+Form+Closure+of+Diverse+Objects" target="_blank" rel="noopener noreferrer">
+                                    Design and Implementation of a Compliant Gripper for Form Closure of Diverse Objects
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-13" class="btn" onclick="toggleDetails(13)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 13 Details -->
+                        <tr id="details-13" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Developing a universal warehouse gripper capable of handling objects with different shapes and sizes without requiring complex control systems.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Compliant gripper design.</li>
+                                                    <li>Form-closure gripping mechanism.</li>
+                                                    <li>Experimental validation using objects of different geometries.</li>
+                                                    <li>Warehouse pick-and-place performance evaluation.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Warehouse Automation, Logistics, Pick-and-Place Operations, Material Handling.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Compliant Gripper Mechanism</li>
+                                                    <li>Robotic Manipulator</li>
+                                                    <li>Flexible Mechanical Components</li>
+                                                    <li>Pick-and-Place Test Setup</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Form-Closure Grasping Theory</li>
+                                                    <li>Compliant Mechanism Design</li>
+                                                    <li>Grasp Stability Analysis</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved adaptability to diverse object shapes.</li>
+                                                    <li>Reduced grasping errors.</li>
+                                                    <li>Increased warehouse picking efficiency.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Limited heavy-load handling capability, performance depends on gripper compliance design.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Incorporate self-centering features to further improve pallet positioning accuracy.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides useful concepts for designing a pallet gripper that can tolerate minor alignment errors during pickup and placement.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Compliant grippers improve reliability by adapting to object variations without complex control systems.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 14 & 17 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">14 & 17</td>
+                            <td style="font-weight: 500; padding: 1rem;">M. U. Khalid, M. Jilich, M. Frascio, B. Lévesque, A. Zanella, M. Zoppi</td>
+                            <td style="text-align: center; padding: 1rem;">2021</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Universal+Gripper+Having+Rigid+Mechanics+With+Self-Adaptable+Fingers" target="_blank" rel="noopener noreferrer">
+                                    Universal Gripper Having Rigid Mechanics With Self-Adaptable Fingers
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-14" class="btn" onclick="toggleDetails(14)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 14 Details -->
+                        <tr id="details-14" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Developing a heavy-duty industrial gripper that combines high gripping strength with adaptability to different object geometries.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Hybrid rigid-flexible gripper architecture.</li>
+                                                    <li>Self-adaptable finger mechanism.</li>
+                                                    <li>Self-locking joint design.</li>
+                                                    <li>Industrial performance evaluation.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Automotive Manufacturing, Heavy Machinery Assembly, Industrial Material Handling, Warehouse Automation.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Universal Robotic Gripper</li>
+                                                    <li>Self-Adaptive Fingers</li>
+                                                    <li>Self-Locking Joints</li>
+                                                    <li>Rigid-Flexible Mechanical Structure</li>
+                                                    <li>Industrial Robotic Arm</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Adaptive Finger Kinematics</li>
+                                                    <li>Force Distribution Analysis</li>
+                                                    <li>Grasp Optimization Models</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>High gripping strength.</li>
+                                                    <li>Ability to handle irregular objects.</li>
+                                                    <li>Improved versatility compared to conventional grippers.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Higher mechanical complexity, increased manufacturing cost.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Reduce overall weight through lightweight materials while preserving gripping force.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides design inspiration for developing a robust pallet gripper capable of securely lifting pallets while maintaining adaptability.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Combining rigid mechanics with adaptive fingers provides both strength and flexibility in industrial gripping applications.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 15 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">15</td>
+                            <td style="font-weight: 500; padding: 1rem;">N. Elangovan, L. Gerez, G. Gao, M. Liarokapis</td>
+                            <td style="text-align: center; padding: 1rem;">2022</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=A+Multi-Modal,+Adaptive+Gripper+with+Reconfigurable+Finger+Bases" target="_blank" rel="noopener noreferrer">
+                                    A Multi-Modal, Adaptive Gripper with Reconfigurable Finger Bases
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-15" class="btn" onclick="toggleDetails(15)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 15 Details -->
+                        <tr id="details-15" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Improving robotic grasping flexibility by allowing finger positions to be reconfigured according to object geometry.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Reconfigurable finger base design.</li>
+                                                    <li>Modular gripping architecture.</li>
+                                                    <li>Evaluation of multiple grasping configurations.</li>
+                                                    <li>Experimental testing on different object types.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Flexible Manufacturing, Material Handling, Warehouse Robotics, Multi-Object Grasping Systems.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Adaptive Gripper</li>
+                                                    <li>Reconfigurable Finger Bases</li>
+                                                    <li>Actuators</li>
+                                                    <li>Robotic Manipulator</li>
+                                                    <li>Modular Finger Mechanisms</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Reconfiguration Planning</li>
+                                                    <li>Adaptive Grasp Control</li>
+                                                    <li>Grasp Mode Selection</li>
+                                                    <li>Kinematic Analysis</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Ability to switch between different grasping modes.</li>
+                                                    <li>Improved versatility.</li>
+                                                    <li>Better handling of objects with varying geometries.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Increased control complexity, additional actuators increase system cost.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Develop a simplified reconfigurable mechanism with fewer moving parts for industrial deployment.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides insights into adaptable gripping mechanisms that can accommodate variations in pallet alignment and positioning.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Reconfigurable finger systems significantly improve gripper versatility and reduce the need for multiple specialized end-effectors.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 16 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">16</td>
+                            <td style="font-weight: 500; padding: 1rem;">H. Chen, J. Zhu, Y. Cao, Z. Xia, Z. Chai, H. Ding, Z. Wu</td>
+                            <td style="text-align: center; padding: 1rem;">2022</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Soft-Rigid+Coupling+Grippers:+Collaboration+Strategies+and+Integrated+Fabrication+Methods" target="_blank" rel="noopener noreferrer">
+                                    Soft-Rigid Coupling Grippers: Collaboration Strategies and Integrated Fabrication Methods
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-16" class="btn" onclick="toggleDetails(16)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 16 Details -->
+                        <tr id="details-16" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Developing grippers that combine the flexibility of soft robotics with the strength and durability of rigid structures.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Multi-material gripper design.</li>
+                                                    <li>Integrated fabrication approach.</li>
+                                                    <li>Soft-rigid structural coupling.</li>
+                                                    <li>Experimental validation of gripping performance and durability.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Medical Robotics, Food Processing, Industrial Material Handling, Precision Automation.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Soft-Rigid Hybrid Gripper</li>
+                                                    <li>Multi-Material 3D Printing System</li>
+                                                    <li>Flexible Elastomer Components</li>
+                                                    <li>Rigid Structural Framework</li>
+                                                    <li>Robotic Manipulator</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Soft-Rigid Interaction Models</li>
+                                                    <li>Structural Optimization Techniques</li>
+                                                    <li>Integrated Fabrication Frameworks</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved durability and gripping performance.</li>
+                                                    <li>Reduced mechanical wear.</li>
+                                                    <li>Simplified assembly and maintenance.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Complex manufacturing process, specialized fabrication equipment required.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Develop lightweight hybrid structures suitable for industrial pallet handling applications.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides valuable insights for designing a durable pallet gripper that combines strength with adaptability.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Soft-rigid integration enables robust and adaptable grippers with improved durability and operational efficiency.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 18 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">18</td>
+                            <td style="font-weight: 500; padding: 1rem;">R. Caccavale, P. Arpenti, G. Paduano, A. Fontanelli, V. Lippiello, L. Villani, B. Siciliano</td>
+                            <td style="text-align: center; padding: 1rem;">2021</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=A+Flexible+Robotic+Depalletizing+System+for+Supermarket+Logistics" target="_blank" rel="noopener noreferrer">
+                                    A Flexible Robotic Depalletizing System for Supermarket Logistics
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-18" class="btn" onclick="toggleDetails(18)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 18 Details -->
+                        <tr id="details-18" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Automating pallet unloading operations in environments where objects are arranged irregularly and unpredictably.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Vision-guided robotic depalletizing.</li>
+                                                    <li>Object detection and localization.</li>
+                                                    <li>Motion planning for box extraction and transfer.</li>
+                                                    <li>Experimental validation in logistics environments.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Warehouse Automation, Supermarket Logistics, Depalletizing Systems, Material Handling.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>RGB-D Cameras</li>
+                                                    <li>6-Axis Industrial Robot</li>
+                                                    <li>Vision System</li>
+                                                    <li>Robotic Gripper</li>
+                                                    <li>Material Handling Platform</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Object Detection Algorithms</li>
+                                                    <li>Motion Planning Algorithms</li>
+                                                    <li>Vision-Based Localization</li>
+                                                    <li>Path Planning Techniques</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Accurate identification of palletized objects.</li>
+                                                    <li>Improved unloading efficiency.</li>
+                                                    <li>Increased flexibility in handling irregular arrangements.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Performance depends on camera visibility, sensitive to environmental conditions and occlusions.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Integrate AI-based object recognition to improve robustness under varying warehouse conditions.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Directly relevant to pallet emptying operations and provides guidance for automated pallet handling using robotic systems.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Vision-guided depalletizing systems significantly improve flexibility and efficiency in automated logistics operations.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 19 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">19</td>
+                            <td style="font-weight: 500; padding: 1rem;">J. D. Lee, C. H. Chang, E. S. Cheng, C. C. Kuo, C. Y. Hsieh</td>
+                            <td style="text-align: center; padding: 1rem;">2020</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Intelligent+Robotic+Palletizer+System" target="_blank" rel="noopener noreferrer">
+                                    Intelligent Robotic Palletizer System
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-19" class="btn" onclick="toggleDetails(19)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 19 Details -->
+                        <tr id="details-19" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Optimizing pallet loading patterns to maximize space utilization while maintaining load stability.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Intelligent pallet arrangement planning.</li>
+                                                    <li>Optimization-based box placement.</li>
+                                                    <li>Automated palletizing workflow evaluation.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Warehouse Automation, Logistics, Packaging Industry, Automated Palletizing Systems.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Industrial Robot Arm</li>
+                                                    <li>Palletizing System</li>
+                                                    <li>Box Dimension Measurement System</li>
+                                                    <li>Material Handling Equipment</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Genetic Algorithms</li>
+                                                    <li>Packing Optimization Algorithms</li>
+                                                    <li>Stability Evaluation Models</li>
+                                                    <li>Load Distribution Analysis</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved pallet space utilization.</li>
+                                                    <li>Better load stability.</li>
+                                                    <li>Reduced logistics and transportation costs.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Computational complexity increases with item variety, requires accurate object dimension information.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Integrate real-time sensing and adaptive placement strategies for dynamic warehouse environments.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides understanding of pallet handling workflows and optimization concepts useful for automated pallet transfer operations.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Intelligent palletizing improves logistics efficiency by optimizing load arrangement and pallet utilization.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 20 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">20</td>
+                            <td style="font-weight: 500; padding: 1rem;">T. Sakamoto, K. Harada, W. Wan</td>
+                            <td style="text-align: center; padding: 1rem;">2021</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Real-Time+Planning+Robotic+Palletizing+Tasks+Using+Reusable+Roadmaps" target="_blank" rel="noopener noreferrer">
+                                    Real-Time Planning Robotic Palletizing Tasks Using Reusable Roadmaps
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-20" class="btn" onclick="toggleDetails(20)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 20 Details -->
+                        <tr id="details-20" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Developing fast and efficient robot motion planning methods for palletizing operations in dynamic warehouse environments with moving obstacles.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Reusable roadmap-based motion planning.</li>
+                                                    <li>Real-time path computation.</li>
+                                                    <li>Dynamic obstacle avoidance.</li>
+                                                    <li>Warehouse environment simulation and validation.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Warehouse Automation, Palletizing Systems, Logistics Operations, Material Handling.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Industrial Robot Arm</li>
+                                                    <li>Motion Planning System</li>
+                                                    <li>Obstacle Detection Sensors</li>
+                                                    <li>Warehouse Automation Platform</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Reusable Roadmap Planning (RRM)</li>
+                                                    <li>Path Planning Algorithms</li>
+                                                    <li>Motion Optimization Techniques</li>
+                                                    <li>Dynamic Obstacle Avoidance</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Faster motion planning.</li>
+                                                    <li>Improved warehouse throughput.</li>
+                                                    <li>Better real-time responsiveness.</li>
+                                                    <li>Enhanced operational safety.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Performance depends on roadmap quality, may require environment-specific tuning.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Integrate AI-based path optimization for more adaptive warehouse navigation.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides motion planning concepts for efficient pallet transfer between ASRS stations using the TM5-700 cobot.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Reusable roadmaps significantly reduce planning time and improve robotic warehouse efficiency.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 21 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">21</td>
+                            <td style="font-weight: 500; padding: 1rem;">R. Krug, T. Stoyanov, V. Tincani, H. Andreasson, R. Mosberger, G. Fantoni, A. J. Lilienthal</td>
+                            <td style="text-align: center; padding: 1rem;">2022</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Autonomous+Picking+and+Palletizing" target="_blank" rel="noopener noreferrer">
+                                    Autonomous Picking and Palletizing
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-21" class="btn" onclick="toggleDetails(21)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 21 Details -->
+                        <tr id="details-21" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Creating a fully integrated warehouse automation system that combines item picking and palletizing operations.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Mobile manipulation framework.</li>
+                                                    <li>Integration of robotic arms with mobile robots.</li>
+                                                    <li>Automated picking and pallet building workflows.</li>
+                                                    <li>Warehouse operation validation.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Smart Warehouses, Logistics Centers, Automated Material Handling.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Mobile Robots</li>
+                                                    <li>Robotic Arms</li>
+                                                    <li>Vision Systems</li>
+                                                    <li>Grippers</li>
+                                                    <li>Warehouse Navigation Sensors</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Autonomous Navigation Algorithms</li>
+                                                    <li>Pick-and-Place Planning</li>
+                                                    <li>Pallet Building Strategies</li>
+                                                    <li>Mobile Manipulation Frameworks</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Seamless integration of mobility and manipulation.</li>
+                                                    <li>Improved warehouse automation efficiency.</li>
+                                                    <li>Reduced human intervention.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Complex system integration, high implementation cost.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Implement centralized coordination between AMR, cobot, and warehouse systems.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Highly relevant because our project combines TM5-700 cobot operations with LD-250 AMR and ASRS workflows.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Combining robotic mobility and manipulation is a key step toward fully autonomous warehouse operations.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 22 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">22</td>
+                            <td style="font-weight: 500; padding: 1rem;">Sun, Y., Song, S. and Hollis, R.</td>
+                            <td style="text-align: center; padding: 1rem;">2021</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Research+on+Robot+Grasping+Based+on+Deep+Learning+for+Real-Life+Scenarios" target="_blank" rel="noopener noreferrer">
+                                    Research on Robot Grasping Based on Deep Learning for Real-Life Scenarios
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-22" class="btn" onclick="toggleDetails(22)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 22 Details -->
+                        <tr id="details-22" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Improving robotic grasping performance when handling complex, irregular, and previously unseen objects.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Deep learning-based grasp detection.</li>
+                                                    <li>Computer vision for object identification.</li>
+                                                    <li>Neural network training using grasp datasets.</li>
+                                                    <li>Experimental validation in real-world scenarios.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Industrial Automation, Warehouse Robotics, Intelligent Material Handling, Autonomous Picking Systems.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>RGB Cameras</li>
+                                                    <li>RGB-D Cameras</li>
+                                                    <li>Robotic Manipulators</li>
+                                                    <li>Robotic Grippers</li>
+                                                    <li>Vision Processing Units</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Deep Learning Models</li>
+                                                    <li>Neural Networks</li>
+                                                    <li>Computer Vision Algorithms</li>
+                                                    <li>Robotic Grasp Planning</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved grasp accuracy.</li>
+                                                    <li>Better object recognition.</li>
+                                                    <li>Enhanced handling of irregular objects.</li>
+                                                    <li>Increased robotic adaptability.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Requires large datasets for training, high computational requirements, performance depends on training quality.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Integrate real-time deep learning with industrial vision systems for robust pallet detection.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides future enhancement opportunities for intelligent pallet recognition and adaptive gripping using AI-based vision systems.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Deep learning significantly improves robotic grasping performance and adaptability in real-world environments.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 23 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">23</td>
+                            <td style="font-weight: 500; padding: 1rem;">Boysen, N., de Koster, R. and Weidinger, F., 2021</td>
+                            <td style="text-align: center; padding: 1rem;">2020</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Warehousing+in+the+E-Commerce+Era" target="_blank" rel="noopener noreferrer">
+                                    Warehousing in the E-Commerce Era
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-23" class="btn" onclick="toggleDetails(23)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 23 Details -->
+                        <tr id="details-23" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Managing the increasing complexity of warehouse operations driven by rapid e-commerce growth and rising customer expectations.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Analysis of modern e-commerce warehouse systems.</li>
+                                                    <li>Study of automation technologies and logistics workflows.</li>
+                                                    <li>Evaluation of warehouse operational challenges.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">E-Commerce Warehouses, Logistics Centers, Distribution Hubs, Smart Warehousing.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Automated Storage and Retrieval Systems (ASRS)</li>
+                                                    <li>Mobile Robots (AMRs)</li>
+                                                    <li>Warehouse Management Systems (WMS)</li>
+                                                    <li>Conveyor Systems</li>
+                                                    <li>Inventory Tracking Devices</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Warehouse Optimization Algorithms</li>
+                                                    <li>Inventory Management Models</li>
+                                                    <li>Routing and Scheduling Algorithms</li>
+                                                    <li>Logistics Optimization Techniques</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved warehouse efficiency and throughput.</li>
+                                                    <li>Faster order fulfillment.</li>
+                                                    <li>Better inventory management.</li>
+                                                    <li>Reduced operational costs.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">High implementation cost, complex system integration, dependence on advanced infrastructure.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Develop more flexible warehouse automation systems capable of handling dynamic operational changes.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Highlights the importance of integrating ASRS and automated material handling systems for efficient pallet movement.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Automation and intelligent warehousing are essential for meeting modern e-commerce demands.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 24 -->
+                        <tr style="border-bottom: 1px solid #cbd5e1;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">24</td>
+                            <td style="font-weight: 500; padding: 1rem;">Azadeh, K., De Koster, R. and Roy, D.</td>
+                            <td style="text-align: center; padding: 1rem;">2021</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Robotized+Warehouse+Systems:+Developments+and+Research" target="_blank" rel="noopener noreferrer">
+                                    Robotized Warehouse Systems: Developments and Research
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-24" class="btn" onclick="toggleDetails(24)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 24 Details -->
+                        <tr id="details-24" class="details-row" style="border-bottom: 1px solid #cbd5e1;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Improving warehouse efficiency through robotic automation while addressing challenges related to system coordination and scalability.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Review of robotized warehouse technologies.</li>
+                                                    <li>Analysis of warehouse automation architectures.</li>
+                                                    <li>Evaluation of operational performance and challenges.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Automated Warehouses, Logistics and Distribution Centers, Smart Manufacturing Facilities.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Automated Storage and Retrieval Systems (ASRS)</li>
+                                                    <li>Mobile Robots (AMRs)</li>
+                                                    <li>Warehouse Management Systems (WMS)</li>
+                                                    <li>Material Handling Equipment</li>
+                                                    <li>Automated Conveyance Systems</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Warehouse Optimization Algorithms</li>
+                                                    <li>Fleet Coordination Algorithms</li>
+                                                    <li>Scheduling and Routing Models</li>
+                                                    <li>Inventory Management Systems</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Increased storage and retrieval efficiency.</li>
+                                                    <li>Improved operational accuracy.</li>
+                                                    <li>Enhanced throughput and scalability.</li>
+                                                    <li>Reduced manual labor requirements.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Complex coordination among multiple systems, significant deployment and maintenance costs.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Implement AI-driven coordination and predictive maintenance capabilities.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides valuable insights into integrating TM5-700 cobot operations with ASRS and warehouse automation systems.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Successful warehouse automation depends on seamless integration of robotics, storage systems, and management software.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Paper 25 -->
+                        <tr style="border-bottom: none;">
+                            <td style="font-weight: 600; text-align: center; padding: 1rem;">25</td>
+                            <td style="font-weight: 500; padding: 1rem;">Gualtieri, M. and Platt, R.</td>
+                            <td style="text-align: center; padding: 1rem;">2022</td>
+                            <td style="padding: 1rem;">
+                                <a href="https://scholar.google.com/scholar?q=Learning+Manipulation+Skills+for+Robotic+Picking" target="_blank" rel="noopener noreferrer">
+                                    Learning Manipulation Skills for Robotic Picking
+                                </a>
+                            </td>
+                            <td style="text-align: center; padding: 1rem;">
+                                <button id="btn-25" class="btn" onclick="toggleDetails(25)" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: 4px; box-shadow: none;">View Analysis 📑</button>
+                            </td>
+                        </tr>
+                        <!-- Paper 25 Details -->
+                        <tr id="details-25" class="details-row" style="border-bottom: none;">
+                            <td colspan="5">
+                                <div class="details-content-box">
+                                    <div class="details-grid">
+                                        <div>
+                                            <div class="details-section-title">Problem Addressed</div>
+                                            <div class="details-text">Enabling robots to learn efficient object manipulation and picking strategies in dynamic and unstructured environments.</div>
+                                            
+                                            <div class="details-section-title">Methodology</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Learning-based robotic manipulation.</li>
+                                                    <li>Data-driven training approaches.</li>
+                                                    <li>Reinforcement learning and deep learning techniques.</li>
+                                                    <li>Experimental validation using robotic picking tasks.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Application Area</div>
+                                            <div class="details-text">Warehouse Automation, Industrial Robotics, Intelligent Picking Systems, Material Handling.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Sensors / Hardware Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>RGB Cameras</li>
+                                                    <li>RGB-D Cameras</li>
+                                                    <li>Robotic Manipulators</li>
+                                                    <li>Adaptive Grippers</li>
+                                                    <li>Vision Processing Systems</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Algorithms / Models Used</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Machine Learning</li>
+                                                    <li>Deep Learning</li>
+                                                    <li>Reinforcement Learning</li>
+                                                    <li>Computer Vision</li>
+                                                    <li>Robotic Manipulation Algorithms</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title">Key Results</div>
+                                            <div class="details-text">
+                                                <ul>
+                                                    <li>Improved picking accuracy.</li>
+                                                    <li>Better adaptability to unknown objects.</li>
+                                                    <li>Enhanced robotic decision-making.</li>
+                                                    <li>Increased success rate in complex environments.</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="details-section-title">Limitations</div>
+                                            <div class="details-text">Large training datasets required, high computational demand, training and deployment complexity.</div>
+                                            
+                                            <div class="details-section-title">Possible Improvement</div>
+                                            <div class="details-text">Integrate real-time learning systems with industrial robotic workflows for continuous performance improvement.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem;">
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Use for Our Project</div>
+                                            <div class="details-text" style="color: var(--primary); font-weight: 500;">Provides future scope for incorporating intelligent pallet recognition and adaptive gripping strategies in TM5-700 pallet handling operations.</div>
+                                        </div>
+                                        <div>
+                                            <div class="details-section-title" style="color: var(--accent);">Key Takeaway</div>
+                                            <div class="details-highlight">
+                                                💡 Learning-based robotic systems significantly improve adaptability, accuracy, and performance in complex picking applications.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toggle Details Script -->
+    <script>
+        function toggleDetails(id) {
+            const row = document.getElementById('details-' + id);
+            const btn = document.getElementById('btn-' + id);
+            if (row.style.display === 'table-row') {
+                row.style.display = 'none';
+                btn.textContent = 'View Analysis 📑';
+                btn.style.backgroundColor = 'var(--accent)';
+            } else {
+                row.style.display = 'table-row';
+                btn.textContent = 'Close Analysis ✖';
+                btn.style.backgroundColor = '#ef4444';
+            }
+        }
+    </script>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

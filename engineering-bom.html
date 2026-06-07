@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Design | Cobot End-Effector</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 5% 4rem;
+        }
+
+        .sketch-placeholder {
+            background: #e2e8f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .toc-bar {
+            background: var(--primary);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toc-bar a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .toc-bar a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+
+        .toc-bar a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-bar {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TEAM<span>12</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+            <a href="theme.html">Theme</a>
+            <a href="problem-statement.html">Problem Statement</a>
+            <a href="gantt-chart.html">Gantt Chart</a>
+            <a href="literature-survey.html">Literature Survey</a>
+            <a href="market-patent-survey.html">Market & Patent Survey</a>
+            <a href="engineering-specs.html" class="active">Engineering Design</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+    <!-- Table of Contents Sticky Bar -->
+    <div class="toc-bar">
+        <a href="engineering-specs.html">1. Requirements & Specs</a>
+        <a href="engineering-concepts.html">2. Conceptual Design</a>
+        <a href="engineering-comparison.html">3. Comparison of Design</a>
+        <a href="engineering-finalized.html">4. Finalized Design</a>
+        <a href="engineering-bom.html" class="active">5. Components & BOM</a>
+        <a href="engineering-solidworks.html">6. Solidworks Drawings</a>
+        <a href="engineering-analysis.html">7. System Analysis</a>
+        <a href="engineering-circuit.html">8. Circuit Design</a>
+        <a href="engineering-flowchart.html">9. Program Flowchart</a>
+        <a href="engineering-architecture.html">10. Architecture</a>
+        <a href="engineering-simulation.html">11. Simulation</a>
+    </div>
+<!-- Page Header -->
+    <header class="page-header text-center">
+        <div class="container reveal">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Engineering Design & Integration</h1>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 1.5rem;">Comprehensive analysis,
+                modeling, fabrication, and control loop verification of the custom end-effector</p>
+            <div style="display: inline-block;">
+                <span
+                    style="background: rgba(20, 189, 172, 0.2); border: 1px solid rgba(20, 189, 172, 0.4); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(5px);">🟢
+                    Physical Integration Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Requirements and Specifications -->
+    <section id="bom" class="section-padding" style="background-color: var(--card-white);">
+        <div class="container reveal">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">05. Technical BOM & System Components</span>
+                <h2 class="section-title">Components Lists and BOM</h2>
+            </div>
+
+            <div class="grid grid-2" style="gap: 3rem;">
+                <!-- Components Lists -->
+                <div>
+                    <h3
+                        style="margin-bottom: 1.5rem; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; font-family: 'Poppins', sans-serif;">
+                        <span
+                            style="display: inline-block; width: 4px; height: 1.5rem; background: var(--accent); border-radius: 2px;"></span>
+                        Technical Specifications List
+                    </h3>
+                    <div class="card" style="padding: 0; overflow: hidden; height: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; width: 45%; background: #f8fafc; color: var(--primary);">
+                                        Max Payload Capacity</td>
+                                    <td style="padding: 1.2rem;">500 g</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; background: #f8fafc; color: var(--primary);">
+                                        Electromagnet Type</td>
+                                    <td style="padding: 1.2rem;">KK-P25/20 Holding Magnet</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; background: #f8fafc; color: var(--primary);">
+                                        Actuation Method</td>
+                                    <td style="padding: 1.2rem;">24V DC Digital I/O Relay Switch</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; background: #f8fafc; color: var(--primary);">
+                                        Core Fabrication Materials</td>
+                                    <td style="padding: 1.2rem;">3D Printed PLA (Triangular Infill)</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="padding: 1.2rem; font-weight: 600; background: #f8fafc; color: var(--primary);">
+                                        Signal Communication</td>
+                                    <td style="padding: 1.2rem;">Optocoupler Isolated Logic Controller</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- BOM -->
+                <div>
+                    <h3
+                        style="margin-bottom: 1.5rem; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; font-family: 'Poppins', sans-serif;">
+                        <span
+                            style="display: inline-block; width: 4px; height: 1.5rem; background: var(--accent); border-radius: 2px;"></span>
+                        Bill of Materials (BOM)
+                    </h3>
+                    <div class="card" style="padding: 0; overflow: hidden; height: auto;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead style="background: var(--primary); color: white;">
+                                <tr>
+                                    <th style="padding: 1.2rem; font-weight: 500;">Component Description</th>
+                                    <th style="padding: 1.2rem; font-weight: 500; text-align: center; width: 15%;">Qty</th>
+                                    <th style="padding: 1.2rem; font-weight: 500; text-align: right; width: 25%;">Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">Gripper 3D Print / Fabrication</td>
+                                    <td style="padding: 1.2rem; font-weight: 600; text-align: center;">1</td>
+                                    <td style="padding: 1.2rem; text-align: right;">₹1,500.00</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">Pallet 3D Print / Fabrication</td>
+                                    <td style="padding: 1.2rem; font-weight: 600; text-align: center;">1</td>
+                                    <td style="padding: 1.2rem; text-align: right;">₹1,400.00</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">KK-P25/20 Electromagnet Array</td>
+                                    <td style="padding: 1.2rem; font-weight: 600; text-align: center;">4</td>
+                                    <td style="padding: 1.2rem; text-align: right;">₹1,118.64</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">Relay 12v Board</td>
+                                    <td style="padding: 1.2rem; font-weight: 600; text-align: center;">1</td>
+                                    <td style="padding: 1.2rem; text-align: right;">₹53.00</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">Buck Converter Module</td>
+                                    <td style="padding: 1.2rem; font-weight: 600; text-align: center;">1</td>
+                                    <td style="padding: 1.2rem; text-align: right;">₹254.00</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">Optocoupler Isolator Module</td>
+                                    <td style="padding: 1.2rem; font-weight: 600; text-align: center;">1</td>
+                                    <td style="padding: 1.2rem; text-align: right;">₹228.00</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 1.2rem;">DC-DC Converter Module</td>
+                                    <td style="padding: 1.2rem; font-weight: 600; text-align: center;">1</td>
+                                    <td style="padding: 1.2rem; text-align: right;">₹164.00</td>
+                                </tr>
+                                <tr style="background: rgba(20, 189, 172, 0.1); font-weight: bold;">
+                                    <td style="padding: 1.2rem; color: var(--primary);">Total Bill of Materials</td>
+                                    <td style="padding: 1.2rem; text-align: center;">10</td>
+                                    <td style="padding: 1.2rem; text-align: right; color: #0e8579;">₹4,717.64</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Solidworks Drawings -->
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6;">
+                © 2026 Team 12 | Minor Project - Design & Development of End-Effector for TM5-700 Cobot For Pallet
+                Emptying and ASRS Redocking
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
