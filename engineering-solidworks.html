@@ -64,6 +64,426 @@
                 top: 70px;
             }
         }
+
+        /* Drawings Grid & Cards (Simplified Layout) */
+        .drawings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 992px) {
+            .drawings-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .drawings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .drawing-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #cbd5e1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: zoom-in;
+        }
+
+        .drawing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .drawing-card-img-wrapper {
+            background: #ffffff;
+            padding: 0.5rem;
+            aspect-ratio: 1.414/1; /* A3/A4 Aspect Ratio */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .drawing-card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        .drawing-card:hover .drawing-card-img-wrapper img {
+            transform: scale(1.02);
+        }
+
+        .drawing-card-content {
+            padding: 1.25rem;
+            text-align: center;
+            background: var(--bg-light);
+        }
+
+        .drawing-card-title {
+            font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content-wrapper {
+            position: relative;
+            max-width: 90%;
+            max-height: 85%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-caption {
+            color: white;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -3.5rem;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* 3D CAD Viewer Styles */
+        .cad-section {
+            margin-bottom: 4rem;
+        }
+
+        .cad-viewer-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 1.5rem;
+            background: #0f172a; /* Dark background matching the viewport */
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid #334155;
+            overflow: hidden;
+        }
+
+        @media (max-width: 992px) {
+            .cad-viewer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cad-viewport-wrapper {
+            position: relative;
+            background: #1e293b;
+            border-radius: calc(var(--radius) - 4px);
+            overflow: hidden;
+            border: 1px solid #334155;
+            aspect-ratio: 16/9;
+            min-height: 480px;
+        }
+
+        #cad-viewport {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+
+        #cad-viewport:active {
+            cursor: grabbing;
+        }
+
+        /* Drag over visual feedback */
+        .cad-viewport-wrapper.dragover::after {
+            content: "📥 Drop STL file here to load!";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(20, 189, 172, 0.9); /* Teal translucent */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            z-index: 10;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+            border: 3px dashed white;
+            border-radius: calc(var(--radius) - 4px);
+        }
+
+        /* Floating Overlays */
+        .cad-overlay-controls {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            pointer-events: auto;
+            z-index: 5;
+        }
+
+        .cad-overlay-controls button {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition);
+        }
+
+        .cad-overlay-controls button:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .cad-alert {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cad-alert.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .cad-alert.alert-danger {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+        }
+
+        .cad-alert.alert-success {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+            color: #a7f3d0;
+        }
+
+        .cad-spinner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            color: white;
+            z-index: 9;
+            font-weight: 500;
+            display: none; /* Controlled by JS */
+        }
+
+        .spinner-icon {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Sidebar Settings Panel */
+        .cad-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            justify-content: center;
+        }
+
+        .cad-sidebar-section {
+            border-bottom: 1px solid #334155;
+            padding-bottom: 1.25rem;
+        }
+
+        .cad-sidebar-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .cad-section-title {
+            font-family: 'Poppins', sans-serif;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+            margin-top: 0;
+        }
+
+        /* Group buttons styling */
+        .cad-btn-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .cad-theme-btn, .cad-mode-btn {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            padding: 0.6rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .cad-theme-btn:hover, .cad-mode-btn:hover {
+            background: #334155;
+            color: white;
+        }
+
+        .cad-theme-btn.active, .cad-mode-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* File Upload Area */
+        .cad-uploader {
+            border: 2px dashed #334155;
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+            background: #1e293b;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cad-uploader:hover {
+            border-color: var(--accent);
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .cad-uploader-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .cad-uploader p {
+            color: #cbd5e1;
+            font-size: 0.8rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .cad-uploader span {
+            color: #64748b;
+            font-size: 0.7rem;
+            display: block;
+            margin-top: 0.3rem;
+        }
     </style>
 </head>
 
@@ -90,7 +510,7 @@
         <a href="engineering-comparison.html"> Comparison of Design</a>
         <a href="engineering-finalized.html"> Finalized Design</a>
         <a href="engineering-bom.html"> Components & BOM</a>
-        <a href="engineering-solidworks.html"class="active"> Solidworks Drawings</a>
+        <a href="engineering-solidworks.html" class="active"> Solidworks Drawings</a>
         <a href="engineering-analysis.html"> System Analysis</a>
         <a href="engineering-circuit.html"> Circuit Design</a>
         <a href="engineering-flowchart.html"> Program Flowchart</a>
@@ -114,44 +534,142 @@
     <!-- 1. Requirements and Specifications -->
     <section id="solidworks" class="section-padding" style="background-color: var(--bg-light);">
         <div class="container reveal">
-            <div class="text-center" style="margin-bottom: 4rem;">
+            <div class="text-center" style="margin-bottom: 3rem;">
                 <span class="subtitle">06. CAD Drafting & Blueprints</span>
-                <h2 class="section-title">Solidworks Drawings</h2>
+                <h2 class="section-title" style="margin-bottom: 2rem;">Solidworks Drawings & Prototype</h2>
             </div>
 
-            <div class="grid grid-2" style="gap: 4rem; align-items: center;">
-                <div>
-                    <h3
-                        style="font-size: 1.8rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--primary);">
-                        Detailed Blueprint Configurations</h3>
-                    <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem;">
-                        Engineering blueprint drawings were drafted using SolidWorks to determine dimensional
-                        boundaries, tolerances, and mechanical bolt interface clearances.
-                    </p>
-                    <ul
-                        style="color: var(--text-dark); margin-bottom: 1.5rem; list-style-type: none; padding-left: 0; font-size: 0.95rem;">
-                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
-                            <span style="color: var(--accent); font-weight: bold;">✓</span>
-                            <span>Coupled directly using ISO 9409-1-50-4-M6 interface spacing standards.</span>
-                        </li>
-                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem;">
-                            <span style="color: var(--accent); font-weight: bold;">✓</span>
-                            <span>Establishes linear guide travel boundaries from 20mm to 110mm gripper width.</span>
-                        </li>
-                        <li style="display: flex; align-items: flex-start; gap: 0.8rem;">
-                            <span style="color: var(--accent); font-weight: bold;">✓</span>
-                            <span>Defines clearance dimensions for internal routing of FSR sensor cable channels.</span>
-                        </li>
-                    </ul>
+            <!-- Interactive 3D CAD Prototype Viewer -->
+            <div class="cad-section">
+                <div class="cad-viewer-container">
+                    <!-- Viewport wrapper -->
+                    <div class="cad-viewport-wrapper" id="cad-viewport-wrapper">
+                        <div id="cad-viewport"></div>
+                        
+                        <!-- Floating loading spinner -->
+                        <div class="cad-spinner" id="cad-viewer-spinner">
+                            <div class="spinner-icon"></div>
+                            <div>Parsing 3D CAD Model...</div>
+                        </div>
+
+                        <!-- Floating Alerts -->
+                        <div class="cad-alert" id="cad-viewer-alert"></div>
+
+                        <!-- Viewport Controls -->
+                        <div class="cad-overlay-controls">
+                            <button id="cad-play-pause" class="active">⏸ Pause Orbit</button>
+                            <button id="cad-reset-cam">🔄 Reset View</button>
+                            <button id="cad-clear-stl" style="display: none; background: rgba(239, 68, 68, 0.4); border-color: rgba(239, 68, 68, 0.6);">🗑 Clear STL</button>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar controls -->
+                    <div class="cad-sidebar">
+                        <div class="cad-sidebar-section">
+                            <h5 class="cad-section-title">Appearance Theme</h5>
+                            <div class="cad-btn-group">
+                                <button class="cad-theme-btn active" data-theme="matte-gray">Matte Gray</button>
+                                <button class="cad-theme-btn" data-theme="stainless-steel">Steel</button>
+                                <button class="cad-theme-btn" data-theme="brass">Brass</button>
+                                <button class="cad-theme-btn" data-theme="copper">Copper</button>
+                            </div>
+                        </div>
+
+                        <div class="cad-sidebar-section">
+                            <h5 class="cad-section-title">Display Mode</h5>
+                            <div class="cad-btn-group">
+                                <button class="cad-mode-btn active" data-mode="shaded">Shaded</button>
+                                <button class="cad-mode-btn" data-mode="wireframe">Wireframe</button>
+                                <button class="cad-mode-btn" data-mode="points" style="grid-column: span 2;">Points Cloud</button>
+                            </div>
+                        </div>
+
+                        <div class="cad-sidebar-section">
+                            <h5 class="cad-section-title">Upload Custom Model</h5>
+                            <div class="cad-uploader" onclick="document.getElementById('cad-file-input').click()">
+                                <span class="cad-uploader-icon">📁</span>
+                                <p>Drag & Drop an STL file here, or click to upload</p>
+                                <span>Supports binary/ASCII .stl</span>
+                                <input type="file" id="cad-file-input" style="display: none;" accept=".stl">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div
-                    style="box-shadow: var(--shadow-md); border-radius: var(--radius); overflow: hidden; border: 1px solid #cbd5e1; background: white;">
-                    <img src="images/solidworks_drawing.png" alt="Solidworks Drawing"
-                        style="width: 100%; height: auto; display: block;">
+            </div>
+
+            <!-- Drawings Grid -->
+            <div class="drawings-grid">
+                <!-- Card 1: Main Assembly -->
+                <div class="drawing-card" onclick="openLightbox('images/main assembly.jpg', 'Main Assembly')">
+                    <div class="drawing-card-img-wrapper">
+                        <img src="images/main assembly.jpg" alt="Main Assembly" onerror="this.src='images/solidworks_drawing.png';">
+                    </div>
+                    <div class="drawing-card-content">
+                        <h4 class="drawing-card-title">Main Assembly</h4>
+                    </div>
+                </div>
+
+                <!-- Card 2: Gripper Body -->
+                <div class="drawing-card" onclick="openLightbox('images/gripper.jpg', 'Gripper Body')">
+                    <div class="drawing-card-img-wrapper">
+                        <img src="images/gripper.jpg" alt="Gripper Body" onerror="this.src='images/solidworks_drawing.png';">
+                    </div>
+                    <div class="drawing-card-content">
+                        <h4 class="drawing-card-title">Gripper Body</h4>
+                    </div>
+                </div>
+
+                <!-- Card 3: Sub-Assembly Pallet -->
+                <div class="drawing-card" onclick="openLightbox('images/sub-assembly pallet.jpg', 'Sub-Assembly Pallet')">
+                    <div class="drawing-card-img-wrapper">
+                        <img src="images/sub-assembly pallet.jpg" alt="Sub-Assembly Pallet" onerror="this.src='images/solidworks_drawing.png';">
+                    </div>
+                    <div class="drawing-card-content">
+                        <h4 class="drawing-card-title">Sub-Assembly Pallet</h4>
+                    </div>
+                </div>
+
+                <!-- Card 4: Pallet Part 01 -->
+                <div class="drawing-card" onclick="openLightbox('images/pallet part 01.jpg', 'Pallet Part 01')">
+                    <div class="drawing-card-img-wrapper">
+                        <img src="images/pallet part 01.jpg" alt="Pallet Part 01" onerror="this.src='images/solidworks_drawing.png';">
+                    </div>
+                    <div class="drawing-card-content">
+                        <h4 class="drawing-card-title">Pallet Part 01</h4>
+                    </div>
+                </div>
+
+                <!-- Card 5: Pallet Part 02 -->
+                <div class="drawing-card" onclick="openLightbox('images/pallet part 02.jpg', 'Pallet Part 02')">
+                    <div class="drawing-card-img-wrapper">
+                        <img src="images/pallet part 02.jpg" alt="Pallet Part 02" onerror="this.src='images/solidworks_drawing.png';">
+                    </div>
+                    <div class="drawing-card-content">
+                        <h4 class="drawing-card-title">Pallet Part 02</h4>
+                    </div>
+                </div>
+
+                <!-- Card 6: Steel Plates -->
+                <div class="drawing-card" onclick="openLightbox('images/steel plates.jpg', 'Mild Steel Plates')">
+                    <div class="drawing-card-img-wrapper">
+                        <img src="images/steel plates.jpg" alt="Mild Steel Plates" onerror="this.src='images/solidworks_drawing.png';">
+                    </div>
+                    <div class="drawing-card-content">
+                        <h4 class="drawing-card-title">Mild Steel Plates</h4>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <div class="lightbox-content-wrapper">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightboxImg" class="lightbox-img" src="" alt="Drawing Large View">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+    </div>
 
     <!-- 7. System Analysis -->
     <!-- Scroll to Top Button -->
@@ -167,8 +685,50 @@
         </div>
     </footer>
 
+    <!-- Three.js & CAD Viewer Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    <script src="js/cad-viewer.js"></script>
     <!-- JS -->
     <script src="js/main.js"></script>
+    <script>
+        // Lightbox Functions
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+
+        function openLightbox(imgSrc, captionText) {
+            lightboxImg.src = imgSrc;
+            lightboxCaption.textContent = captionText;
+            lightboxModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Disable page scrolling
+        }
+
+        function closeLightbox() {
+            lightboxModal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore page scrolling
+        }
+
+        // Close lightbox on clicking background
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox on Esc keypress
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Page fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Drawings page loaded");
+        });
+    </script>
 </body>
 
 </html>
